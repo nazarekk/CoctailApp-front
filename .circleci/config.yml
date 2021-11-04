@@ -1,23 +1,55 @@
-# This config is equivalent to both the '.circleci/extended/orb-free.yml' and the base '.circleci/config.yml'
-version: 2.1
+version: 2.0
 
-# Orbs are reusable packages of CircleCI configuration that you may share across projects, enabling you to create encapsulated, parameterized commands, jobs, and executors that can be used across multiple projects.
-# See: https://circleci.com/docs/2.0/orb-intro/
 orbs:
-  node: circleci/node@4.7
-  angular: okode/angular@2.0.8 
+    node: circleci/node@4.7
+    angular: okode/angular@2.0.8
 
-# Invoke jobs via workflows
-# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
+jobs:
+    # The test job
+    test:
+        working_directory: ~/CoctailApp-front
+        docker:
+            - image: circleci/node:10-browsers
+        steps:
+            # Checkout the code from the branch into the working_directory
+            - checkout
+            # Log the current branch
+            - run:
+                  name: Show current branch
+                  command: echo circleci-project-setup
+            # Restore local dependencies from cache
+            - restore_cache:
+                  keys:
+                      - v1-dependencies-{{ checksum "package-lock.json" }}
+                      - v1-dependencies-
+            # Install project dependencies
+            - run:
+                  name: Install local dependencies
+                  command: npm install
+            # Cache local dependencies if they don't exist
+            - save_cache:
+                  key: v1-dependencies-{{ checksum "package-lock.json" }}
+                  paths:
+                      - node_modules
+            # Lint the source code
+            - run:
+                  name: Linting
+                  command: npm run lint
+            # Test the source code
+            - run:
+                  name: Testing
+                  command: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+            # End to End test
+            - run:
+                  name: End to End Test
+                  command: npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
 workflows:
-  sample: # This is the name of the workflow, feel free to change it to better match your workflow.
-    # Inside the workflow, you define the jobs you want to run.
-    jobs:
-      - node/test:
-          # This is the node version to use for the `cimg/node` tag
-          # Relevant tags can be found on the CircleCI Developer Hub
-          # https://circleci.com/developer/images/image/cimg/node
-          version: '16.10'
-          # If you are using yarn, change the line below from "npm" to "yarn"
-          pkg-manager: npm
-    
+    version: 2
+    # the test workflow
+    test_workflow:
+        jobs:
+            - deploy:
+                  filters:
+                      branches:
+                          only:
+                              - circleci-project-setup
