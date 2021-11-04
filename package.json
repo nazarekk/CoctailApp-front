@@ -3,11 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-<<<<<<< HEAD
     "start": "node server.js",
-=======
-    "start" : "node server.js",
->>>>>>> 5801284a36a2f8a639c0ada80934a24ccb1fb8dc
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
