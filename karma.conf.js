@@ -32,6 +32,13 @@ module.exports = function (config) {
         { type: 'text-summary' }
       ]
     },
+    browsers: ['Chrome'],
+      customLaunchers: {
+      ChromeNoSandbox: {
+      base: 'Chrome',
+      flags: ['--no-sandbox']
+      }
+    },
     reporters: ['progress', 'kjhtml'],
     port: 9876,
     colors: true,
