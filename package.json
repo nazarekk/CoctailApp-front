@@ -2,6 +2,7 @@
   "name": "coctail-app-front",
   "version": "0.0.0",
   "scripts": {
+    "dev": "ng serve",
     "ng": "ng",
     "start": "node server.js",
     "build": "ng build",
