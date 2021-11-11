@@ -1,0 +1,9 @@
+.box{
+  margin-bottom: 15px;
+}
+
+form{
+  display: block;
+  margin: 0 auto;
+  width: 350px;
+}
