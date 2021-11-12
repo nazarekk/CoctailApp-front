@@ -17,17 +17,13 @@ export class RegistrationComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  registerUser_(){
+  registerUser(){
 
     this._auth.registerUser(this.registerUserData)
       .subscribe(
         res=>console.log(res),
         err=>console.log(err)
       )
-  }
-
-  registerUser(){
-    console.log(this.registerUserData)
   }
 
 }
