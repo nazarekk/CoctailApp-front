@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
+
+import { ConfirmedValidator } from './confirmed.validator';
 import {AuthService} from "../auth/auth.service";
 
 @Component({
@@ -6,28 +9,34 @@ import {AuthService} from "../auth/auth.service";
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 })
-export class RegistrationComponent implements OnInit {
+export class RegistrationComponent {
 
-  title = "Sign Up"
+  title = 'Sign Up'
 
-  registerUserData:any = {}
+  form: FormGroup = new FormGroup({});
 
-  constructor(private _auth: AuthService) { }
+  constructor(private fb: FormBuilder, private auth: AuthService) {
 
-  ngOnInit(): void {
+    this.form = fb.group({
+      email: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+      doubleCheckPass: ['', [Validators.required]]
+    }, {
+      validator: ConfirmedValidator('password', 'doubleCheckPass')
+    })
   }
 
-  registerUser_(){
+  removeDoubleCheckPass(value:any){
+    delete value['doubleCheckPass']
+    return value
+  }
 
-    this._auth.registerUser(this.registerUserData)
+  submit(){
+    this.auth.registerUser(this.removeDoubleCheckPass(this.form.value))
       .subscribe(
         res=>console.log(res),
         err=>console.log(err)
       )
-  }
-
-  registerUser(){
-    console.log(this.registerUserData)
   }
 
 }
