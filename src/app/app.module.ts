@@ -8,12 +8,14 @@ import {FormsModule} from "@angular/forms";
 import {AuthService} from "./auth/auth.service";
 import { LoginComponent } from './login/login.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import {ModeratorComponent} from "./moderatorRegistration/moderator.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     RegistrationComponent,
-    LoginComponent
+    LoginComponent,
+    ModeratorComponent
   ],
   imports: [
     BrowserModule,

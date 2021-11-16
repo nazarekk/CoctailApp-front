@@ -6,7 +6,7 @@ import {HttpClient} from "@angular/common/http";
 })
 export class AuthService {
 
-  private _rootUrl = "https://coctailapp.herokuapp.com"
+  private _rootUrl = "localhost:8080/api"
   constructor(private http: HttpClient) { }
 
   registerUser(user){
@@ -15,6 +15,10 @@ export class AuthService {
 
   loginUser(user){
     return this.http.post<any>(this._rootUrl + '/login', user)
+  }
+
+  registerModerator(user){
+    return this.http.post<any>(this._rootUrl + '/admin/moderators', user)
   }
 
 }
