@@ -18,8 +18,8 @@ export class ModeratorComponent {
   constructor(private fb: FormBuilder, private auth: AuthService) {
 
     this.form = fb.group({
-      email: ['', [Validators.required]],
-      isActive  : ['', [Validators.required]]
+      email: ['', [Validators.required]]
+      // isActive: ['', [Validators.required]]
     })
   }
 

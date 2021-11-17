@@ -13,17 +13,23 @@
         <div *ngIf="this.form.controls.email.errors?.required">Email is required.</div>
       </div>
     </div>
+<!--      <div class="corona form-group lg10">-->
+<!--        <input-->
+<!--          formControlName="isValid"-->
+<!--          id="isValid"-->
+<!--          type="email"-->
+<!--          class="form-control"-->
+<!--          placeholder="isValid">-->
+<!--        <div *ngIf="this.form.controls.isValid.touched && this.form.controls.isValid.invalid" class="alert alert-danger">-->
+<!--          <div *ngIf="this.form.controls.isValid.errors?.required">isValid is required.</div>-->
+<!--        </div>-->
+<!--      </div>-->
     <div class="corona form-group lg10">
-      <input
-        formControlName="isActive"
-        id="isActive"
-        type=????
-        class="form-control"
-        placeholder="isActive">
-      <div *ngIf="this.form.controls.isActive.touched && this.form.controls.isActive.invalid" class="alert alert-danger">
-        <div *ngIf="this.form.controls.isActive.errors?.required">isActive is required.</div>
-      </div>
+      <mat-button-toggle-group appearance="standard">
+        <mat-button-toggle value = "True"> Enable moderator </mat-button-toggle>
+        <mat-button-toggle value = "False"> Disable moderator </mat-button-toggle>
+      </mat-button-toggle-group>
     </div>
-    <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Enter</button>
+<!--    <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Enter</button>-->
   </form>
 </div>
