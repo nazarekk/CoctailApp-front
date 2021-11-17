@@ -4,13 +4,13 @@
   <form [formGroup]="form" (ngSubmit)="submit()">
     <div class="corona form-group lg10">
       <input
-        formControlName="email"
-        id="email"
+        formControlName="nickname"
+        id="nickname"
         type="email"
         class="form-control"
-        placeholder="email">
-      <div *ngIf="this.form.controls.email.touched && this.form.controls.email.invalid" class="alert alert-danger">
-        <div *ngIf="this.form.controls.email.errors?.required">Email is required.</div>
+        placeholder="nickname">
+      <div *ngIf="this.form.controls.nickname.touched && this.form.controls.nickname.invalid" class="alert alert-danger">
+        <div *ngIf="this.form.controls.nickname.errors?.required">Nickname is required.</div>
       </div>
     </div>
     <div class="corona form-group lg10">
@@ -38,5 +38,4 @@
     </div>
     <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Enter</button>
   </form>
-  <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
 </div>

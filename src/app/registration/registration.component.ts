@@ -4,7 +4,6 @@ import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { ConfirmedValidator } from './confirmed.validator';
 import {AuthService} from "../auth/auth.service";
 import {Router, ActivatedRoute, Params} from "@angular/router";
-import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-registration',
@@ -16,12 +15,12 @@ export class RegistrationComponent implements OnInit{
   title = 'Sign Up'
 
   form: FormGroup = new FormGroup({});
+  success = false
 
   constructor(private fb: FormBuilder,
               private auth: AuthService,
               private router: Router,
-              private route: ActivatedRoute,
-              private http: HttpClient) {}
+              private route: ActivatedRoute) {}
 
 
   ngOnInit(){
@@ -43,7 +42,7 @@ export class RegistrationComponent implements OnInit{
   submit(){
     this.auth.registerUser(this.removeDoubleCheckPass(this.form.value))
       .subscribe(
-        (res)=> console.log(res),
+        res=>console.log(res),
         err=>console.log(err)
       )
   }

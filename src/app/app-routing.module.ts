@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {LoginComponent} from "./login/login.component";
 import {RegistrationComponent} from "./registration/registration.component";
+import {ModeratorComponent} from "./moderatorRegistration/moderator.component";
+import {ModeratorVerificationComponent} from "./moderatorVerification/moderator.verification.component";
+import {ModeratorPersonalComponent} from "./moderatorPersonal/moderator.personal.component";
 
 const routes: Routes = [
   {
@@ -16,6 +19,18 @@ const routes: Routes = [
   {
     path: 'registration',
     component: RegistrationComponent
+  },
+  {
+    path: 'moderator',
+    component: ModeratorComponent
+  },
+  {
+    path: 'moderator/verification',
+    component: ModeratorVerificationComponent
+  },
+  {
+    path: 'moderator/edit',
+    component: ModeratorPersonalComponent
   }
 ];
 
