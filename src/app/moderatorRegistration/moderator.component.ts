@@ -1,6 +1,8 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../auth/auth.service";
+import {Subscription} from "rxjs";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-moderator',
@@ -8,26 +10,35 @@ import {AuthService} from "../auth/auth.service";
   styleUrls: ['./moderator.component.css']
 })
 
-export class ModeratorComponent {
+export class ModeratorComponent implements OnInit{
 
   title = 'Sign up new moderator'
-
+  sSub: Subscription
   form: FormGroup = new FormGroup({});
 
 
-  constructor(private fb: FormBuilder, private auth: AuthService) {
+  constructor(private fb: FormBuilder,
+              private auth: AuthService,
+              private router: Router,
+              private route: ActivatedRoute) {}
 
-    this.form = fb.group({
-      email: ['', [Validators.required]]
-      // isActive: ['', [Validators.required]]
+  ngOnInit(){
+    this.form = this.fb.group({
+      email: ['', [Validators.required]],
+      isActive: ['', [Validators.required]]
     })
   }
 
+  ngOnDestroy() {
+    if(this.sSub){
+      this.sSub.unsubscribe()
+    }
+  }
 
   submit(){
-    this.auth.registerModerator(this.form.value)
+    this.sSub = this.auth.registerModerator(this.form.value)
       .subscribe(
-        res=>console.log(res),
+        ()=>this.router.navigate(['/overview']),
         err=>console.log(err)
       )
   }

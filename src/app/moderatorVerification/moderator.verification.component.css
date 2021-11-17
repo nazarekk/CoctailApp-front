@@ -28,15 +28,3 @@ h1{
   font-size: 20px;
 }
 
-.mat-button-toggle{
-  outline-width: thick;
-  outline-color: black;
-  color: black;
-  background-color: #62A1FE;
-}
-
-.mat-button-toggle-group {
-  margin-bottom: 15px;
-  color: black;
-  background-color: #62A1FE;
-}

@@ -3,19 +3,19 @@ import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import { ConfirmedValidator } from './confirmed.validator';
 import {AuthService} from "../auth/auth.service";
-import {Router, ActivatedRoute, Params} from "@angular/router";
+import {Subscription} from "rxjs";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
-  selector: 'app-registration',
-  templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.css']
+  selector: 'app-moderator-verification',
+  templateUrl: './moderator.verification.component.html',
+  styleUrls: ['./moderator.verification.component.css']
 })
-export class RegistrationComponent implements OnInit{
+export class ModeratorVerificationComponent implements OnInit{
 
-  title = 'Sign Up'
-
+  title = 'Moderator verification'
+  sSub: Subscription
   form: FormGroup = new FormGroup({});
-  success = false
 
   constructor(private fb: FormBuilder,
               private auth: AuthService,
@@ -25,7 +25,7 @@ export class RegistrationComponent implements OnInit{
 
   ngOnInit(){
     this.form = this.fb.group({
-      email: ['', [Validators.required]],
+      nickname: ['', [Validators.required]],
       password: ['', [Validators.required]],
       doubleCheckPass: ['', [Validators.required]]
     }, {
@@ -41,7 +41,7 @@ export class RegistrationComponent implements OnInit{
 
   submit(){
     console.log(this.removeDoubleCheckPass(this.removeDoubleCheckPass(this.form.value)))
-    this.auth.registerUser(this.form.value)
+    this.auth.verificateModerator(this.form.value)
       .subscribe(
         res=>console.log(res),
         err=>console.log(err)

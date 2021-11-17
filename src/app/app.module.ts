@@ -12,6 +12,8 @@ import {ModeratorComponent} from "./moderatorRegistration/moderator.component";
 import {MatButtonModule} from "@angular/material/button";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MatNativeDateModule} from "@angular/material/core";
+import {ModeratorVerificationComponent} from "./moderatorVerification/moderator.verification.component";
 
 const MaterialComponents = [
   MatButtonModule,
@@ -23,7 +25,8 @@ const MaterialComponents = [
     AppComponent,
     RegistrationComponent,
     LoginComponent,
-    ModeratorComponent
+    ModeratorComponent,
+    ModeratorVerificationComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -32,6 +35,7 @@ const MaterialComponents = [
     HttpClientModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    MatNativeDateModule,
     MaterialComponents
   ],
   exports: [MaterialComponents],
