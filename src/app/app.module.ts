@@ -14,6 +14,7 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatNativeDateModule} from "@angular/material/core";
 import {ModeratorVerificationComponent} from "./moderatorVerification/moderator.verification.component";
+import {ModeratorPersonalComponent} from "./moderatorPersonal/moderator.personal.component";
 
 const MaterialComponents = [
   MatButtonModule,
@@ -27,6 +28,7 @@ const MaterialComponents = [
     LoginComponent,
     ModeratorComponent,
     ModeratorVerificationComponent,
+    ModeratorPersonalComponent
   ],
   imports: [
     BrowserAnimationsModule,

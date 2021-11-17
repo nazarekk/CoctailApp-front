@@ -37,6 +37,10 @@ export class AuthService {
     return this.http.post<any>(this.rootUrl + '/moderator/verification', user)
   }
 
+  editModerator(user){
+    return this.http.post<any>(this.rootUrl + '/moderator/edit', user)
+  }
+
   setToken(token: string){
     this.token = token
   }

@@ -1,0 +1,38 @@
+<div class="bdy-cart container dsp">
+  <h1>{{title}}</h1>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="corona form-group lg10">
+      <input
+        formControlName="nickname"
+        id="nickname"
+        type="text"
+        class="form-control"
+        placeholder="nickname">
+      <div *ngIf="this.form.controls.nickname.touched && this.form.controls.nickname.invalid" class="alert alert-danger">
+      </div>
+    </div>
+    <div class="corona form-group lg10">
+      <input
+        formControlName="phoneNumber"
+        id="phoneNumber"
+        type="text"
+        class="form-control"
+        placeholder="phoneNumber">
+      <div *ngIf="this.form.controls.phoneNumber.touched && this.form.controls.phoneNumber.invalid" class="alert alert-danger">
+      </div>
+    </div>
+    <div class="corona form-group lg10">
+      <input
+        formControlName="dateOfBirth"
+        id="dateOfBirth"
+        type="text"
+        class="form-control"
+        placeholder="dateOfBirth">
+      <div *ngIf="this.form.controls.dateOfBirth.touched && this.form.controls.dateOfBirth.invalid" class="alert alert-danger">
+      </div>
+    </div>
+    <button class="btn btn-primary" type="submit">Enter</button>
+  </form>
+</div>
+

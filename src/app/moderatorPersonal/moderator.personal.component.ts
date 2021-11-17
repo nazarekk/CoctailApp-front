@@ -5,14 +5,14 @@ import {Subscription} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
-  selector: 'app-moderator',
-  templateUrl: './moderator.component.html',
-  styleUrls: ['./moderator.component.css']
+  selector: 'app-moderator-personal',
+  templateUrl: './moderator.personal.component.html',
+  styleUrls: ['./moderator.personal.component.css']
 })
 
-export class ModeratorComponent implements OnInit{
+export class ModeratorPersonalComponent implements OnInit{
 
-  title = 'Sign up new moderator'
+  title = 'Edit moderator personal data'
   sSub: Subscription
   form: FormGroup = new FormGroup({});
 
@@ -24,8 +24,9 @@ export class ModeratorComponent implements OnInit{
 
   ngOnInit(){
     this.form = this.fb.group({
-      email: ['', [Validators.required]],
-      isActive: ['', [Validators.required]]
+      nickname: ['', [Validators.required]],
+      phoneNumber: ['', [Validators.required]],
+      dateOfBirth: ['', [Validators.required]]
     })
   }
 
@@ -37,7 +38,7 @@ export class ModeratorComponent implements OnInit{
 
   submit(){
     console.log(this.form.value)
-    this.sSub = this.auth.registerModerator(this.form.value)
+    this.sSub = this.auth.editModerator(this.form.value)
       .subscribe(
         res=>console.log(res),
         err=>console.log(err)
