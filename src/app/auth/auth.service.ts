@@ -10,6 +10,7 @@ export class AuthService {
 
   private rootUrl = "http://localhost:8080"
   private token = null
+  private email = null
 
   constructor(private http: HttpClient) { }
 
@@ -17,20 +18,30 @@ export class AuthService {
     return this.http.post<any>(this.rootUrl + '/users', user)
   }
 
-  loginUser(user): Observable<{token: string}> {
-    return this.http.post<{token: string}>(this.rootUrl + '/login', user)
+  loginUser(user): Observable<{email: string, token: string}> {
+    return this.http.post<{email: string, token: string}>(this.rootUrl + '/login', user)
       .pipe(
         tap(
-          ({token}) => {
+          ({email,token}) => {
+            localStorage.setItem('email', email)
             localStorage.setItem('auth-token', token)
+            this.setEmail(email)
             this.setToken(token)
           }
         )
       )
   }
 
+  setEmail(email: string){
+    this.email = email
+  }
+
   setToken(token: string){
     this.token = token
+  }
+
+  getEmail(): string{
+    return this.email
   }
 
   getToken(): string{
