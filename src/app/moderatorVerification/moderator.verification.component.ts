@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import { ConfirmedValidator } from './confirmed.validator';
@@ -14,7 +14,6 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class ModeratorVerificationComponent implements OnInit{
 
   title = 'Moderator verification'
-  sSub: Subscription
   verificationCode: string
   form: FormGroup = new FormGroup({});
 
@@ -34,6 +33,7 @@ export class ModeratorVerificationComponent implements OnInit{
     })
 
   }
+
 
   removeDoubleCheckPass(value:any){
     delete value['doubleCheckPass']
