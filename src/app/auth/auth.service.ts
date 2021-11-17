@@ -10,38 +10,39 @@ export class AuthService {
 
   private rootUrl = "http://localhost:8080"
   private token = null
-  private email = null
 
   constructor(private http: HttpClient) { }
 
   registerUser(user){
-    return this.http.post<any>(this.rootUrl + '/users', user)
+    return this.http.post<any>(this.rootUrl + '/api/users', user)
   }
 
-  loginUser(user): Observable<{email: string, token: string}> {
-    return this.http.post<{email: string, token: string}>(this.rootUrl + '/login', user)
+  loginUser(user): Observable<{token: string}> {
+    return this.http.post<{token: string}>(this.rootUrl + '/api/auth/login', user)
       .pipe(
         tap(
-          ({email,token}) => {
-            localStorage.setItem('email', email)
+          ({token}) => {
             localStorage.setItem('auth-token', token)
-            this.setEmail(email)
             this.setToken(token)
           }
         )
       )
   }
 
-  setEmail(email: string){
-    this.email = email
+  registerModerator(user){
+    return this.http.post<any>(this.rootUrl + '/api/admin/moderators', user)
+  }
+
+  verificateModerator(user){
+    return this.http.post<any>(this.rootUrl + 'api/moderator/activation', user)
+  }
+
+  editModerator(user){
+    return this.http.post<any>(this.rootUrl + '/api/admin/moderator/edit', user)
   }
 
   setToken(token: string){
     this.token = token
-  }
-
-  getEmail(): string{
-    return this.email
   }
 
   getToken(): string{
