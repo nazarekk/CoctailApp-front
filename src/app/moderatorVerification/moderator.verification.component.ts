@@ -15,6 +15,7 @@ export class ModeratorVerificationComponent implements OnInit{
 
   title = 'Moderator verification'
   sSub: Subscription
+  verificationCode: string
   form: FormGroup = new FormGroup({});
 
   constructor(private fb: FormBuilder,
@@ -39,13 +40,24 @@ export class ModeratorVerificationComponent implements OnInit{
     return value
   }
 
+  addVerificationCode(value:any){
+    this.route.queryParams
+      .subscribe(params => {
+          this.verificationCode = params.verificationCode
+          value["verificationCode"] = this.verificationCode
+        }
+      );
+    return value;
+  }
+
   submit(){
-    console.log(this.removeDoubleCheckPass(this.removeDoubleCheckPass(this.form.value)))
-    this.auth.verificateModerator(this.form.value)
+    console.log(this.addVerificationCode(this.removeDoubleCheckPass(this.form.value)))
+    this.auth.verificateModerator(this.addVerificationCode(this.removeDoubleCheckPass(this.form.value)))
       .subscribe(
         res=>console.log(res),
         err=>console.log(err)
       )
+
   }
 
 }

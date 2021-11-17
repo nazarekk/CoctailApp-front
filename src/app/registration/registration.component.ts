@@ -40,8 +40,7 @@ export class RegistrationComponent implements OnInit{
   }
 
   submit(){
-    console.log(this.removeDoubleCheckPass(this.removeDoubleCheckPass(this.form.value)))
-    this.auth.registerUser(this.form.value)
+    this.auth.registerUser(this.removeDoubleCheckPass(this.form.value))
       .subscribe(
         res=>console.log(res),
         err=>console.log(err)
