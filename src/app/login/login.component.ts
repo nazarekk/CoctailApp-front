@@ -1,30 +1,43 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthService} from "../auth/auth.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Subscription} from "rxjs";
+import{Router, ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit, OnDestroy{
 
   title = 'Sign In'
 
   form: FormGroup = new FormGroup({});
+  sSub: Subscription
 
-  constructor(private fb: FormBuilder, private auth: AuthService) {
+  constructor(private fb: FormBuilder,
+              private auth: AuthService,
+              private router: Router,
+              private route: ActivatedRoute) {}
 
-    this.form = fb.group({
+  ngOnInit(){
+    this.form = this.fb.group({
       email: ['', [Validators.required]],
       password: ['', [Validators.required]]
     })
   }
 
+  ngOnDestroy() {
+    if(this.sSub){
+      this.sSub.unsubscribe()
+    }
+  }
+
   submit(){
-    this.auth.loginUser(this.form.value)
+    this.sSub = this.auth.loginUser(this.form.value)
       .subscribe(
-        res=>console.log(res),
+        ()=>this.router.navigate(['/overview']),
         err=>console.log(err)
       )
   }
