@@ -34,7 +34,7 @@ export class AuthService {
   }
 
   verificateModerator(user){
-    return this.http.post<any>(this.rootUrl + 'api/moderator/activation', user)
+    return this.http.post<any>(this.rootUrl + '/api/moderator/activation', user)
   }
 
   editModerator(user){
