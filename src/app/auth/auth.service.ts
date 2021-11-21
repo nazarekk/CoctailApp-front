@@ -8,7 +8,7 @@ import {tap} from "rxjs/operators";
 })
 export class AuthService {
 
-  private rootUrl = "https://coctailapp.herokuapp.com"
+  private rootUrl = "http://localhost:8080"
   private token = null
 
   constructor(private http: HttpClient) { }
@@ -39,6 +39,10 @@ export class AuthService {
 
   editModerator(user){
     return this.http.post<any>(this.rootUrl + '/api/admin/moderator/edit', user)
+  }
+
+  verificateUser(code){
+    return this.http.get(this.rootUrl + '/api/activation?code=' + code)
   }
 
   setToken(token: string){
