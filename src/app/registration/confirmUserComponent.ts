@@ -14,12 +14,7 @@ export class ConfirmUserComponent{
   submit(){
     this.route.queryParams.subscribe(params => {
       this.verificationCode = params.code
-    }
-    );
-
-    this.auth.verificateUser(this.verificationCode).subscribe(
-      res=>console.log(res),
-      err=>console.log(err)
-    )
+    });
+    this.auth.verifyUser(this.verificationCode)
   }
 }

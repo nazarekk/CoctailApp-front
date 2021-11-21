@@ -41,8 +41,11 @@ export class AuthService {
     return this.http.post<any>(this.rootUrl + '/api/admin/moderator/edit', user)
   }
 
-  verificateUser(code){
-    return this.http.get(this.rootUrl + '/api/activation?code=' + code)
+  verifyUser(code: string){
+    console.log((this.rootUrl + '/api/users/activation?code=' + code))
+    return this.http.get<any>(this.rootUrl + '/api/users/activation?code=' + code).subscribe(
+      res=>console.log(res)
+    )
   }
 
   setToken(token: string){
