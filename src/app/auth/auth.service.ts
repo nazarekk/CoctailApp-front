@@ -9,7 +9,7 @@ import {Router} from "@angular/router";
 })
 export class AuthService {
 
-  private rootUrl = "https://coctailapp.herokuapp.com"
+  private rootUrl = "http://localhost:8080"
   private static token = null
 
   constructor(private http: HttpClient,
@@ -24,7 +24,7 @@ export class AuthService {
       .pipe(
         tap(
           ({token}) => {
-            localStorage.setItem('auth-token', token)
+            localStorage.setItem('token', token)
             sessionStorage.setToken(token)
           }
         )
@@ -43,7 +43,7 @@ export class AuthService {
     return this.http.post<any>(this.rootUrl + '/api/admin/moderator/edit', user)
   }
 
-  private static setToken(token: string){
+  private setToken(token: string){
     sessionStorage.setItem(AuthService.token, token)
   }
 
