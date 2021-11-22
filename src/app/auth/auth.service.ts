@@ -49,7 +49,7 @@ export class AuthService {
   }
 
   static getToken(): string {
-    return localStorage.getItem(AuthService.token)
+    return localStorage.getItem('token')
   }
 
   isAuthenticated(): boolean {
