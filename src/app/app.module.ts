@@ -13,6 +13,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ModeratorVerificationComponent} from "./moderatorVerification/moderator.verification.component";
 import {ModeratorPersonalComponent} from "./moderatorPersonal/moderator.personal.component";
 import {AuthInterceptor} from "./auth/auth-interceptor";
+import { SearchfriendComponent } from './searchfriend/searchfriend.component';
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
@@ -27,7 +28,8 @@ const INTERCEPTOR_PROVIDER: Provider = {
     LoginComponent,
     ModeratorComponent,
     ModeratorVerificationComponent,
-    ModeratorPersonalComponent
+    ModeratorPersonalComponent,
+    SearchfriendComponent
   ],
   imports: [
     BrowserAnimationsModule,
