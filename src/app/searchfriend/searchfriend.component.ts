@@ -6,15 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./searchfriend.component.css']
 })
 export class SearchfriendComponent implements OnInit {
-  searchValue: string;
 
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  search() {
-    console.log(this.searchValue);
   }
 
 }

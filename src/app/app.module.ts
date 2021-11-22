@@ -14,6 +14,7 @@ import {ModeratorVerificationComponent} from "./moderatorVerification/moderator.
 import {ModeratorPersonalComponent} from "./moderatorPersonal/moderator.personal.component";
 import {AuthInterceptor} from "./auth/auth-interceptor";
 import { SearchfriendComponent } from './searchfriend/searchfriend.component';
+import { NavbarUserComponent } from './Components/navbar-user/navbar-user.component';
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
@@ -29,7 +30,8 @@ const INTERCEPTOR_PROVIDER: Provider = {
     ModeratorComponent,
     ModeratorVerificationComponent,
     ModeratorPersonalComponent,
-    SearchfriendComponent
+    SearchfriendComponent,
+    NavbarUserComponent
   ],
   imports: [
     BrowserAnimationsModule,
