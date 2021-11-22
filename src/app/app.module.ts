@@ -13,6 +13,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ModeratorVerificationComponent} from "./moderatorVerification/moderator.verification.component";
 import {ModeratorPersonalComponent} from "./moderatorPersonal/moderator.personal.component";
 import {ConfirmUserComponent} from "./registration/confirmUserComponent";
+import {SettingsComponent} from "./settings/settings.component";
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {ConfirmUserComponent} from "./registration/confirmUserComponent";
     ModeratorComponent,
     ModeratorVerificationComponent,
     ModeratorPersonalComponent,
-    ConfirmUserComponent
+    ConfirmUserComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserAnimationsModule,
