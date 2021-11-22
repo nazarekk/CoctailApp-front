@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {tap} from "rxjs/operators";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -9,9 +10,10 @@ import {tap} from "rxjs/operators";
 export class AuthService {
 
   private rootUrl = "https://coctailapp.herokuapp.com"
-  private token = null
+  private static token = null
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private router: Router) { }
 
   registerUser(user){
     return this.http.post<any>(this.rootUrl + '/api/users', user)
@@ -23,7 +25,7 @@ export class AuthService {
         tap(
           ({token}) => {
             localStorage.setItem('auth-token', token)
-            this.setToken(token)
+            sessionStorage.setToken(token)
           }
         )
       )
@@ -41,20 +43,21 @@ export class AuthService {
     return this.http.post<any>(this.rootUrl + '/api/admin/moderator/edit', user)
   }
 
-  setToken(token: string){
-    this.token = token
+  private static setToken(token: string){
+    sessionStorage.setItem(AuthService.token, token)
   }
 
-  getToken(): string{
-    return this.token
+  static getToken(): string{
+    return sessionStorage.getItem(AuthService.token)
   }
 
   isAuthenticated(): boolean{
-    return !!this.token
+    return !!sessionStorage.token
   }
 
   logout(){
-    this.setToken(null)
-    localStorage.clear()
+    sessionStorage.setToken(null);
+    sessionStorage.clear();
+    this.router.navigate([''])
   }
 }
