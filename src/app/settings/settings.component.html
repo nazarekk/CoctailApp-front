@@ -1,0 +1,42 @@
+<div class="bdy-cart container dsp">
+  <h1>{{title}}</h1>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="corona form-group lg10">
+      <input
+        formControlName="oldPassword"
+        id="oldPassword"
+        type="oldPassword"
+        class="form-control"
+        placeholder="Old Password">
+      <div *ngIf="this.form.controls.email.touched && this.form.controls.email.invalid" class="alert alert-danger">
+        <div *ngIf="this.form.controls.email.errors?.required">Password is required.</div>
+      </div>
+    </div>
+    <div class="corona form-group lg10">
+      <input
+        formControlName="password"
+        id="password"
+        type="password"
+        class="form-control"
+        placeholder="password">
+      <div *ngIf="this.form.controls.password.touched && this.form.controls.password.invalid" class="alert alert-danger">
+        <div *ngIf="this.form.controls.password.errors?.required">Password is required.</div>
+      </div>
+    </div>
+    <div class="corona form-group lg10">
+      <input
+        formControlName="doubleCheckPass"
+        id="doubleCheckPass"
+        type="password"
+        class="form-control"
+        placeholder="repeat password">
+      <div *ngIf="this.form.controls.doubleCheckPass.touched && this.form.controls.doubleCheckPass.invalid" class="alert alert-danger">
+        <div *ngIf="this.form.controls.doubleCheckPass.errors?.required">Password is required.</div>
+        <div *ngIf="this.form.controls.doubleCheckPass.errors?.confirmedValidator">Password and Confirm Password must be match.</div>
+      </div>
+    </div>
+    <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Enter</button>
+    <div *ngIf="this.success">Change password was successful .</div>
+  </form>
+</div>
