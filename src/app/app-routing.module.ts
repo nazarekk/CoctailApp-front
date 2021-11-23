@@ -25,7 +25,11 @@ const routes: Routes = [
   },
   {
     path: 'moderator',
-    component: ModeratorComponent
+    component: ModeratorComponent,
+    canActivate: [RoleGuardGuard],
+    data:{
+      expectedRoles: ['ROLE_ADMIN']
+    }
   },
   {
     path: 'moderator/verification',
@@ -36,12 +40,16 @@ const routes: Routes = [
     component: ModeratorPersonalComponent,
     canActivate: [RoleGuardGuard],
     data:{
-      expectedRoles: ['Admin', 'Moderator']
+      expectedRoles: ['ROLE_ADMIN']
     }
   },
   {
     path: 'searchfriend',
-    component: SearchfriendComponent
+    component: SearchfriendComponent,
+    canActivate: [RoleGuardGuard],
+    data:{
+      expectedRoles: ['ROLE_CONFIRMED']
+    }
   }
 ];
 
