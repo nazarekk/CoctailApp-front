@@ -6,6 +6,7 @@ import {ModeratorComponent} from "./moderatorRegistration/moderator.component";
 import {ModeratorVerificationComponent} from "./moderatorVerification/moderator.verification.component";
 import {ModeratorPersonalComponent} from "./moderatorPersonal/moderator.personal.component";
 import {ConfirmUserComponent} from "./registration/confirmUserComponent";
+import {SearchfriendComponent} from "./searchfriend/searchfriend.component";
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path: 'moderator/edit',
     component: ModeratorPersonalComponent
+  },
+  {
+    path: 'searchfriend',
+    component: SearchfriendComponent
   },
   {
     path: "registration/verification",

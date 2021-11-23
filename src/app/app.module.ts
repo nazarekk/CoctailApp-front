@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
+import {NgModule, Provider} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import{HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegistrationComponent } from './registration/registration.component';
@@ -12,7 +12,17 @@ import {ModeratorComponent} from "./moderatorRegistration/moderator.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ModeratorVerificationComponent} from "./moderatorVerification/moderator.verification.component";
 import {ModeratorPersonalComponent} from "./moderatorPersonal/moderator.personal.component";
+import {AuthInterceptor} from "./auth/auth-interceptor";
+import { SearchfriendComponent } from './searchfriend/searchfriend.component';
+import { NavbarUserComponent } from './Components/navbar-user/navbar-user.component';
 import {ConfirmUserComponent} from "./registration/confirmUserComponent";
+
+const INTERCEPTOR_PROVIDER: Provider = {
+  provide: HTTP_INTERCEPTORS,
+  multi: true,
+  useClass: AuthInterceptor
+};
+
 
 @NgModule({
   declarations: [
@@ -21,6 +31,9 @@ import {ConfirmUserComponent} from "./registration/confirmUserComponent";
     LoginComponent,
     ModeratorComponent,
     ModeratorVerificationComponent,
+    ModeratorPersonalComponent,
+    SearchfriendComponent,
+    NavbarUserComponent
     ModeratorPersonalComponent,
     ConfirmUserComponent
   ],

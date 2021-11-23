@@ -1,46 +1,52 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {tap} from "rxjs/operators";
+import {Router} from "@angular/router";
+import {AuthInterceptor} from "./auth-interceptor";
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
 
-  private rootUrl = "https://coctailapp.herokuapp.com"
-  private token = null
+  private rootUrl = "http://localhost:8080"
+  private static token = null
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private router: Router) {
+  }
 
-  registerUser(user){
+  registerUser(user) {
     return this.http.post<any>(this.rootUrl + '/api/users', user)
   }
 
-  loginUser(user): Observable<{token: string}> {
-    return this.http.post<{token: string}>(this.rootUrl + '/api/auth/login', user)
+  loginUser(user): Observable<{ token: string }> {
+    return this.http.post<{ token: string }>(this.rootUrl + '/api/auth/login', user)
       .pipe(
         tap(
           ({token}) => {
-            localStorage.setItem('auth-token', token)
-            this.setToken(token)
+            localStorage.setItem('token', token)
           }
         )
       )
   }
 
-  registerModerator(user){
+  registerModerator(user) {
     return this.http.post<any>(this.rootUrl + '/api/admin/moderators', user)
   }
 
-  verificateModerator(user){
-    return this.http.post<any>(this.rootUrl + '/api/moderator/activation', user)
+  verificateModerator(user) {
+    return this.http.post<any>(this.rootUrl + 'api/moderator/activation', user)
   }
 
-  editModerator(user){
+  editModerator(user) {
     return this.http.post<any>(this.rootUrl + '/api/admin/moderator/edit', user)
   }
 
+  private setToken(token: string) {
+    localStorage.setItem('token', token)
   verifyUser(code: string){
     console.log((this.rootUrl + '/api/users/activation?code=' + code))
     return this.http.get<any>(this.rootUrl + '/api/users/activation?code=' + code).subscribe(
@@ -52,16 +58,16 @@ export class AuthService {
     this.token = token
   }
 
-  getToken(): string{
-    return this.token
+  static getToken(): string {
+    return localStorage.getItem('token')
   }
 
-  isAuthenticated(): boolean{
-    return !!this.token
+  isAuthenticated(): boolean {
+    return !!localStorage.token
   }
 
-  logout(){
-    this.setToken(null)
-    localStorage.clear()
+  static logout() {
+    localStorage.setToken(null);
+    localStorage.clear();
   }
 }
