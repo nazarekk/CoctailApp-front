@@ -1,8 +1,9 @@
-import {Injectable, OnInit} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {Injectable, NgModule, OnInit, Provider} from '@angular/core';
+import {HTTP_INTERCEPTORS, HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {tap} from "rxjs/operators";
 import {Router} from "@angular/router";
+import {AuthInterceptor} from "./auth-interceptor";
 
 @Injectable({
   providedIn: 'root'
