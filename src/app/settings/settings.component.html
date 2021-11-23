@@ -1,42 +1,32 @@
-<div class="bdy-cart container dsp">
-  <h1>{{title}}</h1>
-
-  <form [formGroup]="form" (ngSubmit)="submit()">
-    <div class="corona form-group lg10">
-      <input
-        formControlName="oldPassword"
-        id="oldPassword"
-        type="oldPassword"
-        class="form-control"
-        placeholder="Old Password">
-      <div *ngIf="this.form.controls.email.touched && this.form.controls.email.invalid" class="alert alert-danger">
-        <div *ngIf="this.form.controls.email.errors?.required">Password is required.</div>
-      </div>
-    </div>
-    <div class="corona form-group lg10">
-      <input
-        formControlName="password"
-        id="password"
-        type="password"
-        class="form-control"
-        placeholder="password">
-      <div *ngIf="this.form.controls.password.touched && this.form.controls.password.invalid" class="alert alert-danger">
-        <div *ngIf="this.form.controls.password.errors?.required">Password is required.</div>
-      </div>
-    </div>
-    <div class="corona form-group lg10">
-      <input
-        formControlName="doubleCheckPass"
-        id="doubleCheckPass"
-        type="password"
-        class="form-control"
-        placeholder="repeat password">
-      <div *ngIf="this.form.controls.doubleCheckPass.touched && this.form.controls.doubleCheckPass.invalid" class="alert alert-danger">
-        <div *ngIf="this.form.controls.doubleCheckPass.errors?.required">Password is required.</div>
-        <div *ngIf="this.form.controls.doubleCheckPass.errors?.confirmedValidator">Password and Confirm Password must be match.</div>
-      </div>
-    </div>
-    <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Enter</button>
-    <div *ngIf="this.success">Change password was successful .</div>
-  </form>
-</div>
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Settings</title>
+  <link rel="stylesheet" href="./settings.component.css">
+</head>
+<body>
+<section class = "container-xxl">
+  <div>
+    <h5><strong>Settings</strong></h5>
+  </div>
+  <div>
+    <a class="btn btn-primary" href="/settings/edit-personal-info" role="button">Edit my personal info</a>
+  </div>
+  <div>
+    <p><strong>Change password</strong></p>
+  </div>
+  <div class="mb-3">
+    <input type="password" class="form-control" id="old" placeholder="old password">
+  </div>
+  <div class="mb-3">
+    <input type="password" class="form-control" id="new" placeholder="new password">
+  </div>
+  <div class="mb-3">
+    <input type="password" class="form-control" id="repeat" placeholder="repeat password">
+  </div>
+  <div>
+    <input class="btn btn-primary" type="submit" value="Change">
+  </div>
+</section>
+</body>
+</html>

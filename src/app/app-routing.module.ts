@@ -7,6 +7,7 @@ import {ModeratorVerificationComponent} from "./moderatorVerification/moderator.
 import {ModeratorPersonalComponent} from "./moderatorPersonal/moderator.personal.component";
 import {ConfirmUserComponent} from "./registration/confirmUserComponent";
 import {SettingsComponent} from "./settings/settings.component";
+import {EditPersonalInfo} from "./editPersonalInfo/editPersonalInfo";
 
 const routes: Routes = [
   {
@@ -41,6 +42,10 @@ const routes: Routes = [
   {
     path:"settings",
     component: SettingsComponent
+  },
+  {
+    path:"settings/edit-personal-info",
+    component: EditPersonalInfo
   }
 ];
 
