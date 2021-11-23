@@ -1,7 +1,9 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {Injectable, NgModule, OnInit, Provider} from '@angular/core';
+import {HTTP_INTERCEPTORS, HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {tap} from "rxjs/operators";
+import {Router} from "@angular/router";
+import {AuthInterceptor} from "./auth-interceptor";
 
 @Injectable({
   providedIn: 'root'
@@ -9,22 +11,26 @@ import {tap} from "rxjs/operators";
 
 export class AuthService {
 
+  private static token = null
+  private static role = null
   private rootUrl = "https://coctailapp.herokuapp.com"
   private token = null
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private router: Router) {
   }
 
   registerUser(user) {
     return this.http.post<any>(this.rootUrl + '/api/users', user)
   }
 
-  loginUser(user): Observable<{ token: string }> {
-    return this.http.post<{ token: string }>(this.rootUrl + '/api/auth/login', user)
+  loginUser(user): Observable<{ token: string , role: string}> {
+    return this.http.post<{ token: string, role: string}>(this.rootUrl + '/api/auth/login', user)
       .pipe(
         tap(
-          ({token}) => {
+          ({token, role}) => {
             localStorage.setItem('token', token)
+            localStorage.setItem('role', role)
           }
         )
       )
@@ -57,8 +63,8 @@ export class AuthService {
     return localStorage.getItem('token')
   }
 
-  isAuthenticated(): boolean {
-    return !!localStorage.token
+  static getRole(): string{
+    return localStorage.getItem('role')
   }
 
   static logout() {
