@@ -2,8 +2,6 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {tap} from "rxjs/operators";
-import {Router} from "@angular/router";
-import {AuthInterceptor} from "./auth-interceptor";
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +10,9 @@ import {AuthInterceptor} from "./auth-interceptor";
 export class AuthService {
 
   private rootUrl = "http://localhost:8080"
-  private static token = null
+  private token = null
 
-  constructor(private http: HttpClient,
-              private router: Router) {
+  constructor(private http: HttpClient) {
   }
 
   registerUser(user) {
@@ -45,16 +42,14 @@ export class AuthService {
     return this.http.post<any>(this.rootUrl + '/api/admin/moderator/edit', user)
   }
 
-  private setToken(token: string) {
-    localStorage.setItem('token', token)
-  verifyUser(code: string){
+  verifyUser(code: string) {
     console.log((this.rootUrl + '/api/users/activation?code=' + code))
     return this.http.get<any>(this.rootUrl + '/api/users/activation?code=' + code).subscribe(
-      res=>console.log(res)
+      res => console.log(res)
     )
   }
 
-  setToken(token: string){
+  setToken(token: string) {
     this.token = token
   }
 
