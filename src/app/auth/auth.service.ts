@@ -13,6 +13,7 @@ export class AuthService {
 
   private rootUrl = "http://localhost:8080"
   private static token = null
+  private static role = null
 
   constructor(private http: HttpClient,
               private router: Router) {
@@ -22,12 +23,13 @@ export class AuthService {
     return this.http.post<any>(this.rootUrl + '/api/users', user)
   }
 
-  loginUser(user): Observable<{ token: string }> {
-    return this.http.post<{ token: string }>(this.rootUrl + '/api/auth/login', user)
+  loginUser(user): Observable<{ token: string , role: string}> {
+    return this.http.post<{ token: string, role: string}>(this.rootUrl + '/api/auth/login', user)
       .pipe(
         tap(
-          ({token}) => {
+          ({token, role}) => {
             localStorage.setItem('token', token)
+            localStorage.setItem('role', role)
           }
         )
       )
@@ -45,16 +47,12 @@ export class AuthService {
     return this.http.post<any>(this.rootUrl + '/api/admin/moderator/edit', user)
   }
 
-  private setToken(token: string) {
-    localStorage.setItem('token', token)
-  }
-
   static getToken(): string {
     return localStorage.getItem('token')
   }
 
-  isAuthenticated(): boolean {
-    return !!localStorage.token
+  static getRole(): string{
+    return localStorage.getItem('role')
   }
 
   static logout() {
