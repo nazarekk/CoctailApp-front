@@ -16,6 +16,8 @@ import {ConfirmUserComponent} from "./registration/confirmUserComponent";
 import { ToolBarComponent } from './Components/tool-bar/tool-bar.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserInfoComponent } from './Components/user-info/user-info.component';
+import { EditModeratorPersonalAccComponent } from './edit-moderator-personal-acc/edit-moderator-personal-acc.component';
+import { EditModeratorPersonalAccInfoComponent } from './Components/edit-moderator-personal-acc-info/edit-moderator-personal-acc-info.component';
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { UserInfoComponent } from './Components/user-info/user-info.component';
     ConfirmUserComponent,
     ToolBarComponent,
     UserProfileComponent,
-    UserInfoComponent
+    UserInfoComponent,
+    EditModeratorPersonalAccComponent,
+    EditModeratorPersonalAccInfoComponent
   ],
   imports: [
     BrowserAnimationsModule,
