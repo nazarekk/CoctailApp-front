@@ -9,7 +9,7 @@ import {tap} from "rxjs/operators";
 
 export class AuthService {
 
-  private rootUrl = "http://localhost:8080"
+  private rootUrl = "https://coctailapp.herokuapp.com"
   private token = null
 
   constructor(private http: HttpClient) {
