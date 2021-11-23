@@ -62,7 +62,6 @@ export class AuthService {
   }
 
   static logout() {
-    localStorage.setToken(null);
     localStorage.clear();
   }
 }
