@@ -1,9 +1,7 @@
-import {Injectable, NgModule, OnInit, Provider} from '@angular/core';
-import {HTTP_INTERCEPTORS, HttpClient} from "@angular/common/http";
+import {Injectable} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {tap} from "rxjs/operators";
-import {Router} from "@angular/router";
-import {AuthInterceptor} from "./auth-interceptor";
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +14,7 @@ export class AuthService {
   private rootUrl = "https://coctailapp.herokuapp.com"
   private token = null
 
-  constructor(private http: HttpClient,
-              private router: Router) {
+  constructor(private http: HttpClient) {
   }
 
   registerUser(user) {
@@ -68,7 +65,6 @@ export class AuthService {
   }
 
   static logout() {
-    localStorage.setToken(null);
     localStorage.clear();
   }
 }
