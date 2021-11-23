@@ -8,6 +8,7 @@ import {ModeratorPersonalComponent} from "./moderatorPersonal/moderator.personal
 import {ConfirmUserComponent} from "./registration/confirmUserComponent";
 import { ToolBarComponent } from './Components/tool-bar/tool-bar.component';
 import {UserProfileComponent} from "./user-profile/user-profile.component";
+import {ModeratorListComponent} from "./moderator-list/moderator-list.component";
 
 
 const routes: Routes = [
@@ -43,6 +44,10 @@ const routes: Routes = [
   {
     path: "userprofile",
     component: UserProfileComponent
+  },
+  {
+    path: "moderatorlist",
+    component: ModeratorListComponent
   }
 
 ];

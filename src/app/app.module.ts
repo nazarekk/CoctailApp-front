@@ -16,6 +16,8 @@ import {ConfirmUserComponent} from "./registration/confirmUserComponent";
 import { ToolBarComponent } from './Components/tool-bar/tool-bar.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserInfoComponent } from './Components/user-info/user-info.component';
+import { ModeratorListComponent } from './moderator-list/moderator-list.component';
+import { ModeratorListInfoComponent } from './Components/moderator-list-info/moderator-list-info.component';
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { UserInfoComponent } from './Components/user-info/user-info.component';
     ConfirmUserComponent,
     ToolBarComponent,
     UserProfileComponent,
-    UserInfoComponent
+    UserInfoComponent,
+    ModeratorListComponent,
+    ModeratorListInfoComponent
   ],
   imports: [
     BrowserAnimationsModule,
