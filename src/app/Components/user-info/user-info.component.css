@@ -1,0 +1,74 @@
+.top{
+  margin-top: 20px;
+  width:80%;
+}
+ .container1{
+   display: flex;
+   margin: 15px 0;
+   flex-wrap: wrap;
+ }
+
+ .photo{
+   border: 4px double black;
+   width: 140px;
+   height: 140px;
+   margin: 15px 30px;
+ }
+
+ .name{
+   font-family: Roboto;
+   font-style: normal;
+   font-weight: 500;
+   font-size: 36px;
+   line-height: 42px;
+   display: flex;
+   align-items: center;
+   margin-top: 15px;
+
+ }
+
+ .buttons{
+
+ }
+
+ .other{
+
+
+ }
+
+ .button{
+   margin-top: 5px;
+   font-family: Roboto;
+   font-style: normal;
+   font-weight: 500;
+   font-size: 20px;
+   color: white;
+   background: #D9A4F8;
+   width: 250px;
+ }
+
+ .text{
+   margin-top: 15px;
+   font-family: Roboto;
+   font-style: normal;
+   font-weight: 500;
+   font-size: 30px;
+   line-height: 42px;
+
+ }
+
+ .info{
+   text-align: center;
+   margin: 0 15px;
+   width: 50%;
+ }
+
+ .blog{
+   width:100%;
+   margin-top: 20px;
+ }
+
+ .blog-title{
+   margin-top: 20px;
+   margin-left: 200px;
+ }

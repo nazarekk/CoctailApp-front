@@ -13,6 +13,10 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ModeratorVerificationComponent} from "./moderatorVerification/moderator.verification.component";
 import {ModeratorPersonalComponent} from "./moderatorPersonal/moderator.personal.component";
 import {ConfirmUserComponent} from "./registration/confirmUserComponent";
+import { ToolBarComponent } from './Components/tool-bar/tool-bar.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UserInfoComponent } from './Components/user-info/user-info.component';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +26,10 @@ import {ConfirmUserComponent} from "./registration/confirmUserComponent";
     ModeratorComponent,
     ModeratorVerificationComponent,
     ModeratorPersonalComponent,
-    ConfirmUserComponent
+    ConfirmUserComponent,
+    ToolBarComponent,
+    UserProfileComponent,
+    UserInfoComponent
   ],
   imports: [
     BrowserAnimationsModule,

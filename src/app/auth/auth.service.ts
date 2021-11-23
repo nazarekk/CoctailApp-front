@@ -29,6 +29,7 @@ export class AuthService {
       )
   }
 
+
   registerModerator(user){
     return this.http.post<any>(this.rootUrl + '/api/admin/moderators', user)
   }
@@ -63,5 +64,9 @@ export class AuthService {
   logout(){
     this.setToken(null)
     localStorage.clear()
+  }
+
+  getUserInfo(){
+    return this.http.get<any>(this.rootUrl + '/api/users/info')
   }
 }

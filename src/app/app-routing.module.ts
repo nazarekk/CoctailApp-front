@@ -6,6 +6,9 @@ import {ModeratorComponent} from "./moderatorRegistration/moderator.component";
 import {ModeratorVerificationComponent} from "./moderatorVerification/moderator.verification.component";
 import {ModeratorPersonalComponent} from "./moderatorPersonal/moderator.personal.component";
 import {ConfirmUserComponent} from "./registration/confirmUserComponent";
+import { ToolBarComponent } from './Components/tool-bar/tool-bar.component';
+import {UserProfileComponent} from "./user-profile/user-profile.component";
+
 
 const routes: Routes = [
   {
@@ -36,7 +39,12 @@ const routes: Routes = [
   {
     path: "registration/verification",
     component: ConfirmUserComponent
+  },
+  {
+    path: "userprofile",
+    component: UserProfileComponent
   }
+
 ];
 
 @NgModule({
