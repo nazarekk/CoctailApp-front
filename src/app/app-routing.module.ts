@@ -29,7 +29,7 @@ const routes: Routes = [
     component: ModeratorComponent,
     canActivate: [RoleGuardGuard],
     data:{
-      expectedRoles: ['Admin']
+      expectedRoles: ['ROLE_ADMIN']
     }
   },
   {
@@ -41,7 +41,7 @@ const routes: Routes = [
     component: ModeratorPersonalComponent,
     canActivate: [RoleGuardGuard],
     data:{
-      expectedRoles: ['Admin']
+      expectedRoles: ['ROLE_ADMIN']
     }
   },
   {
@@ -49,7 +49,7 @@ const routes: Routes = [
     component: SearchfriendComponent,
     canActivate: [RoleGuardGuard],
     data:{
-      expectedRoles: ['Confirmed']
+      expectedRoles: ['ROLE_CONFIRMED']
     }
   },
   {
