@@ -11,8 +11,7 @@ export class AuthService {
 
   private rootUrl = "https://coctailapp.herokuapp.com"
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   registerUser(user) {
     return this.http.post<any>(this.rootUrl + '/api/users', user)
@@ -41,11 +40,11 @@ export class AuthService {
     return this.http.post<any>(this.rootUrl + '/api/admin/moderator/edit', user)
   }
 
-  static getToken(): string {
+  getToken(): string {
     return localStorage.getItem('token')
   }
 
-  static getRole(): string{
+  getRole(): string{
       let jwtData = this.getToken().split('.')[1]
       let decodedJwtJsonData = window.atob(jwtData)
       let decodedJwtData = JSON.parse(decodedJwtJsonData)

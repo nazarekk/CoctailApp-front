@@ -8,6 +8,8 @@ import {AuthService} from "./auth.service";
 })
 export class RoleGuardGuard implements CanActivate {
 
+  constructor(private auth: AuthService) {}
+
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
@@ -15,10 +17,10 @@ export class RoleGuardGuard implements CanActivate {
   }
 
   private isAuthorized(route: ActivatedRouteSnapshot): boolean{
-    const roles = [AuthService.getRole()];
+    const roles = [this.auth.getRole()];
     const expectedRoles = route.data.expectedRoles;
     const roleMatches = roles.findIndex(role => expectedRoles.indexOf(role) !== -1);
-    return (roleMatches < 0) ? false : true
+    return (roleMatches >= 0)
   }
 
 }
