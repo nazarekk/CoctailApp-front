@@ -1,9 +1,7 @@
-import {Injectable, NgModule, OnInit, Provider} from '@angular/core';
-import {HTTP_INTERCEPTORS, HttpClient} from "@angular/common/http";
+import {Injectable} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {tap} from "rxjs/operators";
-import {Router} from "@angular/router";
-import {AuthInterceptor} from "./auth-interceptor";
 
 @Injectable({
   providedIn: 'root'
@@ -11,25 +9,21 @@ import {AuthInterceptor} from "./auth-interceptor";
 
 export class AuthService {
 
-  private rootUrl = "http://localhost:8080"
-  private static token = null
-  private static role = null
+  private rootUrl = "https://coctailapp.herokuapp.com"
 
-  constructor(private http: HttpClient,
-              private router: Router) {
+  constructor(private http: HttpClient) {
   }
 
   registerUser(user) {
     return this.http.post<any>(this.rootUrl + '/api/users', user)
   }
 
-  loginUser(user): Observable<{ token: string , role: string}> {
-    return this.http.post<{ token: string, role: string}>(this.rootUrl + '/api/auth/login', user)
+  loginUser(user): Observable<{ token: string}> {
+    return this.http.post<{ token: string}>(this.rootUrl + '/api/auth/login', user)
       .pipe(
         tap(
-          ({token, role}) => {
+          ({token}) => {
             localStorage.setItem('token', token)
-            localStorage.setItem('role', role)
           }
         )
       )
@@ -52,7 +46,13 @@ export class AuthService {
   }
 
   static getRole(): string{
-    return localStorage.getItem('role')
+      let jwtData = this.getToken().split('.')[1]
+      let decodedJwtJsonData = window.atob(jwtData)
+      let decodedJwtData = JSON.parse(decodedJwtJsonData)
+      let role = decodedJwtData.roles
+
+      console.log('Is admin: ' + role)
+      return role;
   }
 
   static logout() {
