@@ -22,7 +22,7 @@ export class SettingsComponent implements OnInit {
   }
 
   form: FormGroup = new FormGroup({});
-  success = false
+
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -35,13 +35,12 @@ export class SettingsComponent implements OnInit {
 
   }
 
-  removeDoubleCheckPass(value:any){
-    delete value['doubleCheckPass']
+  jsonPassword(value:any){
     return value
   }
 
   submit(){
-    this.auth.registerUser(this.removeDoubleCheckPass(this.form.value))
+    this.auth.changePassword(this.jsonPassword(this.form.value))
       .subscribe(
         res=>console.log(res),
         err=>console.log(err)

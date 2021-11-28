@@ -47,6 +47,9 @@ export class AuthService {
       res=>console.log(res)
     )
   }
+  changePassword(user) {
+    return this.http.patch<any>(this.rootUrl + '/api/users/settings', user)
+  }
 
   setToken(token: string){
     this.token = token
