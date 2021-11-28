@@ -6,8 +6,9 @@ import {ModeratorComponent} from "./moderatorRegistration/moderator.component";
 import {ModeratorVerificationComponent} from "./moderatorVerification/moderator.verification.component";
 import {ModeratorPersonalComponent} from "./moderatorPersonal/moderator.personal.component";
 import {ConfirmUserComponent} from "./registration/confirmUserComponent";
-import {SettingsComponent} from "./settings/settings.component";
-import {EditPersonalInfo} from "./editPersonalInfo/editPersonalInfo";
+import {SearchfriendComponent} from "./searchfriend/searchfriend.component";
+import {AuthService} from "./auth/auth.service";
+import {RoleGuardGuard} from "./auth/role-guard.guard";
 
 const routes: Routes = [
   {
@@ -25,7 +26,11 @@ const routes: Routes = [
   },
   {
     path: 'moderator',
-    component: ModeratorComponent
+    component: ModeratorComponent,
+    canActivate: [RoleGuardGuard],
+    data:{
+      expectedRoles: ['ROLE_ADMIN']
+    }
   },
   {
     path: 'moderator/verification',
@@ -33,19 +38,23 @@ const routes: Routes = [
   },
   {
     path: 'moderator/edit',
-    component: ModeratorPersonalComponent
+    component: ModeratorPersonalComponent,
+    canActivate: [RoleGuardGuard],
+    data:{
+      expectedRoles: ['ROLE_ADMIN']
+    }
+  },
+  {
+    path: 'searchfriend',
+    component: SearchfriendComponent,
+    canActivate: [RoleGuardGuard],
+    data:{
+      expectedRoles: ['ROLE_CONFIRMED']
+    }
   },
   {
     path: "registration/verification",
     component: ConfirmUserComponent
-  },
-  {
-    path:"settings",
-    component: SettingsComponent
-  },
-  {
-    path:"settings/edit-personal-info",
-    component: EditPersonalInfo
   }
 ];
 

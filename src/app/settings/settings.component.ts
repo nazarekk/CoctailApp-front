@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ConfirmedValidator} from "../registration/confirmed.validator";
 import {AuthService} from "../auth/auth.service";
-import {ActivatedRoute, Router} from "@angular/router";
 
 
 @Component({
@@ -16,12 +15,12 @@ export class SettingsComponent implements OnInit {
 
 
   constructor(private fb: FormBuilder,
-              private auth: AuthService,
-              private router: Router,
-              private route: ActivatedRoute) {
+              private auth: AuthService
+             ) {
   }
 
   form: FormGroup = new FormGroup({});
+  success = false
 
 
   ngOnInit() {

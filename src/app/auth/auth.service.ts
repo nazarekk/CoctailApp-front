@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {tap} from "rxjs/operators";
@@ -6,65 +6,68 @@ import {tap} from "rxjs/operators";
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
 
+  private static token = null
+  private static role = null
   private rootUrl = "http://localhost:8080"
   private token = null
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
-  registerUser(user){
+  registerUser(user) {
     return this.http.post<any>(this.rootUrl + '/api/users', user)
   }
 
-  loginUser(user): Observable<{token: string}> {
-    return this.http.post<{token: string}>(this.rootUrl + '/api/auth/login', user)
+  loginUser(user): Observable<{ token: string , role: string}> {
+    return this.http.post<{ token: string, role: string}>(this.rootUrl + '/api/auth/login', user)
       .pipe(
         tap(
-          ({token}) => {
-            localStorage.setItem('auth-token', token)
-            this.setToken(token)
+          ({token, role}) => {
+            localStorage.setItem('token', token)
+            localStorage.setItem('role', role)
           }
         )
       )
   }
 
-  registerModerator(user){
+  registerModerator(user) {
     return this.http.post<any>(this.rootUrl + '/api/admin/moderators', user)
   }
 
-  verificateModerator(user){
-    return this.http.post<any>(this.rootUrl + '/api/moderator/activation', user)
+  verificateModerator(user) {
+    return this.http.post<any>(this.rootUrl + 'api/moderator/activation', user)
   }
 
-  editModerator(user){
+  editModerator(user) {
     return this.http.post<any>(this.rootUrl + '/api/admin/moderator/edit', user)
   }
 
-  verifyUser(code: string){
+  verifyUser(code: string) {
     console.log((this.rootUrl + '/api/users/activation?code=' + code))
     return this.http.get<any>(this.rootUrl + '/api/users/activation?code=' + code).subscribe(
-      res=>console.log(res)
+      res => console.log(res)
     )
   }
   changePassword(user) {
-    return this.http.patch<any>(this.rootUrl + '/api/users/settings', user)
+    return this.http.put<any>(this.rootUrl + '/api/users/settings', user)
   }
 
-  setToken(token: string){
+  setToken(token: string) {
     this.token = token
   }
 
-  getToken(): string{
-    return this.token
+  static getToken(): string {
+    return localStorage.getItem('token')
   }
 
-  isAuthenticated(): boolean{
-    return !!this.token
+  static getRole(): string{
+    return localStorage.getItem('role')
   }
 
-  logout(){
-    this.setToken(null)
-    localStorage.clear()
+  static logout() {
+    localStorage.clear();
   }
 }
