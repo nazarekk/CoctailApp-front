@@ -7,8 +7,9 @@ import {ModeratorVerificationComponent} from "./moderatorVerification/moderator.
 import {ModeratorPersonalComponent} from "./moderatorPersonal/moderator.personal.component";
 import {ConfirmUserComponent} from "./registration/confirmUserComponent";
 import {SearchfriendComponent} from "./searchfriend/searchfriend.component";
-import {AuthService} from "./auth/auth.service";
 import {RoleGuardGuard} from "./auth/role-guard.guard";
+import {SettingsComponent} from "./settings/settings.component";
+import {EditPersonalInfoComponent} from "./settings/editPersonalInfo/edit-personal-info.component";
 
 const routes: Routes = [
   {
@@ -55,6 +56,14 @@ const routes: Routes = [
   {
     path: "registration/verification",
     component: ConfirmUserComponent
+  },
+  {
+    path: "settings",
+    component: SettingsComponent
+  },
+  {
+    path: "settings/edit",
+    component: EditPersonalInfoComponent
   }
 ];
 

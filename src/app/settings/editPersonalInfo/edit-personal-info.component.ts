@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ConfirmedValidator} from "../registration/confirmed.validator";
-import {AuthService} from "../auth/auth.service";
+import {ConfirmedValidator} from "../../registration/confirmed.validator";
+import {AuthService} from "../../auth/auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
 
 
@@ -11,14 +11,13 @@ import {ActivatedRoute, Router} from "@angular/router";
   styleUrls: ['./editPersonalInfo.component.css']
 })
 
-export class EditPersonalInfo implements OnInit {
+export class EditPersonalInfoComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   success = false
 
   constructor(private fb: FormBuilder,
-              private auth: AuthService,
-              private router: Router,
-              private route: ActivatedRoute) {}
+              private auth: AuthService
+              ) {}
 
   ngOnInit(){
     this.form = this.fb.group({
@@ -28,6 +27,9 @@ export class EditPersonalInfo implements OnInit {
     }, {
       validator: ConfirmedValidator('password', 'doubleCheckPass')
     })
+  }
+
+  clearFields() {
 
   }
 }
