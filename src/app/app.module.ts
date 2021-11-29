@@ -18,7 +18,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserInfoComponent } from './Components/user-info/user-info.component';
 import { ModeratorListComponent } from './moderator-list/moderator-list.component';
 import { ModeratorListInfoComponent } from './Components/moderator-list-info/moderator-list-info.component';
-
+import { MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,8 @@ import { ModeratorListInfoComponent } from './Components/moderator-list-info/mod
     HttpClientModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    MatTableModule,
+    MatInputModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {tap} from "rxjs/operators";
+import {moderInfo} from "../moderList.model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private rootUrl = "https://coctailapp.herokuapp.com"
+//  private rootUrl = "https://coctailapp.herokuapp.com"
+  private rootUrl = "http://localhost:8080"
   private token = null
 
   constructor(private http: HttpClient) { }
@@ -69,4 +71,16 @@ export class AuthService {
   getUserInfo(){
     return this.http.get<any>(this.rootUrl + '/api/users/info')
   }
+
+
+
+   getModerInfo():Observable<moderInfo[]> {
+    return this.http.get<moderInfo[]>(this.rootUrl + '/api/admin/moderators');
+  }
+
+  deleteModer(id) {
+    return this.http.delete(`${this.rootUrl}/moderators/remove/${id}`);
+  }
+
+
 }

@@ -10,26 +10,26 @@
       </div>
     </div>
     <div class="moderlist">
-      <div class="moder">
-        <div class="photo">
+      <tr *ngFor="let element of info">
+        <td>
+          <div class="moder">
+            <div class="photo">
 
-        </div>
-        <div class="name_buttons">
-        <div class="name">
-          <div class="nick">
-          Nickname
+            </div>
+            <div class="nick">
+              <span class="name">{{element.nickname}}</span>
+              <span class="smth">id: {{element.userid}}</span>
+              <br>
+              <span class="smth">email: {{element.email}}</span>
+            </div>
+            <div class="buttons name_buttons">
+              <button type="button" class="btn button">Edit</button>
+              <button type="button" class="btn button spec" (click)="deleteModer(element.userid)">Delete</button>
+            </div>
           </div>
-          <div class="smth">
-            Something else
-          </div>
-        </div>
-        <div class="buttons">
-          <button type="button" class="btn button">Edit</button>
-          <button type="button" class="btn button">Delete</button>
 
-        </div>
-      </div>
-    </div>
+        </td>
+      </tr>
     </div>
   </div>
 </div>

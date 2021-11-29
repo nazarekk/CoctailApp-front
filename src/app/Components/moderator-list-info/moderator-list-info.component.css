@@ -27,7 +27,11 @@
 }
 
 .moder{
+  width: 129%;
   display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+
 
 }
 
@@ -57,6 +61,7 @@
   font-weight: 500;
   font-size: 20px;
   color: grey;
+  flex-wrap: wrap;
 
 }
 
@@ -66,15 +71,20 @@
 
 .buttons{
   display: flex;
-
   align-items: center;
   justify-content: center;
+
 }
 
 .name_buttons{
-  margin-left:20px;
-  width:81%;
+
+  width: 20%;
   display: flex;
   justify-content: space-between;
+  margin-right: 10px;
+
+}
+
+.spec{
 
 }
