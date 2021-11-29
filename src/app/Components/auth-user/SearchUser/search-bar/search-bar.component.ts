@@ -11,7 +11,7 @@ export class SearchBarComponent implements OnInit {
 
   searchValue: string;
   friends: UserInfo[];
-  @Output() logoutEvent = new EventEmitter()
+  @Output() logoutEvent = new EventEmitter();
   @Output() searchEvent = new EventEmitter();
 
   constructor() {

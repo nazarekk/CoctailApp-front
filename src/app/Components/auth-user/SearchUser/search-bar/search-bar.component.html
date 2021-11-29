@@ -16,9 +16,9 @@
           <a class="nav-link disabled">Disabled</a>
         </li>
       </ul>
-      <form class="d-flex"(submit)="search(searchValue.value)" >
+      <form class="d-flex">
         <input class="form-control me-2" type="search" #searchValue placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <button class="btn btn-outline-success"(click)="search(searchValue.value)" type="button">Search</button>
       </form>
       <button type="button" (click)="logout()" class="btn btn-primary btn-lg">Log Out</button>
     </div>
