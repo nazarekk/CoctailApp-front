@@ -5,7 +5,7 @@ import {RegistrationComponent} from "./registration/registration.component";
 import {ModeratorComponent} from "./moderatorRegistration/moderator.component";
 import {ModeratorVerificationComponent} from "./moderatorVerification/moderator.verification.component";
 import {ModeratorPersonalComponent} from "./moderatorPersonal/moderator.personal.component";
-import {SearchfriendComponent} from "./searchfriend/searchfriend.component";
+import {SearchUserComponent} from "./Components/auth-user/SearchUser/search-user.component";
 
 const routes: Routes = [
   {
@@ -35,7 +35,7 @@ const routes: Routes = [
   },
   {
     path: 'searchfriend',
-    component: SearchfriendComponent
+    component: SearchUserComponent
   }
 ];
 

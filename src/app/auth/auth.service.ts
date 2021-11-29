@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {tap} from "rxjs/operators";
 import {Router} from "@angular/router";
 import {AuthInterceptor} from "./auth-interceptor";
+import {UserInfo} from "../Components/auth-user/SearchUser/user-model";
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +14,10 @@ export class AuthService {
 
   private rootUrl = "http://localhost:8080"
   private static token = null
+  private http: HttpClient
+  private router: Router
 
-  constructor(private http: HttpClient,
-              private router: Router) {
+  constructor() {
   }
 
   registerUser(user) {
@@ -51,6 +53,10 @@ export class AuthService {
 
   static getToken(): string {
     return localStorage.getItem('token')
+  }
+
+  searchFriend (nickname: String) {
+    return this.http.get<any>(this.rootUrl + '/api/users/find/'+ nickname).subscribe(data => console.log(data));
   }
 
   isAuthenticated(): boolean {

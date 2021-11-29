@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NavbarUserComponent } from './navbar-user.component';
+import { SearchUserComponent } from './search-user.component';
 
 describe('NavbarUserComponent', () => {
-  let component: NavbarUserComponent;
-  let fixture: ComponentFixture<NavbarUserComponent>;
+  let component: SearchUserComponent;
+  let fixture: ComponentFixture<SearchUserComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NavbarUserComponent ]
+      declarations: [ SearchUserComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NavbarUserComponent);
+    fixture = TestBed.createComponent(SearchUserComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
