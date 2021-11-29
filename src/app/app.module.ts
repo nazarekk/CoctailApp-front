@@ -13,8 +13,9 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ModeratorVerificationComponent} from "./moderatorVerification/moderator.verification.component";
 import {ModeratorPersonalComponent} from "./moderatorPersonal/moderator.personal.component";
 import {AuthInterceptor} from "./auth/auth-interceptor";
-import { SearchfriendComponent } from './searchfriend/searchfriend.component';
-import { NavbarUserComponent } from './Components/navbar-user/navbar-user.component';
+import {SearchUserComponent} from "./Components/auth-user/SearchUser/search-user.component";
+import {ConfirmUserComponent} from "./registration/confirmUserComponent";
+import {AuthUserModule} from "./Components/auth-user/auth-user.module";
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
@@ -31,10 +32,8 @@ const INTERCEPTOR_PROVIDER: Provider = {
     ModeratorComponent,
     ModeratorVerificationComponent,
     ModeratorPersonalComponent,
-    SearchfriendComponent,
-    NavbarUserComponent,
     ModeratorPersonalComponent,
-    ConfirmUserComponent
+    ConfirmUserComponent,
     SearchUserComponent
 
   ],
@@ -45,8 +44,8 @@ const INTERCEPTOR_PROVIDER: Provider = {
     HttpClientModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    AuthUserModule
-    ReactiveFormsModule,
+    AuthUserModule,
+    ReactiveFormsModule
   ],
   providers: [INTERCEPTOR_PROVIDER],
   bootstrap: [AppComponent]

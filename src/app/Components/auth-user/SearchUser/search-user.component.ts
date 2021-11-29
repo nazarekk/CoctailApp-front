@@ -11,15 +11,13 @@ export class SearchUserComponent {
 
   searchValue: string;
   friends: UserInfo[];
-  private authService: AuthService;
 
-  constructor() {
-    this.authService = new AuthService();
+  constructor(private authService: AuthService) {
   }
 
   search(searchValue) {
     console.log(searchValue);
-    this.authService.searchFriend(searchValue);
+    this.authService.searchFriend(searchValue).subscribe(data => this.friends = data);
   }
 
   logout() {

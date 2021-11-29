@@ -35,6 +35,7 @@ export class AuthService {
       )
   }
 
+
   registerModerator(user) {
     return this.http.post<any>(this.rootUrl + '/api/admin/moderators', user)
   }
@@ -68,14 +69,14 @@ export class AuthService {
 
 
   searchFriend (nickname: String) {
-    return this.http.get<any>(this.rootUrl + '/api/users/find/'+ nickname).subscribe(data => console.log(data));
+    return this.http.get<any>(this.rootUrl + '/api/users/find/'+ nickname);
   }
 
   isAuthenticated(): boolean {
     return !!localStorage.token
+  }
 
   static logout() {
-    localStorage.setToken(null);
     localStorage.clear();
   }
 }
