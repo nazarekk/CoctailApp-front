@@ -8,6 +8,7 @@ import {ModeratorPersonalComponent} from "./moderatorPersonal/moderator.personal
 import {SearchfriendComponent} from "./searchfriend/searchfriend.component";
 import {AuthService} from "./auth/auth.service";
 import {RoleGuardGuard} from "./auth/role-guard.guard";
+import {PermissionDeniedComponent} from "./errors/permission-denied/permission-denied.component";
 
 const routes: Routes = [
   {
@@ -50,6 +51,10 @@ const routes: Routes = [
     data:{
       expectedRoles: ['ROLE_CONFIRMED']
     }
+  },
+  {
+    path: 'permission-denied',
+    component: PermissionDeniedComponent
   }
 ];
 
