@@ -4,7 +4,6 @@ import {Observable} from "rxjs";
 import {tap} from "rxjs/operators";
 import {Router} from "@angular/router";
 import {AuthInterceptor} from "./auth-interceptor";
-import {UserInfo} from "../Components/auth-user/SearchUser/user-model";
 
 @Injectable({
   providedIn: 'root'
@@ -12,24 +11,25 @@ import {UserInfo} from "../Components/auth-user/SearchUser/user-model";
 
 export class AuthService {
 
-  private rootUrl = "http://localhost:8080"
   private static token = null
-  private http: HttpClient
-  private router: Router
+  private static role = null
+  private rootUrl = "http://localhost:8080"
+  private token = null
 
-  constructor() {
+  constructor(private http: HttpClient) {
   }
 
   registerUser(user) {
     return this.http.post<any>(this.rootUrl + '/api/users', user)
   }
 
-  loginUser(user): Observable<{ token: string }> {
-    return this.http.post<{ token: string }>(this.rootUrl + '/api/auth/login', user)
+  loginUser(user): Observable<{ token: string , role: string}> {
+    return this.http.post<{ token: string, role: string}>(this.rootUrl + '/api/auth/login', user)
       .pipe(
         tap(
-          ({token}) => {
+          ({token, role}) => {
             localStorage.setItem('token', token)
+            localStorage.setItem('role', role)
           }
         )
       )
@@ -47,13 +47,25 @@ export class AuthService {
     return this.http.post<any>(this.rootUrl + '/api/admin/moderator/edit', user)
   }
 
-  private setToken(token: string) {
-    localStorage.setItem('token', token)
+  verifyUser(code: string) {
+    console.log((this.rootUrl + '/api/users/activation?code=' + code))
+    return this.http.get<any>(this.rootUrl + '/api/users/activation?code=' + code).subscribe(
+      res => console.log(res)
+    )
+  }
+
+  setToken(token: string) {
+    this.token = token
   }
 
   static getToken(): string {
     return localStorage.getItem('token')
   }
+
+  static getRole(): string{
+    return localStorage.getItem('role')
+  }
+
 
   searchFriend (nickname: String) {
     return this.http.get<any>(this.rootUrl + '/api/users/find/'+ nickname).subscribe(data => console.log(data));
@@ -61,7 +73,6 @@ export class AuthService {
 
   isAuthenticated(): boolean {
     return !!localStorage.token
-  }
 
   static logout() {
     localStorage.setToken(null);
