@@ -69,7 +69,31 @@ export class AuthService {
 
 
   searchFriend (nickname: String) {
-    return this.http.get<any>(this.rootUrl + '/api/users/find/'+ nickname);
+    return this.http.get<any>(this.rootUrl + '/api/users/find?nickname='+ nickname);
+  }
+
+  addFriend (id: Number) {
+    return this.http.post<any>(this.rootUrl + '/api/users/add/' + id, "")
+  }
+
+  acceptFriend (id: Number) {
+    return this.http.patch<any>(this.rootUrl + '/api/users/accept/' + id, "")
+  }
+
+  declineFriend (id: Number) {
+    return this.http.patch<any>(this.rootUrl + '/api/users/decline/' + id, "")
+  }
+
+  removeFriend (id: Number) {
+    return this.http.delete<any>(this.rootUrl + '/api/users/remove/' + id)
+  }
+
+  subscribeFriend (id: Number) {
+    return this.http.patch<any>(this.rootUrl + '/api/users/subscribe/' + id, "")
+  }
+
+  unsubscribeFriend (id: Number) {
+    return this.http.patch<any>(this.rootUrl + '/api/users/subscribe/' + id, "")
   }
 
   isAuthenticated(): boolean {

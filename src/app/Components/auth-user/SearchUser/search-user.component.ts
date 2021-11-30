@@ -16,12 +16,36 @@ export class SearchUserComponent {
   }
 
   search(searchValue) {
-    console.log(searchValue);
-    this.authService.searchFriend(searchValue).subscribe(data => this.friends = data);
+    this.authService.searchFriend(searchValue).subscribe((data: UserInfo[]) => this.friends = data);
+    console.log(this.friends);
   }
 
   logout() {
     AuthService.logout();
+  }
+
+  addFriend(id: Number) {
+    this.authService.addFriend(id).subscribe(data => console.log(data));
+  }
+
+  acceptFriend(id: Number) {
+    this.authService.acceptFriend(id).subscribe(data => console.log(data));
+  }
+
+  declineFriend(id: Number) {
+    this.authService.declineFriend(id).subscribe(data => console.log(data));
+  }
+
+  removeFriend(id: Number) {
+    this.authService.removeFriend(id).subscribe(data => console.log(data));
+  }
+
+  subscribeFriend(id: Number) {
+    this.authService.subscribeFriend(id).subscribe(data => console.log(data));
+  }
+
+  unsubscribeFriend(id: Number) {
+    this.authService.unsubscribeFriend(id).subscribe(data => console.log(data));
   }
 
 }
