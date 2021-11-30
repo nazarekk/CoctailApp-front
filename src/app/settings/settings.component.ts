@@ -4,6 +4,7 @@ import {ConfirmedValidator} from "../registration/confirmed.validator";
 import {AuthService} from "../auth/auth.service";
 
 
+
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
@@ -15,13 +16,15 @@ export class SettingsComponent implements OnInit {
 
 
   constructor(private fb: FormBuilder,
-              private auth: AuthService
+              private auth: AuthService,
              ) {
   }
 
   form: FormGroup = new FormGroup({});
   success = false
-
+  message: string
+  alertClass : string
+  href:string
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -33,16 +36,26 @@ export class SettingsComponent implements OnInit {
     })
 
   }
+  statusCheck(value: any) {
+    this.success = true
+    if (value == 200) {
+      this.message = "Password changed successful"
+      this.alertClass = "alert-success"
+    }
+    else {
+      this.message = "Invalid password"
+      this.alertClass = "alert-danger"
+    }
+
+  }
 
   jsonPassword(value:any){
     return value
   }
-
   submit(){
-    this.auth.changePassword(this.jsonPassword(this.form.value))
-      .subscribe(
-        res=>console.log(res),
-        err=>console.log(err)
-      )
+    this.success = false
+      this.auth.changePassword(this.jsonPassword(this.form.value)).subscribe(
+        response => this.statusCheck(response.status)
+      );
   }
 }
