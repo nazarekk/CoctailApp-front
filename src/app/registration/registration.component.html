@@ -37,7 +37,13 @@
       </div>
     </div>
     <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Enter</button>
-    <div *ngIf="this.success">Registration was successful .</div>
+    <div class="alert {{this.alertClass}} d-flex align-items-center" role="alert" *ngIf="this.success">
+      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+        <use xlink:href="check-circle-fill"/>
+      </svg>
+      {{this.message}}
+      <button type="button"  class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
   </form>
   <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
 </div>

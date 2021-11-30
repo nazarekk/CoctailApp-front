@@ -16,6 +16,8 @@ export class RegistrationComponent implements OnInit{
 
   form: FormGroup = new FormGroup({});
   success = false
+  message: string
+  alertClass: string
 
   constructor(private fb: FormBuilder,
               private auth: AuthService,
@@ -39,11 +41,22 @@ export class RegistrationComponent implements OnInit{
     return value
   }
 
+  statusCheck(value: any) {
+    this.success = true
+    if (value == 200) {
+      this.message = "Password changed successful"
+      this.alertClass = "alert-success"
+    }
+    else {
+      this.message = "Invalid password"
+      this.alertClass = "alert-danger"
+    }
+  }
+
   submit(){
     this.auth.registerUser(this.removeDoubleCheckPass(this.form.value))
       .subscribe(
-        res=>console.log(res),
-        err=>console.log(err)
+        response => this.statusCheck(response.status)
       )
   }
 }
