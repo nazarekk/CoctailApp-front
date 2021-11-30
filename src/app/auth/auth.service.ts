@@ -52,6 +52,18 @@ export class AuthService {
     )
   }
 
+  newKitchenware(kitchenware) {
+    return this.http.post<any>(this.rootUrl + '/api/kitchenware', kitchenware)
+  }
+
+  editKitchenware(kitchenware) {
+    return this.http.patch<any>(this.rootUrl + '/api/kitchenware/edit', kitchenware)
+  }
+
+  deleteKitchenware(kitchenware) {
+    return this.http.delete<any>(this.rootUrl + '/api/kitchenware/delete', kitchenware)
+  }
+
   setToken(token: string) {
     this.token = token
   }

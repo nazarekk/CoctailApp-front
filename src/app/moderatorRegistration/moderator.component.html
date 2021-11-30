@@ -1,4 +1,4 @@
-<app-navbar-moderator></app-navbar-moderator>
+
 <div class = "bdy-cart container dsp">
   <h1>{{title}}</h1>
 
@@ -25,12 +25,6 @@
           <div *ngIf="this.form.controls.isActive.errors?.required">isActive is required.</div>
         </div>
       </div>
-<!--    <div>-->
-<!--      <mat-button-toggle-group name = "name">-->
-<!--        <mat-button-toggle value = "True"> Enable moderator </mat-button-toggle>-->
-<!--        <mat-button-toggle value = "False"> Disable moderator </mat-button-toggle>-->
-<!--      </mat-button-toggle-group>-->
-<!--    </div>-->
     <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Enter</button>
   </form>
 </div>

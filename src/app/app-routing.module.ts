@@ -9,6 +9,9 @@ import {ConfirmUserComponent} from "./registration/confirmUserComponent";
 import {SearchfriendComponent} from "./searchfriend/searchfriend.component";
 import {AuthService} from "./auth/auth.service";
 import {RoleGuardGuard} from "./auth/role-guard.guard";
+import {DeleteKitchenwareComponent} from "./Kitchenware/deleteKitchenware/delete.kitchenware.component";
+import {EditKitchenwareComponent} from "./Kitchenware/editKitchenware/edit.kitchenware.component";
+import {NewKitchenwareComponent} from "./Kitchenware/newKitchenware/new.kitchenware.component";
 
 const routes: Routes = [
   {
@@ -55,7 +58,19 @@ const routes: Routes = [
   {
     path: "registration/verification",
     component: ConfirmUserComponent
-  }
+  },
+  {
+    path: "moderator/kitchenware",
+    component: NewKitchenwareComponent
+  },
+  {
+    path: "moderator/kitchenware/edit",
+    component: EditKitchenwareComponent
+  },
+  {
+    path: "moderator/kitchenware/delete",
+    component: DeleteKitchenwareComponent
+  },
 ];
 
 @NgModule({

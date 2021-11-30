@@ -15,7 +15,10 @@ import {AuthInterceptor} from "./auth/auth-interceptor";
 import {SearchfriendComponent} from './searchfriend/searchfriend.component';
 import {NavbarUserComponent} from './Components/navbar-user/navbar-user.component';
 import {ConfirmUserComponent} from "./registration/confirmUserComponent";
-import {NavbarModeratorComponent} from "./Components/navbar-moderator/navbar-moderator.component";
+import {NavbarKitchenwareComponent} from "./Components/navbar-kitchenware/navbar-kitchenware.component";
+import {NewKitchenwareComponent} from "./Kitchenware/newKitchenware/new.kitchenware.component";
+import {EditKitchenwareComponent} from "./Kitchenware/editKitchenware/edit.kitchenware.component";
+import {DeleteKitchenwareComponent} from "./Kitchenware/deleteKitchenware/delete.kitchenware.component";
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
@@ -36,7 +39,11 @@ const INTERCEPTOR_PROVIDER: Provider = {
     NavbarUserComponent,
     ModeratorPersonalComponent,
     ConfirmUserComponent,
-    NavbarModeratorComponent
+    NewKitchenwareComponent,
+    EditKitchenwareComponent,
+    DeleteKitchenwareComponent,
+    ConfirmUserComponent,
+    NavbarKitchenwareComponent
   ],
   imports: [
     BrowserAnimationsModule,
