@@ -9,10 +9,7 @@ import {tap} from "rxjs/operators";
 
 export class AuthService {
 
-  private static token = null
-  private static role = null
   private rootUrl = "https://coctailapp.herokuapp.com"
-  private token = null
 
   constructor(private http: HttpClient) {
   }
@@ -21,13 +18,12 @@ export class AuthService {
     return this.http.post<any>(this.rootUrl + '/api/users', user)
   }
 
-  loginUser(user): Observable<{ token: string , role: string}> {
-    return this.http.post<{ token: string, role: string}>(this.rootUrl + '/api/auth/login', user)
+  loginUser(user): Observable<{ token: string}> {
+    return this.http.post<{ token: string}>(this.rootUrl + '/api/auth/login', user)
       .pipe(
         tap(
-          ({token, role}) => {
+          ({token}) => {
             localStorage.setItem('token', token)
-            localStorage.setItem('role', role)
           }
         )
       )
@@ -52,19 +48,22 @@ export class AuthService {
     )
   }
 
-  setToken(token: string) {
-    this.token = token
-  }
-
-  static getToken(): string {
+  getToken(): string {
     return localStorage.getItem('token')
   }
 
-  static getRole(): string{
-    return localStorage.getItem('role')
+  getRole(): string{
+      let jwtData = this.getToken().split('.')[1]
+      let decodedJwtJsonData = window.atob(jwtData)
+      let decodedJwtData = JSON.parse(decodedJwtJsonData)
+      let role = decodedJwtData.roles
+
+      console.log('Is admin: ' + role)
+      return role;
   }
 
   static logout() {
+    localStorage.setToken(null);
     localStorage.clear();
   }
 }

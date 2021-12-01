@@ -9,6 +9,7 @@ import {ConfirmUserComponent} from "./registration/confirmUserComponent";
 import {SearchfriendComponent} from "./searchfriend/searchfriend.component";
 import {AuthService} from "./auth/auth.service";
 import {RoleGuardGuard} from "./auth/role-guard.guard";
+import {PermissionDeniedComponent} from "./errors/permission-denied/permission-denied.component";
 
 const routes: Routes = [
   {
@@ -55,6 +56,10 @@ const routes: Routes = [
   {
     path: "registration/verification",
     component: ConfirmUserComponent
+  },
+  {
+    path: 'permission-denied',
+    component: PermissionDeniedComponent
   }
 ];
 

@@ -12,6 +12,9 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ModeratorVerificationComponent} from "./moderatorVerification/moderator.verification.component";
 import {ModeratorPersonalComponent} from "./moderatorPersonal/moderator.personal.component";
 import {AuthInterceptor} from "./auth/auth-interceptor";
+import { SearchfriendComponent } from './searchfriend/searchfriend.component';
+import { NavbarUserComponent } from './Components/navbar-user/navbar-user.component';
+import {PermissionDeniedComponent} from "./errors/permission-denied/permission-denied.component";
 import {SearchfriendComponent} from './searchfriend/searchfriend.component';
 import {NavbarUserComponent} from './Components/navbar-user/navbar-user.component';
 import {ConfirmUserComponent} from "./registration/confirmUserComponent";
@@ -21,7 +24,6 @@ const INTERCEPTOR_PROVIDER: Provider = {
   multi: true,
   useClass: AuthInterceptor
 };
-
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ const INTERCEPTOR_PROVIDER: Provider = {
     SearchfriendComponent,
     NavbarUserComponent,
     ModeratorPersonalComponent,
-    ConfirmUserComponent
+    ConfirmUserComponent,
+    NavbarUserComponent,
+    PermissionDeniedComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -42,10 +46,9 @@ const INTERCEPTOR_PROVIDER: Provider = {
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
   providers: [INTERCEPTOR_PROVIDER],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule { }
