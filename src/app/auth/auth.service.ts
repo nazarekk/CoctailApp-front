@@ -70,8 +70,8 @@ export class AuthService {
     localStorage.clear();
   }
 
-  getUserInfo(): Observable<userInfo[]> {
-    return this.http.get<userInfo[]>(this.rootUrl + '/api/users/info');
+  getUserInfo(): Observable<userInfo> {
+    return this.http.get<userInfo>(this.rootUrl + '/api/users/info');
   }
 
 

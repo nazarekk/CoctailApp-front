@@ -5,10 +5,10 @@
   </div>
     <div class="other">
       <div class="name">
-
+        {{userinfo.nickname}}
       </div>
       <div class="buttons">
-        <button type="button" class="btn button">Friends</button>
+        <button type="button" class="btn button" (click)="friendsList()">Friends</button>
         <br>
         <button type="button" class="btn button">Events</button>
       </div>
@@ -19,9 +19,10 @@
         Personal Info:
       </div>
       <div class="info-content">
-        тут будет инфа юзера
+       email: {{userinfo.email}}
       </div>
     </div>
+    <br>
     <div class="text blog-title">
       Blog
     </div>
