@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthService} from "../auth/auth.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Subscription} from "rxjs";
-import{Router, ActivatedRoute} from "@angular/router";
+import{Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -18,8 +18,7 @@ export class LoginComponent implements OnInit, OnDestroy{
 
   constructor(private fb: FormBuilder,
               private auth: AuthService,
-              private router: Router,
-              private route: ActivatedRoute) {}
+              private router: Router) {}
 
   ngOnInit(){
     this.form = this.fb.group({
@@ -37,7 +36,23 @@ export class LoginComponent implements OnInit, OnDestroy{
   submit(){
     this.sSub = this.auth.loginUser(this.form.value)
       .subscribe(
-        ()=>this.router.navigate(['/moderator']),
+        ()=>
+        {
+          switch(this.auth.getRole()) {
+            case  "ROLE_CONFIRMED": {
+              this.router.navigate(['/settings'])
+              break
+            }
+            case "ROLE_ADMIN": {
+              this.router.navigate(['/moderator'])
+              break
+            }
+            case "ROLE_MODERATOR": {
+              this.router.navigate(['/ingredients'])
+              break
+            }
+          }
+        },
         err=>console.log(err)
       )
   }

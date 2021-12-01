@@ -6,7 +6,6 @@ import {ModeratorComponent} from "./moderatorRegistration/moderator.component";
 import {ModeratorVerificationComponent} from "./moderatorVerification/moderator.verification.component";
 import {ModeratorPersonalComponent} from "./moderatorPersonal/moderator.personal.component";
 import {ConfirmUserComponent} from "./registration/confirmUserComponent";
-import {SearchfriendComponent} from "./searchfriend/searchfriend.component";
 import {RoleGuardGuard} from "./auth/role-guard.guard";
 import {PermissionDeniedComponent} from "./errors/permission-denied/permission-denied.component";
 import {SearchUserComponent} from "./Components/auth-user/SearchUser/search-user.component";

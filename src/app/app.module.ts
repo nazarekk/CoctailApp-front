@@ -17,6 +17,9 @@ import {SearchUserComponent} from "./Components/auth-user/SearchUser/search-user
 import {ConfirmUserComponent} from "./registration/confirmUserComponent";
 import {SettingsComponent} from "./settings/settings.component";
 import {EditPersonalInfoComponent} from "./settings/editPersonalInfo/edit-personal-info.component";
+import {IngredientListComponent} from "./Components/moderator/ingredient-list/ingredient-list.component";
+import {AuthUserModule} from "./Components/auth-user/auth-user.module";
+import {ModeratorModule} from "./Components/moderator/moderator.module";
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,

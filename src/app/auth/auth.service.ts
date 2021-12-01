@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import {Observable, throwError} from "rxjs";
-import {catchError, tap} from "rxjs/operators";
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
+import {tap} from "rxjs/operators";
 import {IngrInfo} from "../Components/moderator/ingredient-list/IngredientModel";
 import {environment} from "../../environments/environment";
 
@@ -125,5 +125,6 @@ export class AuthService {
 
   static logout() {
     localStorage.clear();
+    location.href = "#"
   }
 }

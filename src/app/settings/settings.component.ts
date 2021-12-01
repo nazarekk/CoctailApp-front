@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ConfirmedValidator} from "../registration/confirmed.validator";
 import {AuthService} from "../auth/auth.service";
+import {environment} from "../../environments/environment";
 
 
 
@@ -52,6 +53,11 @@ export class SettingsComponent implements OnInit {
   jsonPassword(value:any){
     return value
   }
+
+  search () {
+    location.href = environment.frontUrl + "/searchfriend";
+  }
+
   submit(){
     this.success = false
       this.auth.changePassword(this.jsonPassword(this.form.value)).subscribe(
