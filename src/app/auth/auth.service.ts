@@ -59,8 +59,8 @@ export class AuthService {
       let decodedJwtData = JSON.parse(decodedJwtJsonData)
       let role = decodedJwtData.roles
 
-      console.log('Is admin: ' + role)
-      return role;
+      console.log('Is admin: ' + role);
+      return role.toString();
   }
 
 
