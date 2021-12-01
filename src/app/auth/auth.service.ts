@@ -122,5 +122,6 @@ export class AuthService {
 
   static logout() {
     localStorage.clear();
+    location.href = "#";
   }
 }
