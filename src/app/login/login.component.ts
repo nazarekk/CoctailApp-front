@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit, OnDestroy{
   submit(){
     this.sSub = this.auth.loginUser(this.form.value)
       .subscribe(
-        ()=>this.router.navigate(['/moderator']),
+        ()=>this.router.navigate(['/userprofile']),
         err=>console.log(err)
       )
   }

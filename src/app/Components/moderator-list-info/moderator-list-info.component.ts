@@ -3,7 +3,7 @@ import { MatTableDataSource } from '@angular/material/table';
 
 import { Router } from "@angular/router";
 import { AuthService } from "../../auth/auth.service";
-import { moderInfo } from "../../moderList.model";
+import { moderInfo } from "./moderList.model";
 
 
 

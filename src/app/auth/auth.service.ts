@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {tap} from "rxjs/operators";
-import {moderInfo} from "../moderList.model";
+import {moderInfo} from "../Components/moderator-list-info/moderList.model";
+import {userInfo} from "../user-profile/userProfile.model";
 
 @Injectable({
   providedIn: 'root'
@@ -68,8 +69,8 @@ export class AuthService {
     localStorage.clear()
   }
 
-  getUserInfo(){
-    return this.http.get<any>(this.rootUrl + '/api/users/info')
+  getUserInfo():Observable<userInfo[]>{
+    return this.http.get<userInfo[]>(this.rootUrl + '/api/users/info');
   }
 
 
