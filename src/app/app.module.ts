@@ -15,9 +15,8 @@ import {AuthInterceptor} from "./auth/auth-interceptor";
 import {PermissionDeniedComponent} from "./errors/permission-denied/permission-denied.component";
 import {SearchUserComponent} from "./Components/auth-user/SearchUser/search-user.component";
 import {ConfirmUserComponent} from "./registration/confirmUserComponent";
-import {AuthUserModule} from "./Components/auth-user/auth-user.module";
-import {IngredientListComponent} from "./Components/moderator/ingredient-list/ingredient-list.component";
-import {ModeratorModule} from "./Components/moderator/moderator.module";
+import {SettingsComponent} from "./settings/settings.component";
+import {EditPersonalInfoComponent} from "./settings/editPersonalInfo/edit-personal-info.component";
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
@@ -39,7 +38,10 @@ const INTERCEPTOR_PROVIDER: Provider = {
     PermissionDeniedComponent,
     ConfirmUserComponent,
     SearchUserComponent,
-    IngredientListComponent
+    IngredientListComponent,
+    ConfirmUserComponent,
+    SettingsComponent,
+    EditPersonalInfoComponent
   ],
   imports: [
     BrowserAnimationsModule,

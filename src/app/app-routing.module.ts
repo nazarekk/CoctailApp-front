@@ -6,12 +6,15 @@ import {ModeratorComponent} from "./moderatorRegistration/moderator.component";
 import {ModeratorVerificationComponent} from "./moderatorVerification/moderator.verification.component";
 import {ModeratorPersonalComponent} from "./moderatorPersonal/moderator.personal.component";
 import {ConfirmUserComponent} from "./registration/confirmUserComponent";
+import {SearchfriendComponent} from "./searchfriend/searchfriend.component";
 import {RoleGuardGuard} from "./auth/role-guard.guard";
 import {PermissionDeniedComponent} from "./errors/permission-denied/permission-denied.component";
 import {SearchUserComponent} from "./Components/auth-user/SearchUser/search-user.component";
 import {IngredientListComponent} from "./Components/moderator/ingredient-list/ingredient-list.component";
 import {IngredientEditComponent} from "./Components/moderator/ingredient-edit/ingredient-edit.component";
 import {IngredientAddComponent} from "./Components/moderator/ingredient-add/ingredient-add.component";
+import {SettingsComponent} from "./settings/settings.component";
+import {EditPersonalInfoComponent} from "./settings/editPersonalInfo/edit-personal-info.component";
 
 const routes: Routes = [
   {
@@ -86,6 +89,14 @@ const routes: Routes = [
     data:{
       expectedRoles: ['ROLE_MODERATOR']
     }
+  },
+  {
+    path: "settings",
+    component: SettingsComponent
+  },
+  {
+    path: "settings/edit",
+    component: EditPersonalInfoComponent
   }
 ];
 
