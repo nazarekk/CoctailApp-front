@@ -46,5 +46,4 @@ export class RegistrationComponent implements OnInit{
         err=>console.log(err)
       )
   }
-
 }

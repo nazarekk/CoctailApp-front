@@ -10,6 +10,9 @@ import { ToolBarComponent } from './Components/tool-bar/tool-bar.component';
 import {UserProfileComponent} from "./user-profile/user-profile.component";
 import {ModeratorListComponent} from "./moderator-list/moderator-list.component";
 
+import {SearchfriendComponent} from "./searchfriend/searchfriend.component";
+import {AuthService} from "./auth/auth.service";
+import {RoleGuardGuard} from "./auth/role-guard.guard";
 
 const routes: Routes = [
   {
@@ -27,7 +30,11 @@ const routes: Routes = [
   },
   {
     path: 'moderator',
-    component: ModeratorComponent
+    component: ModeratorComponent,
+    canActivate: [RoleGuardGuard],
+    data:{
+      expectedRoles: ['ROLE_ADMIN']
+    }
   },
   {
     path: 'moderator/verification',
@@ -35,7 +42,19 @@ const routes: Routes = [
   },
   {
     path: 'moderator/edit',
-    component: ModeratorPersonalComponent
+    component: ModeratorPersonalComponent,
+    canActivate: [RoleGuardGuard],
+    data:{
+      expectedRoles: ['ROLE_ADMIN']
+    }
+  },
+  {
+    path: 'searchfriend',
+    component: SearchfriendComponent,
+    canActivate: [RoleGuardGuard],
+    data:{
+      expectedRoles: ['ROLE_CONFIRMED']
+    }
   },
   {
     path: "registration/verification",
@@ -49,7 +68,6 @@ const routes: Routes = [
     path: "moderatorlist",
     component: ModeratorListComponent
   }
-
 ];
 
 @NgModule({
