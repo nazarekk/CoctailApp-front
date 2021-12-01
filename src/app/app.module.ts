@@ -45,7 +45,7 @@ const INTERCEPTOR_PROVIDER: Provider = {
     UserProfileComponent,
     UserInfoComponent,
     ModeratorListComponent,
-    ModeratorListInfoComponent
+    ModeratorListInfoComponent,
     SearchfriendComponent,
     NavbarUserComponent,
     ModeratorPersonalComponent,

@@ -13,7 +13,7 @@ export class AuthService {
 
   private static token = null
   private static role = null
-  private rootUrl = "https://coctailapp.herokuapp.com"
+  private rootUrl = "http://localhost:8080"
   private token = null
 
   constructor(private http: HttpClient) {
@@ -23,8 +23,8 @@ export class AuthService {
     return this.http.post<any>(this.rootUrl + '/api/users', user)
   }
 
-  loginUser(user): Observable<{ token: string , role: string}> {
-    return this.http.post<{ token: string, role: string}>(this.rootUrl + '/api/auth/login', user)
+  loginUser(user): Observable<{ token: string, role: string }> {
+    return this.http.post<{ token: string, role: string }>(this.rootUrl + '/api/auth/login', user)
       .pipe(
         tap(
           ({token, role}) => {
@@ -62,7 +62,7 @@ export class AuthService {
     return localStorage.getItem('token')
   }
 
-  static getRole(): string{
+  static getRole(): string {
     return localStorage.getItem('role')
   }
 
@@ -70,13 +70,12 @@ export class AuthService {
     localStorage.clear();
   }
 
-  getUserInfo():Observable<userInfo[]>{
+  getUserInfo(): Observable<userInfo[]> {
     return this.http.get<userInfo[]>(this.rootUrl + '/api/users/info');
   }
 
 
-
-   getModerInfo():Observable<moderInfo[]> {
+  getModerInfo(): Observable<moderInfo[]> {
     return this.http.get<moderInfo[]>(this.rootUrl + '/api/admin/moderators');
   }
 
