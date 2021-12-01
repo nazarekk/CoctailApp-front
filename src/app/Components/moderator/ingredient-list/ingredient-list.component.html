@@ -1,0 +1,5 @@
+<app-navbar (logoutEvent) = "logout()" (searchEvent)="search($event)"></app-navbar>
+<div>
+  <button type="button" class="btn btn-primary" (click)="relocateAdd()">Add ingredient</button>
+</div>
+<app-ingredients-list [ingredients]="ingredients" (delIngrEvent) = "removeIngredient($event)"></app-ingredients-list>

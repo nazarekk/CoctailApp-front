@@ -16,6 +16,8 @@ import {AuthInterceptor} from "./auth/auth-interceptor";
 import {SearchUserComponent} from "./Components/auth-user/SearchUser/search-user.component";
 import {ConfirmUserComponent} from "./registration/confirmUserComponent";
 import {AuthUserModule} from "./Components/auth-user/auth-user.module";
+import {IngredientListComponent} from "./Components/moderator/ingredient-list/ingredient-list.component";
+import {ModeratorModule} from "./Components/moderator/moderator.module";
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
@@ -34,8 +36,8 @@ const INTERCEPTOR_PROVIDER: Provider = {
     ModeratorPersonalComponent,
     ModeratorPersonalComponent,
     ConfirmUserComponent,
-    SearchUserComponent
-
+    SearchUserComponent,
+    IngredientListComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -45,7 +47,8 @@ const INTERCEPTOR_PROVIDER: Provider = {
     AppRoutingModule,
     ReactiveFormsModule,
     AuthUserModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ModeratorModule
   ],
   providers: [INTERCEPTOR_PROVIDER],
   bootstrap: [AppComponent]
