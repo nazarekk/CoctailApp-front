@@ -1,8 +1,7 @@
 import {AuthService} from "../auth/auth.service";
 import {ActivatedRoute} from "@angular/router";
 import {Component, OnInit} from "@angular/core";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ConfirmedValidator} from "./confirmed.validator";
+import {FormBuilder, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-registration',
@@ -31,5 +30,6 @@ export class ConfirmUserComponent implements OnInit{
     });
     this.user.value.nickname = nickname;
     this.auth.verifyUser(this.user.value);
+    location.href = "#";
   }
 }
