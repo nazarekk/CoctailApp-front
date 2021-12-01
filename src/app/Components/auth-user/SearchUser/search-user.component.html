@@ -1,0 +1,9 @@
+<app-search-bar (logoutEvent) = "logout()" (searchEvent)="search($event)"></app-search-bar>
+<app-user-tab [friends]="friends"
+              (addFriendEvent)="addFriend($event)"
+              (acceptFriendEvent)="acceptFriend($event)"
+              (declineFriendEvent)="declineFriend($event)"
+              (removeFriendEvent)="removeFriend($event)"
+              (subscribeFriendEvent)="subscribeFriend($event)"
+              (unsubscribeFriendEvent)="unsubscribeFriend($event)">
+</app-user-tab>

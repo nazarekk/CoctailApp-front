@@ -1,4 +1,3 @@
-
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">CocktailApp</a>
@@ -18,8 +17,8 @@
         </li>
       </ul>
       <form class="d-flex">
-        <input class="form-control me-2" type="search" [(ngModel)]="searchValue" [ngModelOptions]="{standalone: true}" placeholder="Search" aria-label="Search">
-        <button (click)="search()" class="btn btn-outline-success" type="submit">Search</button>
+        <input class="form-control me-2" type="search" #searchValue placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success"(click)="search(searchValue.value)" type="button">Search</button>
       </form>
       <button type="button" (click)="logout()" class="btn btn-primary btn-lg">Log Out</button>
     </div>

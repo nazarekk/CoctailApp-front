@@ -1,0 +1,28 @@
+<app-navbar (logoutEvent) = "logout()"></app-navbar>
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <div class="corona form-group lg10">
+    <input
+      formControlName="name"
+      id="name"
+      type="email"
+      class="form-control"
+      placeholder="{{actualInfo.name}}">
+  </div>
+  <div class="corona form-group lg10">
+    <input
+      formControlName="type"
+      id="type"
+      type="email"
+      class="form-control"
+      placeholder="{{actualInfo.type}}">
+  </div>
+  <div class="corona form-group lg10">
+    <input
+      formControlName="category"
+      id="category"
+      type="email"
+      class="form-control"
+      placeholder="{{actualInfo.category}}">
+  </div>
+  <button class="btn btn-primary" type="submit">Edit</button>
+</form>

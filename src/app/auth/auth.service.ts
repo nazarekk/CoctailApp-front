@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {tap} from "rxjs/operators";
+import {IngrInfo} from "../Components/moderator/ingredient-list/IngredientModel";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +11,10 @@ import {tap} from "rxjs/operators";
 
 export class AuthService {
 
+  private static token = null
+  private static role = null
   private rootUrl = "https://coctailapp.herokuapp.com"
+  private token = null
 
   constructor(private http: HttpClient) {
   }
@@ -34,16 +39,15 @@ export class AuthService {
   }
 
   verificateModerator(user) {
-    return this.http.post<any>(this.rootUrl + 'api/moderator/activation', user)
+    return this.http.post<any>(this.rootUrl + '/api/moderator/activation', user)
   }
 
   editModerator(user) {
     return this.http.post<any>(this.rootUrl + '/api/admin/moderator/edit', user)
   }
 
-  verifyUser(code: string) {
-    console.log((this.rootUrl + '/api/users/activation?code=' + code))
-    return this.http.get<any>(this.rootUrl + '/api/users/activation?code=' + code).subscribe(
+  verifyUser(verifyUser) {
+    return this.http.patch<any>(this.rootUrl + '/api/users/activation' ,verifyUser).subscribe(
       res => console.log(res)
     )
   }
@@ -62,8 +66,64 @@ export class AuthService {
       return role;
   }
 
+
+  searchFriend (nickname: String) {
+    return this.http.get<any>(this.rootUrl + '/api/users/find?nickname='+ nickname);
+  }
+
+  searchIngredient (name: String) {
+    return this.http.get<any>(this.rootUrl + '/api/moderator/ingredients/search?name='+ name);
+  }
+
+  removeIngredient (id: Number) {
+    return this.http.delete<any>(this.rootUrl + '/api/moderator/ingredients/' + id.toString());
+  }
+
+  getIngredient (id: Number) {
+    return this.http.get<any>(this.rootUrl + '/api/moderator/ingredients/' + id.toString());
+  }
+
+  addFriend (id: Number) {
+    return this.http.post<any>(this.rootUrl + '/api/users/add/' + id, "")
+  }
+
+  acceptFriend (id: Number) {
+    return this.http.patch<any>(this.rootUrl + '/api/users/accept/' + id, "")
+  }
+
+  declineFriend (id: Number) {
+    return this.http.patch<any>(this.rootUrl + '/api/users/decline/' + id, "")
+  }
+
+  removeFriend (id: Number) {
+    return this.http.delete<any>(this.rootUrl + '/api/users/remove/' + id)
+  }
+
+  editIngredient (ingredient) {
+    return this.http.patch(this.rootUrl + '/api/moderator/ingredients/edit', ingredient);
+  }
+
+  listIngredient () {
+    return this.http.get<IngrInfo[]>(this.rootUrl + '/api/moderator/ingredients/list');
+  }
+
+  addInrgedient(ingredient) {
+    return this.http.post<any>(this.rootUrl + '/api/moderator/ingredients', ingredient);
+  }
+
+  subscribeFriend (id: Number) {
+    return this.http.patch<any>(this.rootUrl + '/api/users/subscribe/' + id, "")
+  }
+
+  unsubscribeFriend (id: Number) {
+    return this.http.patch<any>(this.rootUrl + '/api/users/subscribe/' + id, "")
+  }
+
+  isAuthenticated(): boolean {
+    return !!localStorage.token
+  }
+
   static logout() {
-    localStorage.setToken(null);
     localStorage.clear();
   }
 }
