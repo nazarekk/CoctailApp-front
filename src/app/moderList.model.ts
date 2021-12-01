@@ -1,5 +1,6 @@
 export interface moderInfo{
-  userid: String;
-  nickname: String;
-  email: String;
+  userid: string;
+  nickname: string;
+  email: string;
+  isactive: boolean;
 }

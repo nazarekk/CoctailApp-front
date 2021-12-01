@@ -20,6 +20,8 @@ import { ModeratorListComponent } from './moderator-list/moderator-list.componen
 import { ModeratorListInfoComponent } from './Components/moderator-list-info/moderator-list-info.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 @NgModule({
   declarations: [
@@ -44,9 +46,11 @@ import { MatInputModule } from '@angular/material/input';
     AppRoutingModule,
     ReactiveFormsModule,
     MatTableModule,
-    MatInputModule
+    MatInputModule,
+    MDBBootstrapModule.forRoot()
   ],
   providers: [AuthService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [NO_ERRORS_SCHEMA]
 })
 export class AppModule { }

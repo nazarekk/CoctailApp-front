@@ -5,31 +5,52 @@
         <button type="button" class="btn button">Create new moderator account</button>
       </div>
       <div >
-        <button type="button" class="btn button">Filter</button>
-        <button type="button" class="btn button">Sort</button>
+        <button type="button" class="btn button" (click)="activeModers()">Filter</button>
+        <button type="button" class="btn button" (click)="sortModer()">Sort</button>
       </div>
     </div>
     <div class="moderlist">
-      <tr *ngFor="let element of info">
-        <td>
-          <div class="moder">
+      <table *ngFor="let element of info; let moder of filteredModers">
+      <tr [ngSwitch]="isFiltered">
+        <td >
+          <div class="moder" *ngSwitchCase="false">
             <div class="photo">
 
             </div>
             <div class="nick">
-              <span class="name">{{element.nickname}}</span>
+              <span class="name" >{{element.nickname}}</span>
               <span class="smth">id: {{element.userid}}</span>
               <br>
               <span class="smth">email: {{element.email}}</span>
             </div>
             <div class="buttons name_buttons">
-              <button type="button" class="btn button">Edit</button>
+              <button type="button" class="btn button" (click)="editModer(element.userid)">Edit</button>
               <button type="button" class="btn button spec" (click)="deleteModer(element.userid)">Delete</button>
             </div>
           </div>
 
-        </td>
+
+            <div class="moder" *ngSwitchCase="true">
+              <div class="photo">
+
+              </div>
+              <div class="nick">
+                <span class="name" >{{moder.nickname}}</span>
+                <span class="smth">id: {{moder.userid}}</span>
+                <br>
+                <span class="smth">email: {{moder.email}}</span>
+              </div>
+              <div class="buttons name_buttons">
+                <button type="button" class="btn button" (click)="editModer(element.userid)">Edit</button>
+                <button type="button" class="btn button spec" (click)="deleteModer(element.userid)">Delete</button>
+              </div>
+            </div>
+
+          </td>
+
+
       </tr>
+      </table>
     </div>
   </div>
 </div>
