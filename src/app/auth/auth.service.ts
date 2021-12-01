@@ -11,10 +11,7 @@ import {environment} from "../../environments/environment";
 
 export class AuthService {
 
-  private static token = null
-  private static role = null
-  private rootUrl = "https://coctailapp.herokuapp.com"
-  private token = null
+  private rootUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {
   }
