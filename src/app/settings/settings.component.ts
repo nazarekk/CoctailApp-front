@@ -4,7 +4,6 @@ import {ConfirmedValidator} from "../registration/confirmed.validator";
 import {AuthService} from "../auth/auth.service";
 
 
-
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
@@ -17,45 +16,52 @@ export class SettingsComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private auth: AuthService,
-             ) {
+  ) {
   }
 
   form: FormGroup = new FormGroup({});
   success = false
   message: string
-  alertClass : string
-  href:string
+  alertClass: string
 
   ngOnInit() {
     this.form = this.fb.group({
       oldPassword: ['', [Validators.required]],
-      password: ['', [Validators.required]],
+      newPassword: ['', [Validators.required]],
       doubleCheckPass: ['', [Validators.required]]
     }, {
-      validator: ConfirmedValidator('password', 'doubleCheckPass')
+      validator: ConfirmedValidator('newPassword', 'doubleCheckPass')
     })
 
   }
+
   statusCheck(value: any) {
     this.success = true
     if (value == 200) {
       this.message = "Password changed successful"
       this.alertClass = "alert-success"
-    }
-    else {
-      this.message = "Invalid password"
+    } else if (value == 417) {
+      this.message = "Invalid password!"
+      this.alertClass = "alert-danger"
+    } else {
+      this.message = "Error"
       this.alertClass = "alert-danger"
     }
 
   }
 
-  jsonPassword(value:any){
+  removeDoubleCheckPass(value: any) {
+    delete value['doubleCheckPass']
     return value
   }
-  submit(){
+
+  submit() {
     this.success = false
-      this.auth.changePassword(this.jsonPassword(this.form.value)).subscribe(
-        response => this.statusCheck(response.status)
-      );
+    this.auth.changePassword(this.removeDoubleCheckPass(this.form.value)).subscribe(
+      response => this.statusCheck(response.status),
+      error => {
+        this.statusCheck(error.status)
+      }
+    );
   }
 }
