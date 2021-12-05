@@ -1,0 +1,15 @@
+.input-group-text {
+  padding: .275rem .75rem;
+  background-color: mediumpurple;
+}
+
+.input-group {
+  margin-top: 5px;
+}
+
+.btn {
+  display: inline-block;
+  color: #212529;
+  background-color: mediumpurple;
+  padding: .275rem .55rem;
+}

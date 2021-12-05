@@ -1,7 +1,18 @@
-.colorGreen {
-  background-color: greenyellow;
-}
-
-.colorRed {
+.badge-danger {
   background-color: red;
 }
+
+.badge-success {
+  background-color: green;
+}
+
+.badge {
+  color: rgba(255,255,255,0);
+}
+
+button {
+  margin: 5px;
+  padding: .175rem .55rem;
+}
+
+

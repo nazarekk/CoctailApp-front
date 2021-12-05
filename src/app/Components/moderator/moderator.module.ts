@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavbarComponent } from './ingredient-list/navbar/navbar.component';
 import { IngredientsTabComponent } from './ingredient-list/ingredients-tab/ingredients-tab.component';
 import { IngredientEditComponent } from './ingredient-edit/ingredient-edit.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { IngredientAddComponent } from './ingredient-add/ingredient-add.component';
+import {NavbarComponent} from "../navbar/navbar.component";
+import { FilterComponent } from './ingredient-list/filter/filter.component';
 
 
 
@@ -13,11 +14,13 @@ import { IngredientAddComponent } from './ingredient-add/ingredient-add.componen
     NavbarComponent,
     IngredientsTabComponent,
     IngredientEditComponent,
-    IngredientAddComponent
+    IngredientAddComponent,
+    FilterComponent
   ],
   exports: [
     NavbarComponent,
-    IngredientsTabComponent
+    IngredientsTabComponent,
+    FilterComponent
   ],
   imports: [
     CommonModule,

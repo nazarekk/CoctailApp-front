@@ -1,28 +1,33 @@
-<app-navbar (logoutEvent) = "logout()"></app-navbar>
+<app-navbar></app-navbar>
 <form [formGroup]="form" (ngSubmit)="submit()">
-<div class="corona form-group lg10">
-  <input
-    formControlName="name"
-    id="name"
-    type="email"
-    class="form-control"
-    placeholder="Name">
-</div>
-<div class="corona form-group lg10">
-  <input
-    formControlName="type"
-    id="type"
-    type="email"
-    class="form-control"
-    placeholder="Type">
-</div>
-<div class="corona form-group lg10">
-  <input
-    formControlName="category"
-    id="category"
-    type="email"
-    class="form-control"
-    placeholder="Category">
-</div>
-<button class="btn btn-primary" type="submit">Add</button>
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
+    <input aria-label="Sizing example input"
+           aria-describedby="inputGroup-sizing-default"
+           formControlName="name"
+           id="name"
+           type="email"
+           class="form-control"
+           placeholder="Name">
+  </div>
+
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="inputGroup-sizing-default">Type</span>
+    <input aria-label="Sizing example input"
+           aria-describedby="inputGroup-sizing-default"
+           formControlName="type"
+           id="type"
+           class="form-control"
+           placeholder="Type">
+  </div>
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="inputGroup-sizing-default">Category</span>
+    <input aria-label="Sizing example input"
+           aria-describedby="inputGroup-sizing-default"
+           formControlName="category"
+           id="category"
+           class="form-control"
+           placeholder="Category">
+  </div>
+  <button class="btn btn-primary" type="submit">Add</button>
 </form>

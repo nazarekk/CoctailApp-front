@@ -1,21 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SearchBarComponent } from './SearchUser/search-bar/search-bar.component';
 import { UserTabComponent } from './SearchUser/user-tab/user-tab.component';
+import {ModeratorModule} from "../moderator/moderator.module";
 
 
 
 @NgModule({
   declarations: [
-    SearchBarComponent,
     UserTabComponent
   ],
   exports: [
-    SearchBarComponent,
     UserTabComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ModeratorModule
   ]
 })
 export class AuthUserModule { }

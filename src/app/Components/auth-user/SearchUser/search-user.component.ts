@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../../auth/auth.service";
 import {UserInfo} from "./user-model";
 
@@ -7,7 +7,7 @@ import {UserInfo} from "./user-model";
   templateUrl: './search-user.component.html',
   styleUrls: ['./search-user.component.css'],
 })
-export class SearchUserComponent {
+export class SearchUserComponent implements OnInit {
 
   searchValue: string;
   friends: UserInfo[];
@@ -15,7 +15,14 @@ export class SearchUserComponent {
   constructor(private authService: AuthService) {
   }
 
+  ngOnInit() {
+    this.searchValue = "";
+    this.authService.searchFriend("").subscribe((data: UserInfo[]) => this.friends = data);
+    console.log(this.friends);
+  }
+
   search(searchValue) {
+    this.searchValue = searchValue;
     this.authService.searchFriend(searchValue).subscribe((data: UserInfo[]) => this.friends = data);
     console.log(this.friends);
   }
@@ -24,28 +31,46 @@ export class SearchUserComponent {
     AuthService.logout();
   }
 
-  addFriend(id: Number) {
-    this.authService.addFriend(id).subscribe(data => console.log(data));
+  addFriend(user: UserInfo) {
+    this.authService.addFriend(user.id).subscribe(data => {
+      if (data == true) this.authService.searchFriend(this.searchValue).subscribe(
+        (data: UserInfo[]) => this.friends = data);
+    });
   }
 
-  acceptFriend(id: Number) {
-    this.authService.acceptFriend(id).subscribe(data => console.log(data));
+  acceptFriend(user: UserInfo) {
+    this.authService.acceptFriend(user.id).subscribe(data => {
+      if (data == true) this.authService.searchFriend(this.searchValue).subscribe(
+        (data: UserInfo[]) => this.friends = data);
+    });
   }
 
-  declineFriend(id: Number) {
-    this.authService.declineFriend(id).subscribe(data => console.log(data));
+  declineFriend(user: UserInfo) {
+    this.authService.declineFriend(user.id).subscribe(data => {
+      if (data == true) this.authService.searchFriend(this.searchValue).subscribe(
+        (data: UserInfo[]) => this.friends = data);
+    });
   }
 
-  removeFriend(id: Number) {
-    this.authService.removeFriend(id).subscribe(data => console.log(data));
+  removeFriend(user: UserInfo) {
+    this.authService.removeFriend(user.id).subscribe(data => {
+      if (data == true) this.authService.searchFriend(this.searchValue).subscribe(
+        (data: UserInfo[]) => this.friends = data);
+    });
   }
 
-  subscribeFriend(id: Number) {
-    this.authService.subscribeFriend(id).subscribe(data => console.log(data));
+  subscribeFriend(user: UserInfo) {
+    this.authService.subscribeFriend(user.id).subscribe(data => {
+      if (data == true) this.authService.searchFriend(this.searchValue).subscribe(
+        (data: UserInfo[]) => this.friends = data);
+    });
   }
 
-  unsubscribeFriend(id: Number) {
-    this.authService.unsubscribeFriend(id).subscribe(data => console.log(data));
+  unsubscribeFriend(user: UserInfo) {
+    this.authService.unsubscribeFriend(user.id).subscribe(data => {
+      if (data == true) this.authService.searchFriend(this.searchValue).subscribe(
+        (data: UserInfo[]) => this.friends = data);
+    });
   }
 
 }

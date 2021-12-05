@@ -23,6 +23,7 @@ export class IngredientsTabComponent implements OnInit {
 }
 
   ngOnInit(): void {
+
   }
 
 }

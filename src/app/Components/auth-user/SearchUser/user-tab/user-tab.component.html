@@ -1,27 +1,20 @@
 <table class="table table-striped table-info">
-  <thead>
-  <tr>
-    <th scope="col">nickname</th>
-    <th scope="col">email</th>
-    <th scope="col"></th>
-  </tr>
-  </thead>
   <tbody>
-  <tr *ngFor="let users of friends" [ngSwitch]="users.statusId" >
+  <tr *ngFor="let users of friends;index as i" [ngSwitch]="users.statusId" >
     <td>{{users.nickname}}</td>
     <td>{{users.email}}</td>
-    <td *ngSwitchCase="1"><button class="btn btn-primary" (click)="addFriend(users.id)">Add friend</button></td>
-    <td *ngSwitchCase="2">
-      <button class="btn btn-primary" (click)="acceptFriend(users.id)">Accept friend</button>
-      <button class="btn btn-danger" (click)="declineFriend(users.id)">Decline friend</button>
+    <td *ngSwitchCase="1" class = "text-center"><button class="btn btn-primary" (click)="addFriend(users)">Add friend</button></td>
+    <td *ngSwitchCase="2" class = "text-center">
+      <button class="btn btn-primary" (click)="acceptFriend(users)">Accept friend</button>
+      <button class="btn btn-danger" (click)="declineFriend(users)">Decline friend</button>
     </td>
-    <td *ngSwitchCase="4">
-      <button class="btn btn-primary" (click)="subscribeFriend(users.id)">Subscribe friend</button>
-      <button class="btn btn-danger" (click)="removeFriend(users.id)">Remove friend</button>
+    <td *ngSwitchCase="3" class = "text-center">
+      <button class="btn btn-primary" (click)="subscribeFriend(users)">Subscribe friend</button>
+      <button class="btn btn-danger" (click)="removeFriend(users)">Remove friend</button>
     </td>
-    <td *ngSwitchCase="3">Request sent</td>
-    <td *ngSwitchCase="5">
-      <button class="btn btn-danger" (click)="removeFriend(users.id)">Remove friend</button>
+    <td *ngSwitchCase="4" class = "text-center">Request sent</td>
+    <td *ngSwitchCase="5" class = "text-center">>
+      <button class="btn btn-danger" (click)="removeFriend(users)">Remove friend</button>
 <!--      <button class="btn btn-danger" (click)="unsubscribeFriend(users.id)">Unsubscribe friend</button>-->
     </td>
     <td *ngSwitchDefault> </td>

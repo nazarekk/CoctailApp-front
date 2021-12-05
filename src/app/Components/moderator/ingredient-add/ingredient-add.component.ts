@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../../../auth/auth.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
+import {SystemInventory} from "../../../api/system-inventory";
 
 @Component({
   selector: 'app-ingredient-add',
@@ -12,7 +13,7 @@ export class IngredientAddComponent implements OnInit {
   form: FormGroup = new FormGroup({});
 
   constructor(private fb: FormBuilder,
-              private auth: AuthService) {
+              private systemInventory: SystemInventory) {
     this.form = this.fb.group({
       name:[''],
       type:[''],
@@ -30,7 +31,9 @@ export class IngredientAddComponent implements OnInit {
 
   submit() {
     this.form.value.isActive = true;
-    this.auth.addInrgedient(this.form.value).subscribe(data => console.log(data));
+    this.systemInventory.addInrgedient(this.form.value).subscribe(data => {
+      if (data == true) location.href = "/ingredients"
+    });
   }
 
 }

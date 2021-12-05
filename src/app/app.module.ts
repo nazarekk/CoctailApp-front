@@ -20,6 +20,7 @@ import {EditPersonalInfoComponent} from "./settings/editPersonalInfo/edit-person
 import {IngredientListComponent} from "./Components/moderator/ingredient-list/ingredient-list.component";
 import {AuthUserModule} from "./Components/auth-user/auth-user.module";
 import {ModeratorModule} from "./Components/moderator/moderator.module";
+import { NavbarComponent } from './Components/navbar/navbar.component';
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
@@ -58,6 +59,9 @@ const INTERCEPTOR_PROVIDER: Provider = {
     ModeratorModule
   ],
   providers: [INTERCEPTOR_PROVIDER],
+  exports: [
+    NavbarComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

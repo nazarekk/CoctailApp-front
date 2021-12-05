@@ -3,5 +3,5 @@ export interface IngrInfo {
   name: String;
   type: String;
   category: Number;
-  isActive: Boolean;
+  active: Boolean;
 }

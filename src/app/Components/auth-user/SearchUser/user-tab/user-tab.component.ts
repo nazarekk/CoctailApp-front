@@ -19,24 +19,24 @@ export class UserTabComponent implements OnInit{
   @Output() unsubscribeFriendEvent = new EventEmitter();
   @Input() friends: UserInfo[];
 
-  addFriend (id: Number) {
-    this.addFriendEvent.emit(id);
+  addFriend (users: UserInfo) {
+    this.addFriendEvent.emit(users);
   }
 
-  acceptFriend (id: Number) {
-    this.acceptFriendEvent.emit(id);
+  acceptFriend (users: UserInfo) {
+    this.acceptFriendEvent.emit(users);
   }
 
-  declineFriend (id: Number) {
-    this.declineFriendEvent.emit(id);
+  declineFriend (users: UserInfo) {
+    this.declineFriendEvent.emit(users);
   }
 
-  removeFriend (id: Number) {
-    this.removeFriendEvent.emit(id);
+  removeFriend (users: UserInfo) {
+    this.removeFriendEvent.emit(users);
   }
 
-  subscribeFriend (id: Number) {
-    this.subscribeFriendEvent.emit(id);
+  subscribeFriend (users: UserInfo) {
+    this.subscribeFriendEvent.emit(users);
   }
 
   unsubscribeFriend (id: Number) {

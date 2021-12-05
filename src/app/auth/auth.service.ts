@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {tap} from "rxjs/operators";
-import {IngrInfo} from "../Components/moderator/ingredient-list/IngredientModel";
 import {environment} from "../../environments/environment";
 
 @Injectable({
@@ -20,8 +19,8 @@ export class AuthService {
     return this.http.post<any>(this.rootUrl + '/api/users', user)
   }
 
-  loginUser(user): Observable<{ token: string}> {
-    return this.http.post<{ token: string}>(this.rootUrl + '/api/auth/login', user)
+  loginUser(user): Observable<{ token: string }> {
+    return this.http.post<{ token: string }>(this.rootUrl + '/api/auth/login', user)
       .pipe(
         tap(
           ({token}) => {
@@ -44,78 +43,54 @@ export class AuthService {
   }
 
   verifyUser(verifyUser) {
-    return this.http.patch<any>(this.rootUrl + '/api/users/activation' ,verifyUser).subscribe(
+    return this.http.patch<any>(this.rootUrl + '/api/users/activation', verifyUser).subscribe(
       res => console.log(res)
     )
   }
+
   changePassword(user) {
-    return this.http.put<any>(this.rootUrl + '/api/users/settings', user,{ observe: 'response' })
+    return this.http.put<any>(this.rootUrl + '/api/users/settings', user, {observe: 'response'})
   }
 
   getToken(): string {
     return localStorage.getItem('token')
   }
 
-  getRole(): string{
-      let jwtData = this.getToken().split('.')[1]
-      let decodedJwtJsonData = window.atob(jwtData)
-      let decodedJwtData = JSON.parse(decodedJwtJsonData)
-      let role = decodedJwtData.roles
-
-      console.log('Is admin: ' + role);
-      return role.toString();
+  getRole(): string {
+    if (this.getToken() == null) return null;
+    let jwtData = this.getToken().split('.')[1]
+    let decodedJwtJsonData = window.atob(jwtData)
+    let decodedJwtData = JSON.parse(decodedJwtJsonData)
+    let role = decodedJwtData.roles
+    return role.toString();
   }
 
 
-  searchFriend (nickname: String) {
-    return this.http.get<any>(this.rootUrl + '/api/users/find?nickname='+ nickname);
+  searchFriend(nickname: String) {
+    return this.http.get<any>(this.rootUrl + '/api/users/find?nickname=' + nickname);
   }
 
-  searchIngredient (name: String) {
-    return this.http.get<any>(this.rootUrl + '/api/moderator/ingredients/search?name='+ name);
-  }
-
-  removeIngredient (id: Number) {
-    return this.http.delete<any>(this.rootUrl + '/api/moderator/ingredients/' + id.toString());
-  }
-
-  getIngredient (id: Number) {
-    return this.http.get<any>(this.rootUrl + '/api/moderator/ingredients/' + id.toString());
-  }
-
-  addFriend (id: Number) {
+  addFriend(id: Number) {
     return this.http.post<any>(this.rootUrl + '/api/users/add/' + id, "")
   }
 
-  acceptFriend (id: Number) {
+  acceptFriend(id: Number) {
     return this.http.patch<any>(this.rootUrl + '/api/users/accept/' + id, "")
   }
 
-  declineFriend (id: Number) {
+  declineFriend(id: Number) {
     return this.http.patch<any>(this.rootUrl + '/api/users/decline/' + id, "")
   }
 
-  removeFriend (id: Number) {
+  removeFriend(id: Number) {
     return this.http.delete<any>(this.rootUrl + '/api/users/remove/' + id)
   }
 
-  editIngredient (ingredient) {
-    return this.http.patch(this.rootUrl + '/api/moderator/ingredients/edit', ingredient);
-  }
-
-  listIngredient () {
-    return this.http.get<IngrInfo[]>(this.rootUrl + '/api/moderator/ingredients/list');
-  }
-
-  addInrgedient(ingredient) {
-    return this.http.post<any>(this.rootUrl + '/api/moderator/ingredients', ingredient);
-  }
-
-  subscribeFriend (id: Number) {
+  subscribeFriend(id: Number) {
     return this.http.patch<any>(this.rootUrl + '/api/users/subscribe/' + id, "")
   }
 
-  unsubscribeFriend (id: Number) {
+  unsubscribeFriend(id: Number) {
     return this.http.patch<any>(this.rootUrl + '/api/users/subscribe/' + id, "")
   }
 

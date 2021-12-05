@@ -1,5 +1,6 @@
-<app-navbar (logoutEvent) = "logout()" (searchEvent)="search($event)"></app-navbar>
-<div>
+<app-navbar (searchEvent)="search($event)"></app-navbar>
+<div class = align-items-center>
   <button type="button" class="btn btn-primary" (click)="relocateAdd()">Add ingredient</button>
+  <app-filter></app-filter>
 </div>
 <app-ingredients-list [ingredients]="ingredients" (delIngrEvent) = "removeIngredient($event)"></app-ingredients-list>
