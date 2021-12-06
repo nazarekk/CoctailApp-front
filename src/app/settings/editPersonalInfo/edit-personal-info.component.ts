@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {FormBuilder,FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../auth/auth.service";
 import {UserPersonalInfo} from "../UserPersonalInfo";
 
@@ -30,7 +30,7 @@ export class EditPersonalInfoComponent implements OnInit {
       .subscribe((data:UserPersonalInfo) => this.user = data)
 
     this.form = this.fb.group({
-      nickname: [''],
+      nickname: ['',[Validators.minLength(4),Validators.maxLength(30),Validators.required]],
       information: ['']
     })
   }
