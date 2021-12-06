@@ -1,4 +1,4 @@
-<app-navbar (searchEvent)="search($event)"></app-navbar>
+<app-navbar [isSearchable]="true" (searchEvent)="search($event)"></app-navbar>
 <div class = align-items-center>
   <button type="button" class="btn btn-primary" (click)="relocateAdd()">Add ingredient</button>
   <app-filter (filterEvent)="filter($event)" ></app-filter>

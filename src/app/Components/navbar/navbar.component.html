@@ -22,7 +22,7 @@
           <a class="nav-link active" aria-current="page" href="/searchfriend">Discover</a>
         </li>
       </ul>
-      <form class="d-flex">
+      <form class="d-flex" *ngIf="isSearchable">
         <input class="form-control me-2" type="search" #searchValue placeholder="Search" aria-label="Search">
         <button class="btn btn-light" (click)="search(searchValue.value)" type="button">Search</button>
         <button type="button" class="btn btn-light" (click)="Logout()">Logout</button>

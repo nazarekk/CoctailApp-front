@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AuthService} from "../../auth/auth.service";
 
 @Component({
@@ -9,6 +9,7 @@ import {AuthService} from "../../auth/auth.service";
 export class NavbarComponent implements OnInit {
 
   @Output() searchEvent = new EventEmitter();
+  @Input() isSearchable: Boolean;
 
   constructor(private auth: AuthService) { }
 
