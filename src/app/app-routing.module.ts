@@ -14,6 +14,9 @@ import {IngredientEditComponent} from "./Components/moderator/ingredient-edit/in
 import {IngredientAddComponent} from "./Components/moderator/ingredient-add/ingredient-add.component";
 import {SettingsComponent} from "./settings/settings.component";
 import {EditPersonalInfoComponent} from "./settings/editPersonalInfo/edit-personal-info.component";
+import {KitchenwareListComponent} from "./Components/moderator/kitchenware-list/kitchenware-list.component";
+import {KitchenwareEditComponent} from "./Components/moderator/kitchenware-edit/kitchenware-edit.component";
+import {KitchenwareAddComponent} from "./Components/moderator/kitchenware-add/kitchenware-add.component";
 
 const routes: Routes = [
   {
@@ -96,6 +99,30 @@ const routes: Routes = [
   {
     path: "settings/edit",
     component: EditPersonalInfoComponent
+  },
+  {
+    path: 'kitchenwares',
+    component: KitchenwareListComponent,
+    canActivate: [RoleGuardGuard],
+    data:{
+      expectedRoles: ['ROLE_MODERATOR']
+    }
+  },
+  {
+    path: 'kitchenwares/edit',
+    component: KitchenwareEditComponent,
+    canActivate: [RoleGuardGuard],
+    data:{
+      expectedRoles: ['ROLE_MODERATOR']
+    }
+  },
+  {
+    path: 'kitchenwares/add',
+    component: KitchenwareAddComponent,
+    canActivate: [RoleGuardGuard],
+    data:{
+      expectedRoles: ['ROLE_MODERATOR']
+    }
   }
 ];
 

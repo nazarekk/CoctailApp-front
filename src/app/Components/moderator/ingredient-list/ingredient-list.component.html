@@ -1,6 +1,8 @@
 <app-navbar (searchEvent)="search($event)"></app-navbar>
 <div class = align-items-center>
   <button type="button" class="btn btn-primary" (click)="relocateAdd()">Add ingredient</button>
-  <app-filter></app-filter>
+  <app-filter (filterEvent)="filter($event)" ></app-filter>
+  <button type="button" class="btn btn-primary" *ngIf="sorted" (click)="sort()">Sort(a-z)</button>
+  <button type="button" class="btn btn-primary" *ngIf="!sorted" (click)="sort()">Sort(z-a)</button>
 </div>
 <app-ingredients-list [ingredients]="ingredients" (delIngrEvent) = "removeIngredient($event)"></app-ingredients-list>

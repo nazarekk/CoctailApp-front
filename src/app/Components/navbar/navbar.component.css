@@ -1,0 +1,16 @@
+.navbar-expand-lg .navbar-collapse {
+  background-color: mediumpurple;
+  display: flex!important;
+  flex-basis: auto;
+}
+
+button, optgroup, select, textarea {
+  margin: 5px;
+  padding: .175rem .55rem;
+  color: black;
+  background-color: aqua;
+}
+
+input {
+  margin: 5px;
+}

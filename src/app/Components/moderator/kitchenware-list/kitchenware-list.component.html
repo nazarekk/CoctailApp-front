@@ -1,0 +1,8 @@
+<app-navbar (searchEvent)="search($event)"></app-navbar>
+<div class = align-items-center>
+  <button type="button" class="btn btn-primary" (click)="relocateAdd()">Add kitchenware</button>
+  <app-filter-kitchenware (filterEvent)="filter($event)"></app-filter-kitchenware>
+  <button type="button" class="btn btn-primary" *ngIf="sorted" (click)="sort()">Sort(a-z)</button>
+  <button type="button" class="btn btn-primary" *ngIf="!sorted" (click)="sort()">Sort(z-a)</button>
+</div>
+<app-kitchenware-tab [kitchenwares]="kitchenwares" (delKitchEvent)="removeKitchenware($event)"></app-kitchenware-tab>

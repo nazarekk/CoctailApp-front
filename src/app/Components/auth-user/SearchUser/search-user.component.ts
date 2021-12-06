@@ -32,45 +32,33 @@ export class SearchUserComponent implements OnInit {
   }
 
   addFriend(user: UserInfo) {
-    this.authService.addFriend(user.id).subscribe(data => {
-      if (data == true) this.authService.searchFriend(this.searchValue).subscribe(
-        (data: UserInfo[]) => this.friends = data);
-    });
+    this.authService.addFriend(user.id).subscribe(data => this.actualizeList(data));
   }
 
   acceptFriend(user: UserInfo) {
-    this.authService.acceptFriend(user.id).subscribe(data => {
-      if (data == true) this.authService.searchFriend(this.searchValue).subscribe(
-        (data: UserInfo[]) => this.friends = data);
-    });
+    this.authService.acceptFriend(user.id).subscribe(data => this.actualizeList(data));
   }
 
   declineFriend(user: UserInfo) {
-    this.authService.declineFriend(user.id).subscribe(data => {
-      if (data == true) this.authService.searchFriend(this.searchValue).subscribe(
-        (data: UserInfo[]) => this.friends = data);
-    });
+    this.authService.declineFriend(user.id).subscribe(data => this.actualizeList(data));
   }
 
   removeFriend(user: UserInfo) {
-    this.authService.removeFriend(user.id).subscribe(data => {
-      if (data == true) this.authService.searchFriend(this.searchValue).subscribe(
-        (data: UserInfo[]) => this.friends = data);
-    });
+    this.authService.removeFriend(user.id).subscribe(data => this.actualizeList(data));
   }
 
   subscribeFriend(user: UserInfo) {
-    this.authService.subscribeFriend(user.id).subscribe(data => {
-      if (data == true) this.authService.searchFriend(this.searchValue).subscribe(
-        (data: UserInfo[]) => this.friends = data);
-    });
+    this.authService.subscribeFriend(user.id).subscribe(data => this.actualizeList(data));
   }
 
   unsubscribeFriend(user: UserInfo) {
-    this.authService.unsubscribeFriend(user.id).subscribe(data => {
-      if (data == true) this.authService.searchFriend(this.searchValue).subscribe(
-        (data: UserInfo[]) => this.friends = data);
-    });
+    this.authService.unsubscribeFriend(user.id).subscribe(data =>
+      this.actualizeList(data))
+  }
+
+  actualizeList(data) {
+    if (data == true) this.authService.searchFriend(this.searchValue).subscribe(
+      (data: UserInfo[]) => this.friends = data);
   }
 
 }

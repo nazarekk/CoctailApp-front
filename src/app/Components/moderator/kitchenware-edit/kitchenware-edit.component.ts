@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from "../../../auth/auth.service";
-import {ActivatedRoute} from "@angular/router";
-import {IngrInfo} from "../ingredient-list/IngredientModel";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {SystemInventory} from "../../../api/system-inventory";
-@Component({
-  selector: 'app-ingredient-edit',
-  templateUrl: './ingredient-edit.component.html',
-  styleUrls: ['./ingredient-edit.component.css']
-})
-export class IngredientEditComponent implements OnInit {
+import {ActivatedRoute} from "@angular/router";
+import {AuthService} from "../../../auth/auth.service";
+import {KitchenwareInfo} from "../kitchenware-list/KitchenwareModel";
 
-  actualInfo: IngrInfo;
+@Component({
+  selector: 'app-kitchenware-edit',
+  templateUrl: './kitchenware-edit.component.html',
+  styleUrls: ['./kitchenware-edit.component.css']
+})
+export class KitchenwareEditComponent implements OnInit {
+
+  actualInfo: KitchenwareInfo;
   form: FormGroup = new FormGroup({});
 
   constructor(private fb: FormBuilder,
@@ -31,7 +32,7 @@ export class IngredientEditComponent implements OnInit {
       isActive:['']
     })
     this.route.queryParams.subscribe(params =>
-      this.systemInventory.getIngredient(params.id).subscribe(data =>
+      this.systemInventory.getKitchenware(params.id).subscribe(data =>
         this.actualInfo = data))
   }
 
@@ -42,8 +43,8 @@ export class IngredientEditComponent implements OnInit {
     if (this.form.value.type.length == 0) {this.form.value.type = this.actualInfo.type.toString()}
     if (this.form.value.category.length == 0) {this.form.value.category = this.actualInfo.category.toString()}
     console.log(this.form.value)
-    this.systemInventory.editIngredient(this.form.value).subscribe(data =>
-    console.log(data));
+    this.systemInventory.editKitchenware(this.form.value).subscribe(data =>
+      console.log(data));
   }
 
 }

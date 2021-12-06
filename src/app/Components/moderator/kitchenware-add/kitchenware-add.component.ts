@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from "../../../auth/auth.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {SystemInventory} from "../../../api/system-inventory";
 import {TypeIngr} from "../ingredient-list/typeEnum";
+import {AuthService} from "../../../auth/auth.service";
 
 @Component({
-  selector: 'app-ingredient-add',
-  templateUrl: './ingredient-add.component.html',
-  styleUrls: ['./ingredient-add.component.css']
+  selector: 'app-kitchenware-add',
+  templateUrl: './kitchenware-add.component.html',
+  styleUrls: ['./kitchenware-add.component.css']
 })
-export class IngredientAddComponent implements OnInit {
+export class KitchenwareAddComponent implements OnInit {
 
   form: FormGroup = new FormGroup({});
 
@@ -32,8 +32,8 @@ export class IngredientAddComponent implements OnInit {
 
   submit() {
     this.form.value.isActive = true;
-    this.systemInventory.addInrgedient(this.form.value).subscribe(data => {
-      if (data == true) location.href = "/ingredients"
+    this.systemInventory.addKitchenware(this.form.value).subscribe(data => {
+      if (data == true) location.href = "/kitchenwares"
     });
   }
 

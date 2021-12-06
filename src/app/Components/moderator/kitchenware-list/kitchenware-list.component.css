@@ -1,0 +1,6 @@
+button, input, optgroup, select, textarea {
+  margin: 5px;
+  padding: .175rem .55rem;
+  background-color: aqua;
+  color: black;
+}

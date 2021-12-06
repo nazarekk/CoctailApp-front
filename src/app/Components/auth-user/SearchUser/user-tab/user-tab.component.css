@@ -1,11 +1,16 @@
 .badge-danger {
-  background-color: red;
+  background-color: #ff0000a1;
 }
 
 .badge-success {
-  background-color: green;
+  background-color: #0d6efd9c;
 }
 
+.btn-danger {
+  color: #fff;
+  background-color: #dc3545ba;
+  border-color: #dc3545;
+}
 .badge {
   color: rgba(255,255,255,0);
 }
@@ -15,4 +20,14 @@ button {
   padding: .175rem .55rem;
 }
 
+.btn-primary {
+  color: #fff;
+  background-color: #0d6efd9c;
+  border-color: #0d6efd;
+}
 
+.btn-danger {
+  color: #fff;
+  background-color: #dc3545ba;
+  border-color: #dc3545;
+}
