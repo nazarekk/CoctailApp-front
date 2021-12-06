@@ -41,7 +41,7 @@ export class SettingsComponent implements OnInit {
       this.message = "Password changed successful"
       this.alertClass = "alert-success"
     } else if (value == 417) {
-      this.message = "Invalid password!"
+      this.message = "Invalid password"
       this.alertClass = "alert-danger"
     } else {
       this.message = "Error"

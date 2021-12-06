@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import {Observable, throwError} from "rxjs";
-import {catchError, tap} from "rxjs/operators";
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
+import {tap} from "rxjs/operators";
+import {UserPersonalInfo} from "../settings/UserPersonalInfo";
 
 @Injectable({
   providedIn: 'root'
@@ -17,27 +18,12 @@ export class AuthService {
   constructor(private http: HttpClient) {
   }
 
-  private handleError(error: HttpErrorResponse) {
-    if (error.status === 0) {
-      // A client-side or network error occurred. Handle it accordingly.
-      console.error('An error occurred:', error.error);
-    } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong.
-      console.error(
-        `Backend returned code ${error.status}, body was: `, error.error);
-    }
-    // Return an observable with a user-facing error message.
-    return throwError(
-      'Something bad happened; please try again later.');
-  }
-
   registerUser(user) {
     return this.http.post<any>(this.rootUrl + '/api/users', user)
   }
 
-  loginUser(user): Observable<{ token: string , role: string}> {
-    return this.http.post<{ token: string, role: string}>(this.rootUrl + '/api/auth/login', user)
+  loginUser(user): Observable<{ token: string, role: string }> {
+    return this.http.post<{ token: string, role: string }>(this.rootUrl + '/api/auth/login', user)
       .pipe(
         tap(
           ({token, role}) => {
@@ -66,8 +52,17 @@ export class AuthService {
       res => console.log(res)
     )
   }
+
   changePassword(user) {
-    return this.http.put<any>(this.rootUrl + '/api/users/settings', user,{ observe: 'response' })
+    return this.http.put<any>(this.rootUrl + '/api/users/settings', user, {observe: 'response'})
+  }
+
+  changeInfo(user) {
+    return this.http.put<any>(this.rootUrl + '/api/users/settings/edit', user, {observe: 'response'})
+  }
+
+  getInformation(): Observable<UserPersonalInfo> {
+    return this.http.get<any>(this.rootUrl + '/api/users/settings/edit')
   }
 
   setToken(token: string) {
@@ -78,7 +73,7 @@ export class AuthService {
     return localStorage.getItem('token')
   }
 
-  static getRole(): string{
+  static getRole(): string {
     return localStorage.getItem('role')
   }
 

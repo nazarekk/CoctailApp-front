@@ -3,29 +3,38 @@ section {
   margin-left: 20px;
   padding-left: 10px;
 }
+
 div {
   padding-bottom: 10px;
-  padding-left: 20px;
+  padding-left: -20px;
 }
 
 h5 {
   padding-left: 20px;
 }
+
 p {
   margin-bottom: 0;
 }
+
 .form-control {
   width: 230px;
 }
-.alert-danger {
+
+.alert-error {
   width: 230px;
   padding-left: 5px;
   height: 35px;
 }
-.alert-success {
+
+.alert-window {
   justify-content: space-between;
   display: flex;
+  height: 50px;
+  width: 350px;
+  vertical-align: center;
 }
+
 .padd {
   margin-top: -10px;
   margin-left: -5px;
@@ -33,10 +42,7 @@ p {
   text-align: center;
   vertical-align: center;
 }
-.alert-success {
-  width: 350px;
-  margin-left: 20px;
-}
+
 .pad {
   margin-top: -10px;
   margin-left: -5px;
