@@ -94,11 +94,19 @@ const routes: Routes = [
   },
   {
     path: "settings",
-    component: SettingsComponent
+    component: SettingsComponent,
+    canActivate: [RoleGuardGuard],
+    data: {
+      expectedRoles: ['ROLE_CONFIRMED']
+    }
   },
   {
     path: "settings/edit",
-    component: EditPersonalInfoComponent
+    component: EditPersonalInfoComponent,
+    canActivate: [RoleGuardGuard],
+    data: {
+      expectedRoles: ['ROLE_CONFIRMED']
+    }
   },
   {
     path: 'kitchenwares',
