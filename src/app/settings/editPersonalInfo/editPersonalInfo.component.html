@@ -16,7 +16,7 @@
 
 <link rel="stylesheet" href="editPersonalInfo.component.css">
 <div class="container-xxl">
-  <form [formGroup]="form" (ngSubmit)="submit()" *ngIf = "user" >
+  <form [formGroup]="form" (ngSubmit)="submit()" *ngIf="user">
     <section class="container">
 
       <div class="row g-0 d-flex justify-content-start">
@@ -24,33 +24,33 @@
           <div>
             <img src="https://klike.net/uploads/posts/2019-03/1551511801_1.jpg" alt="Avatar" class="avatar">
           </div>
-          <div class = "edit-button">
+          <div class="edit-button">
             <input class="btn btn-primary" type="button" value="Edit photo">
           </div>
         </div>
-        <div class="col-auto me-auto align-self-center text_nickname" >
-          <label for="nickname" class="form-label" ><strong>Nickname</strong></label>
+        <div class="col-auto me-auto align-self-center text_nickname">
+          <label for="nickname" class="form-label"><strong>Nickname</strong></label>
           <input class="form-control"
                  id="nickname"
                  type="text"
                  formControlName="nickname"
                  placeholder="Nickname"
                  [(ngModel)]="user.nickname">
-          <div class = "alert alert-danger valid" *ngIf="!form.valid"> Nickname must have length 4-30 </div>
+          <div class="alert alert-danger valid" *ngIf="!form.valid"> Nickname must have length 4-30</div>
         </div>
         <div class="col-auto me-auto align-self-center text_nickname">
           <div class="alert {{this.alertClass}} d-flex align-items-center alert-window" role="alert"
                *ngIf="this.success">
             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"
-                 *ngIf="this.alertClass=='alert-success'">
+                 *ngIf="this.alertClass==='alert-success'">
               <use href="#check-circle-fill"/>
             </svg>
             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"
-                 *ngIf="this.alertClass=='alert-danger'">
+                 *ngIf="this.alertClass==='alert-danger'">
               <use href="#exclamation-triangle-fill"/>
             </svg>
             {{this.message}}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="isSuccess()"></button>
           </div>
         </div>
       </div>
@@ -68,7 +68,7 @@
         </textarea>
       </div>
       <div class="d-flex flex-row-reverse">
-        <input class="btn btn-primary" type="submit" [disabled]="!form.valid || !form.dirty" value="Ok" >
+        <input class="btn btn-primary" type="submit" [disabled]="!form.valid || !form.dirty" value="Ok">
         <input class="btn btn-primary" type="button" routerLink="/settings" value="Cancel">
       </div>
     </section>
