@@ -45,7 +45,7 @@ const INTERCEPTOR_PROVIDER: Provider = {
     IngredientListComponent,
     ConfirmUserComponent,
     SettingsComponent,
-    EditPersonalInfoComponent
+    EditPersonalInfoComponent,
   ],
   imports: [
     BrowserAnimationsModule,

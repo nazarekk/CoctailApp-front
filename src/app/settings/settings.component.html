@@ -28,57 +28,61 @@
   </div>
 
   <form [formGroup]="form" (ngSubmit)="submit()">
-    <div class="corona form-group lg10">
-      <input
-        formControlName="oldPassword"
-        id="oldPassword"
-        type="password"
-        class="form-control"
-        placeholder="old password">
+    <div class="form-floating form-group">
+      <input formControlName="oldPassword"
+             type="password"
+             id="oldPassword"
+             class="form-control"
+             placeholder="old password">
+      <label for="oldPassword">old password</label>
       <div *ngIf="this.form.controls.oldPassword.touched && this.form.controls.oldPassword.invalid"
-           class="alert alert-danger">
+           class="alert alert-danger alert-error">
         <div class="padd" *ngIf="this.form.controls.oldPassword.errors?.required">Password is required.</div>
       </div>
     </div>
 
-    <div class="corona form-group lg10">
-      <input
-        formControlName="password"
-        id="password"
-        type="password"
-        class="form-control"
-        placeholder="new password">
-      <div *ngIf="this.form.controls.password.touched && this.form.controls.password.invalid"
-           class="alert alert-danger">
-        <div class="padd" *ngIf="this.form.controls.password.errors?.required">Password is required.</div>
+    <div class="form-floating form-group">
+      <input formControlName="newPassword"
+             type="password"
+             class="form-control"
+             id="newPassword"
+             placeholder="new password">
+      <label for="newPassword">new password</label>
+      <div *ngIf="this.form.controls.newPassword.touched && this.form.controls.newPassword.invalid"
+           class="alert alert-danger alert-error">
+        <div class="padd" *ngIf="this.form.controls.newPassword.errors?.required">Password is required.</div>
       </div>
     </div>
 
-    <div class="corona form-group lg10">
-      <input
-        formControlName="doubleCheckPass"
-        id="doubleCheckPass"
-        type="password"
-        class="form-control"
-        placeholder="repeat new password">
+    <div class="form-floating form-group">
+      <input formControlName="doubleCheckPass"
+             type="password"
+             class="form-control"
+             id="doubleCheckPass"
+             placeholder="repeat new password">
+      <label for="doubleCheckPass">repeat new password</label>
       <div *ngIf="this.form.controls.doubleCheckPass.touched && this.form.controls.doubleCheckPass.invalid"
-           class="alert alert-danger">
+           class="alert alert-danger alert-error">
         <div class="padd" *ngIf="this.form.controls.doubleCheckPass.errors?.required">Password is required.</div>
         <div class="pad" *ngIf="this.form.controls.doubleCheckPass.errors?.confirmedValidator">Password must be match.
         </div>
       </div>
     </div>
-
     <div>
       <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Change</button>
     </div>
-      <div class="alert {{this.alertClass}} d-flex align-items-center" role="alert" *ngIf="this.success">
-        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
-          <use xlink:href="#check-circle-fill"/>
-        </svg>
-        {{this.message}}
-        <button type="button"  class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
+    <div class="alert {{this.alertClass}} d-flex align-items-center alert-window" role="alert" *ngIf="this.success">
+      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"
+           *ngIf="this.alertClass=='alert-success'">
+        <use href="#check-circle-fill"/>
+      </svg>
+      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"
+           *ngIf="this.alertClass=='alert-danger'">
+        <use href="#exclamation-triangle-fill"/>
+      </svg>
+      {{this.message}}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
 
   </form>
 </section>
