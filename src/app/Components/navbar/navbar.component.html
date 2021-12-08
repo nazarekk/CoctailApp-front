@@ -21,6 +21,12 @@
         <li class="nav-item" *ngIf="isUser()">
           <a class="nav-link active" aria-current="page" href="/searchfriend">Discover</a>
         </li>
+        <li class="nav-item" *ngIf="isUser()">
+        <a class="nav-link active" aria-current="page" href="/my/ingredients">My stock</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/dishes">Dishes</a>
+        </li>
       </ul>
       <form class="d-flex" *ngIf="isSearchable">
         <input class="form-control me-2" type="search" #searchValue placeholder="Search" aria-label="Search">

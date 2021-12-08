@@ -1,0 +1,13 @@
+<app-navbar [isSearchable]="true" (searchEvent)="search($event)"></app-navbar>
+<div class = align-items-center>
+<!--  <app-filter (filterEvent)="filter($event)" ></app-filter>-->
+  <button type="button" class="btn btn-primary" *ngIf="sorted" (click)="sort()">Sort(a-z)</button>
+  <button type="button" class="btn btn-primary" *ngIf="!sorted" (click)="sort()">Sort(z-a)</button>
+  <button type="button" class="btn btn-primary" *ngIf="!showAll" (click)="view()">
+    Show my dishes only
+  </button>
+  <button type="button" class="btn btn-primary" *ngIf="showAll" (click)="view()">
+    Show catalogue
+  </button>
+</div>
+<app-ingredients-list [ingredients]="ingredients"></app-ingredients-list>

@@ -7,4 +7,5 @@ export interface KitchenwareInfo {
   type: TypeEnumKitch;
   category: CategoryEnumKitch;
   active: Boolean;
+  image: String;
 }

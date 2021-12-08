@@ -14,3 +14,7 @@ button, optgroup, select, textarea {
 input {
   margin: 5px;
 }
+
+.bg-light {
+  background-color: aqua!important;
+}

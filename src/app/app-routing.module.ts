@@ -17,6 +17,10 @@ import {EditPersonalInfoComponent} from "./settings/editPersonalInfo/edit-person
 import {KitchenwareListComponent} from "./Components/moderator/kitchenware-list/kitchenware-list.component";
 import {KitchenwareEditComponent} from "./Components/moderator/kitchenware-edit/kitchenware-edit.component";
 import {KitchenwareAddComponent} from "./Components/moderator/kitchenware-add/kitchenware-add.component";
+import {DishesListComponent} from "./Components/dishes/dishes-list/dishes-list.component";
+import {AddDishComponent} from "./Components/dishes/add-dish/add-dish.component";
+import {ConfirmDishComponent} from "./Components/dishes/confirm-dish/confirm-dish.component";
+import {UserIngredientsComponent} from "./Components/auth-user/user-ingredients/user-ingredients.component";
 
 const routes: Routes = [
   {
@@ -130,6 +134,34 @@ const routes: Routes = [
     canActivate: [RoleGuardGuard],
     data:{
       expectedRoles: ['ROLE_MODERATOR']
+    }
+  },
+  {
+    path: 'dishes',
+    component: DishesListComponent,
+  },
+  {
+    path: 'dishes/add',
+    component: AddDishComponent,
+    canActivate: [RoleGuardGuard],
+    data:{
+      expectedRoles: ['ROLE_MODERATOR']
+    }
+  },
+  {
+    path: 'dishes/edit',
+    component: ConfirmDishComponent,
+    canActivate: [RoleGuardGuard],
+    data:{
+      expectedRoles: ['ROLE_MODERATOR']
+    }
+  },
+  {
+    path: 'my/ingredients',
+    component: UserIngredientsComponent,
+    canActivate: [RoleGuardGuard],
+    data:{
+      expectedRoles: ['ROLE_CONFIRMED']
     }
   }
 ];

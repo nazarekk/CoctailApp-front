@@ -19,6 +19,7 @@ export class FilterKitchenwareComponent implements OnInit {
       id: Number;
       name: String;
       type: TypeEnumKitch;
+      image: String;
     }
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {SystemInventory} from "../../../api/system-inventory";
 import {ActivatedRoute} from "@angular/router";
@@ -17,7 +17,8 @@ export class KitchenwareEditComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private systemInventory: SystemInventory,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute) {
+  }
 
   logout() {
     AuthService.logout();
@@ -25,11 +26,11 @@ export class KitchenwareEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      id:[''],
-      name:[''],
-      type:[''],
-      category:[''],
-      isActive:['']
+      id: [''],
+      name: [''],
+      type: [''],
+      category: [''],
+      isActive: ['']
     })
     this.route.queryParams.subscribe(params =>
       this.systemInventory.getKitchenware(params.id).subscribe(data =>
@@ -39,9 +40,15 @@ export class KitchenwareEditComponent implements OnInit {
   submit() {
     this.form.value.id = this.actualInfo.id;
     this.form.value.isActive = this.actualInfo.active;
-    if (this.form.value.name.length == 0) {this.form.value.name = this.actualInfo.name}
-    if (this.form.value.type.length == 0) {this.form.value.type = this.actualInfo.type.toString()}
-    if (this.form.value.category.length == 0) {this.form.value.category = this.actualInfo.category.toString()}
+    if (this.form.value.name == this.actualInfo.name) {
+      this.form.value.name = ""
+    }
+    if (this.form.value.type.length == 0) {
+      this.form.value.type = this.actualInfo.type.toString()
+    }
+    if (this.form.value.category.length == 0) {
+      this.form.value.category = this.actualInfo.category.toString()
+    }
     console.log(this.form.value)
     this.systemInventory.editKitchenware(this.form.value).subscribe(data =>
       console.log(data));

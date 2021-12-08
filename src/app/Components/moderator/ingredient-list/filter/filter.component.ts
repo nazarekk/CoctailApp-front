@@ -19,6 +19,8 @@ export class FilterComponent implements OnInit {
       id: Number;
       name: String;
       type: TypeIngr;
+      quantity: Number;
+      image: String;
     }
   }
 
