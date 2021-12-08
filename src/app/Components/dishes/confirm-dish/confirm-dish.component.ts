@@ -49,7 +49,7 @@ export class ConfirmDishComponent implements OnInit {
   }
 
   Save(receipt: String) {
-    this.actualInfo.receipt = receipt;
+    this.actualInfo.recipe = receipt;
     this.actualInfo.name = "Dish10";
     this.dishesService.editDish(this.actualInfo).subscribe(data => console.log(data))
   }

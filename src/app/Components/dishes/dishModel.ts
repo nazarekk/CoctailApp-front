@@ -7,7 +7,7 @@ export class DishModel {
   rating: Number
   sugarless: Boolean
   ingredientList: IngrInfo[]
-  receipt: String
+  recipe: String
   image: String
 
   constructor(init: Partial<DishModel>) {

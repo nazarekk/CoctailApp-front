@@ -24,14 +24,14 @@ export class AddDishComponent implements OnInit {
       ingredientList: IngrInfo[];
       name: String;
       rating: Number;
-      receipt: String;
+      recipe: String;
       alcohol: String;
     }
     this.dish.name = name;
     this.dish.alcohol = type;
     this.dish.sugarless = (category == "true");
     this.dish.image = image;
-    this.dish.receipt = receipt;
+    this.dish.recipe = receipt;
     console.log(this.dish)
     this.dishesService.addDish(this.dish).subscribe(data => {if (data>0) location.href = "dishes/edit?id=" + data.toString()})
   }
