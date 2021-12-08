@@ -23,7 +23,7 @@ export class EditPersonalInfoComponent implements OnInit {
   }
 
 
-  user:UserPersonalInfo;
+  user: UserPersonalInfo;
 
   ngOnInit() {
     this.auth.getInformation()

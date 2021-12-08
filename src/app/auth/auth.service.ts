@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {Observable, throwError} from "rxjs";
 import {catchError, tap} from "rxjs/operators";
+import {environment} from "../../environments/environment";
+import {UserPersonalInfo} from "../settings/UserPersonalInfo";
 
 @Injectable({
   providedIn: 'root'
@@ -33,8 +35,8 @@ export class AuthService {
     return this.http.post<any>(this.rootUrl + '/api/users', user)
   }
 
-  loginUser(user): Observable<{ token: string , role: string}> {
-    return this.http.post<{ token: string, role: string}>(this.rootUrl + '/api/auth/login', user)
+  loginUser(user): Observable<{ token: string }> {
+    return this.http.post<{ token: string }>(this.rootUrl + '/api/auth/login', user)
       .pipe(
         tap(
           ({token}) => {
@@ -73,11 +75,7 @@ export class AuthService {
     return this.http.get<any>(this.rootUrl + '/api/users/settings/edit')
   }
 
-  setToken(token: string) {
-    this.token = token
-  }
-
-  static getToken(): string {
+  getToken(): string {
     return localStorage.getItem('token')
   }
 
@@ -125,6 +123,7 @@ export class AuthService {
 
   static logout() {
     localStorage.clear();
+    location.href = "#"
   }
 
 }
