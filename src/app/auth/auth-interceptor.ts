@@ -22,6 +22,7 @@ export class AuthInterceptor implements HttpInterceptor {
     req = req.clone({setHeaders: {Authorization: `Bearer_` + token}});
     return next.handle(req).pipe(catchError(error => {
         if (error instanceof HttpErrorResponse && error.status === 401) {
+          console.log("Token expired")
           return this.authService.refreshToken().pipe(switchMap(() => {
             return next.handle(req.clone({setHeaders: {Authorization: `Bearer_` + this.authService.getToken()}}))}))
         }

@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {tap} from "rxjs/operators";
-import {UserPersonalInfo} from "../settings/UserPersonalInfo";
+import {UserPersonalInfo} from "../Interfaces/UserPersonalInfo";
 import {JwtToken} from "../Interfaces/JwtToken";
 
 @Injectable({
@@ -33,6 +33,7 @@ export class AuthService {
           localStorage.removeItem('token')
           localStorage.setItem('token', token.token);
           this.setToken(token.token);
+          console.log("Token updated")
         })
       );
   }

@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../auth/auth.service";
-import {UserPersonalInfo} from "../UserPersonalInfo";
+import {UserPersonalInfo} from "../../Interfaces/UserPersonalInfo";
 
 
 @Component({
