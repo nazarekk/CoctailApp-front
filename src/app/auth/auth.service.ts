@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {tap} from "rxjs/operators";
 import {UserPersonalInfo} from "../settings/UserPersonalInfo";
+import {JwtToken} from "../Interfaces/JwtToken";
 
 @Injectable({
   providedIn: 'root'
@@ -10,29 +11,47 @@ import {UserPersonalInfo} from "../settings/UserPersonalInfo";
 
 export class AuthService {
 
-  private static token = null
   private static role = null
-  private rootUrl = "http://localhost:8080"
+  private rootUrl = "http://localhost:8080"//"https://coctailapp.herokuapp.com"
   private token = null
 
   constructor(private http: HttpClient) {
+  }
+
+
+  refreshToken(): Observable<any> {
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': 'Bearer_' + this.getToken()
+      })
+    };
+
+    return this.http.post<JwtToken>(this.rootUrl + '/api/auth/refresh-token', {}, httpOptions)
+      .pipe(
+        tap((token: JwtToken) => {
+          localStorage.removeItem('token')
+          localStorage.setItem('token', token.token);
+          this.setToken(token.token);
+        })
+      );
   }
 
   registerUser(user) {
     return this.http.post<any>(this.rootUrl + '/api/users', user)
   }
 
-  loginUser(user): Observable<{ token: string, role: string }> {
-    return this.http.post<{ token: string, role: string }>(this.rootUrl + '/api/auth/login', user)
+  loginUser(user): Observable<{ token: string }> {
+    return this.http.post<{ token: string }>(this.rootUrl + '/api/auth/login', user)
       .pipe(
         tap(
-          ({token, role}) => {
+          ({token}) => {
             localStorage.setItem('token', token)
-            localStorage.setItem('role', role)
           }
         )
       )
   }
+
 
   registerModerator(user) {
     return this.http.post<any>(this.rootUrl + '/api/admin/moderators', user)
@@ -69,8 +88,9 @@ export class AuthService {
     this.token = token
   }
 
-  static getToken(): string {
-    return localStorage.getItem('token')
+  getToken(): string {
+    this.token = localStorage.getItem('token')
+    return this.token
   }
 
   static getRole(): string {
