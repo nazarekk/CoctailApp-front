@@ -23,10 +23,10 @@ export class ConfirmDishComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.refreshLists()
+    this.refreshList()
   }
 
-  refreshLists() {
+  refreshList() {
     this.systemInventory.filterIngredient("", "", true).subscribe(data =>
       this.catalogue = data);
     this.route.queryParams.subscribe(params => {
@@ -40,15 +40,15 @@ export class ConfirmDishComponent implements OnInit {
   }
 
   addToDish(name: String) {
-    this.dishesService.addInrgedient(this.recipeId, name).subscribe(data => this.refreshLists())
+    this.dishesService.addInrgedient(this.recipeId, name).subscribe(data => this.refreshList())
     console.log(this.actualInfo)
   }
 
   removeFromDish(name: String) {
-    this.dishesService.removeInrgedient(this.recipeId, name).subscribe(data => this.refreshLists())
+    this.dishesService.removeInrgedient(this.recipeId, name).subscribe(data => this.refreshList())
   }
 
-  Save(receipt: String) {
+  Save(receipt: string) {
     this.actualInfo.recipe = receipt;
     this.actualInfo.name = "Dish10";
     this.dishesService.editDish(this.actualInfo).subscribe(data => console.log(data))

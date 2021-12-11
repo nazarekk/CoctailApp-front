@@ -28,6 +28,10 @@ export class NavbarComponent implements OnInit {
     return (this.auth.getRole() == "ROLE_CONFIRMED");
   }
 
+  public isAuthenticated(): boolean {
+    return (this.auth.isAuthenticated());
+  }
+
   search(searchValue: String) {
     this.searchEvent.emit(searchValue)
   }

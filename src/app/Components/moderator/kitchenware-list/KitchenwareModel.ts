@@ -2,10 +2,10 @@ import {TypeEnumKitch} from "./typeEnum";
 import {CategoryEnumKitch} from "./categoryEnum";
 
 export interface KitchenwareInfo {
-  id: Number;
-  name: String;
+  id: number;
+  name: string;
   type: TypeEnumKitch;
   category: CategoryEnumKitch;
-  active: Boolean;
-  image: String;
+  active: boolean;
+  image: string;
 }

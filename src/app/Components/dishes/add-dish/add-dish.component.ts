@@ -16,23 +16,23 @@ export class AddDishComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  Add(name: String, type: String, category: String, image: String,receipt: String) {
+  Add(name: string, type: string, category: string, image: string,receipt: string) {
     this.dish = new class implements DishModel {
-      sugarless: Boolean;
-      id: Number;
-      image: String;
+      sugarless: boolean;
+      id: number;
+      image: string;
       ingredientList: IngrInfo[];
-      name: String;
-      rating: Number;
-      recipe: String;
-      alcohol: String;
+      name: string;
+      rating: number;
+      recipe: string;
+      alcohol: string;
     }
     this.dish.name = name;
     this.dish.alcohol = type;
     this.dish.sugarless = (category == "true");
-    if (image != null) this.dish.image = image;
-    else this.dish.image = "https://static.thenounproject.com/png/1738131-200.png";
     this.dish.recipe = receipt;
+    if (image === "") image = "https://cdn0.iconfinder.com/data/icons/documents-50/32/undefined-document-512.png"
+    this.dish.image = image
     console.log(this.dish)
     this.dishesService.addDish(this.dish).subscribe(data => {if (data>0) location.href = "dishes/edit?id=" + data.toString()})
   }

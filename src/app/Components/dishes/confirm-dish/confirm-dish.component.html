@@ -1,17 +1,23 @@
 <app-navbar [isSearchable]="false"></app-navbar>
-<div class="card" *ngIf="actualInfo">
-  <img src="{{actualInfo.image}}"
-       class="img-thumbnail">
-  <div class="card-body">
-    <h5 class="card-title">Name: {{actualInfo.name}}</h5>
-    <p class="card-text">Recipe: {{actualInfo.recipe}}</p>
-    <p class="card-text">Alcohol: {{actualInfo.alcohol}}</p>
-    <p class="card-text">Sugar: {{actualInfo.sugarless}}</p>
-    <p class="card-text" style="display: inline">Ingredients: </p>
-    <p class="card-text" style="display: inline"
-       *ngFor="let ingredients of actualInfo.ingredientList">{{ingredients.name}} </p>
-    <p></p>
-    <button type="button" class="btn btn-primary">Save</button>
+<div class="row">
+  <div class="col-3">
+    <div class="card" *ngIf="actualInfo">
+      <img src="{{actualInfo.image}}"
+           class="img-thumbnail">
+      <div class="card-body">
+        <h5 class="card-title">Name: {{actualInfo.name}}</h5>
+        <p class="card-text">Recipe: {{actualInfo.recipe}}</p>
+        <p class="card-text">Alcohol: {{actualInfo.alcohol}}</p>
+        <p class="card-text">Sugar: {{actualInfo.sugarless}}</p>
+        <p class="card-text" style="display: inline">Ingredients: </p>
+        <p class="card-text" style="display: inline"
+           *ngFor="let ingredients of actualInfo.ingredientList">{{ingredients.name}} </p>
+        <p></p>
+        <button type="button" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-9">
   </div>
 </div>
 <div class="row">

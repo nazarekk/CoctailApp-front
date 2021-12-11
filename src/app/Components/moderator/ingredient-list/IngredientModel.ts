@@ -1,16 +1,12 @@
 import {TypeIngr} from "./typeEnum";
 import {CategoryEnum} from "./categoryEnum";
 
-export class IngrInfo {
+export interface IngrInfo {
   id: Number
-  name: String
+  name: string
   type: TypeIngr
   category: CategoryEnum
-  active: Boolean
-  quantity: Number
-  image: String
-
-  constructor(init: Partial<IngrInfo>) {
-    Object.assign(this, init);
-  }
+  active: boolean
+  quantity: number
+  image: string
 }

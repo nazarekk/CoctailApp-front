@@ -32,31 +32,31 @@ export class SearchUserComponent implements OnInit {
   }
 
   addFriend(user: UserInfo) {
-    this.authService.addFriend(user.id).subscribe(data => this.actualizeList(data));
+    this.authService.addFriend(user.id).subscribe(data => this.refreshList(data));
   }
 
   acceptFriend(user: UserInfo) {
-    this.authService.acceptFriend(user.id).subscribe(data => this.actualizeList(data));
+    this.authService.acceptFriend(user.id).subscribe(data => this.refreshList(data));
   }
 
   declineFriend(user: UserInfo) {
-    this.authService.declineFriend(user.id).subscribe(data => this.actualizeList(data));
+    this.authService.declineFriend(user.id).subscribe(data => this.refreshList(data));
   }
 
   removeFriend(user: UserInfo) {
-    this.authService.removeFriend(user.id).subscribe(data => this.actualizeList(data));
+    this.authService.removeFriend(user.id).subscribe(data => this.refreshList(data));
   }
 
   subscribeFriend(user: UserInfo) {
-    this.authService.subscribeFriend(user.id).subscribe(data => this.actualizeList(data));
+    this.authService.subscribeFriend(user.id).subscribe(data => this.refreshList(data));
   }
 
   unsubscribeFriend(user: UserInfo) {
     this.authService.unsubscribeFriend(user.id).subscribe(data =>
-      this.actualizeList(data))
+      this.refreshList(data))
   }
 
-  actualizeList(data) {
+  refreshList(data) {
     if (data == true) this.authService.searchFriend(this.searchValue).subscribe(
       (data: UserInfo[]) => this.friends = data);
   }
