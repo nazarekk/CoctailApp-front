@@ -4,6 +4,8 @@ import {Observable} from "rxjs";
 import {tap} from "rxjs/operators";
 import {UserPersonalInfo} from "../Interfaces/UserPersonalInfo";
 import {JwtToken} from "../Interfaces/JwtToken";
+import {Observable} from "rxjs";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +14,7 @@ import {JwtToken} from "../Interfaces/JwtToken";
 export class AuthService {
 
   private static role = null
-  private rootUrl = "http://localhost:8080"//"https://coctailapp.herokuapp.com"
+  private rootUrl = "https://coctailapp.herokuapp.com"
   private token = null
 
   constructor(private http: HttpClient) {
@@ -53,26 +55,23 @@ export class AuthService {
       )
   }
 
-
   registerModerator(user) {
     return this.http.post<any>(this.rootUrl + '/api/admin/moderators', user)
   }
 
   verificateModerator(user) {
-    return this.http.post<any>(this.rootUrl + 'api/moderator/activation', user)
+    return this.http.post<any>(this.rootUrl + '/api/moderator/activation', user)
   }
 
   editModerator(user) {
     return this.http.post<any>(this.rootUrl + '/api/admin/moderator/edit', user)
   }
 
-  verifyUser(code: string) {
-    console.log((this.rootUrl + '/api/users/activation?code=' + code))
-    return this.http.get<any>(this.rootUrl + '/api/users/activation?code=' + code).subscribe(
+  verifyUser(verifyUser) {
+    return this.http.patch<any>(this.rootUrl + '/api/users/activation', verifyUser).subscribe(
       res => console.log(res)
     )
   }
-
   changePassword(user) {
     return this.http.put<any>(this.rootUrl + '/api/users/settings', user, {observe: 'response'})
   }
@@ -94,11 +93,50 @@ export class AuthService {
     return this.token
   }
 
-  static getRole(): string {
-    return localStorage.getItem('role')
+  getRole(): string {
+    if (this.getToken() == null) return null;
+    let jwtData = this.getToken().split('.')[1]
+    let decodedJwtJsonData = window.atob(jwtData)
+    let decodedJwtData = JSON.parse(decodedJwtJsonData)
+    let role = decodedJwtData.role
+    return role.toString();
+  }
+
+
+  searchFriend(nickname: String) {
+    return this.http.get<any>(this.rootUrl + '/api/users/find?nickname=' + nickname);
+  }
+
+  addFriend(id: Number) {
+    return this.http.post<any>(this.rootUrl + '/api/users/add/' + id, "")
+  }
+
+  acceptFriend(id: Number) {
+    return this.http.patch<any>(this.rootUrl + '/api/users/accept/' + id, "")
+  }
+
+  declineFriend(id: Number) {
+    return this.http.patch<any>(this.rootUrl + '/api/users/decline/' + id, "")
+  }
+
+  removeFriend(id: Number) {
+    return this.http.delete<any>(this.rootUrl + '/api/users/remove/' + id)
+  }
+
+  subscribeFriend(id: Number) {
+    return this.http.patch<any>(this.rootUrl + '/api/users/subscribe/' + id, "")
+  }
+
+  unsubscribeFriend(id: Number) {
+    return this.http.patch<any>(this.rootUrl + '/api/users/subscribe/' + id, "")
+  }
+
+  isAuthenticated(): boolean {
+    return !!localStorage.token
   }
 
   static logout() {
     localStorage.clear();
+    location.href = "#"
   }
 }

@@ -1,3 +1,5 @@
+<app-navbar [isSearchable]="false"></app-navbar>
 <div class = "bdy-cart container dsp text-center">
-  <button (click)="submit()" type="submit" class="btn btn-primary btn-lg">Confirm User</button>
+  <input type="email" class="form-control" #nickname placeholder="Nickname" aria-label="Nickname" >
+  <button (click)="submit(nickname.value)" type="submit" class="btn btn-primary btn-lg">Confirm User</button>
 </div>

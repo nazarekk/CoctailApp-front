@@ -1,0 +1,34 @@
+<app-navbar [isSearchable]="false"></app-navbar>
+<div class="row align-items-center">
+  <div class="col-3"></div>
+  <div class="col-6">
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
+        <input aria-label="Sizing example input"
+               aria-describedby="inputGroup-sizing-default"
+               formControlName="name"
+               id="name"
+               type="email"
+               class="form-control"
+               placeholder="Name">
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-default">Type</span>
+        <select class="form-select" formControlName="type" aria-label="Type">
+          <option value="Disposable">Disposable</option>
+          <option value="Reusable">Reusable</option>
+        </select>
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-default">Category</span>
+        <select class="form-select" formControlName="category" aria-label="Type">
+          <option value="Accessory">Accessory</option>
+          <option value="Cookware">Cookware</option>
+        </select>
+      </div>
+      <button class="btn btn-primary" type="submit">Add</button>
+    </form>
+  </div>
+  <div class="col-3"></div>
+</div>

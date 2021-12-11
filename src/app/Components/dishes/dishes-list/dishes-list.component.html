@@ -1,0 +1,7 @@
+<app-navbar [isSearchable]="true" (searchEvent)="search($event)"></app-navbar>
+<app-add-dish *ngIf="isModerator()"></app-add-dish>
+<div class="row dishes" *ngIf="dishes">
+  <div class="col-md-4" *ngFor="let model of dishes">
+    <app-dishes [dish]="model"></app-dishes>
+  </div>
+</div>

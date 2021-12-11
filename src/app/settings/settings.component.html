@@ -1,11 +1,4 @@
-<app-navbar-user></app-navbar-user>
-<html lang="en">
-<head>
-  <title>{{title}}</title>
-  <link rel="stylesheet" href="./settings.component.css">
-</head>
-<body>
-
+<app-navbar [isSearchable]="false"></app-navbar>
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
   <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
     <path
@@ -27,7 +20,7 @@
   </div>
 
   <div>
-    <a class="btn btn-primary" routerLink="/settings/edit" role="button">Edit my personal info</a>
+    <a class="btn btn-primary" href="/settings/edit" role="button">Edit my personal info</a>
   </div>
 
   <div>
@@ -93,5 +86,3 @@
 
   </form>
 </section>
-</body>
-</html>
