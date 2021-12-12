@@ -3,8 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {tap} from "rxjs/operators";
 import {UserPersonalInfo} from "../Interfaces/UserPersonalInfo";
-import {JwtToken} from "../Interfaces/JwtToken";
-import {environment} from "../../environments/environment";
+import {JwtToken} from "../Interfaces/JwtToken";import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
