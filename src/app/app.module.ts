@@ -13,7 +13,7 @@ import {ModeratorVerificationComponent} from "./moderatorVerification/moderator.
 import {ModeratorPersonalComponent} from "./moderatorPersonal/moderator.personal.component";
 import {AuthInterceptor} from "./auth/auth-interceptor";
 import {PermissionDeniedComponent} from "./errors/permission-denied/permission-denied.component";
-import {SearchUserComponent} from "./Components/auth-user/SearchUser/search-user.component";
+import {SearchUserComponent} from "./Components/auth-user/search-friend/search-user.component";
 import {ConfirmUserComponent} from "./registration/confirmUserComponent";
 import {SettingsComponent} from "./settings/settings.component";
 import {EditPersonalInfoComponent} from "./settings/editPersonalInfo/edit-personal-info.component";

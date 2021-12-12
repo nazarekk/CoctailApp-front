@@ -14,13 +14,13 @@ export class FilterComponent implements OnInit {
   filterInfo: IngrInfo;
   constructor() {
     this.filterInfo = new class implements IngrInfo {
-      active: Boolean;
+      active: boolean;
       category: CategoryEnum;
-      id: Number;
-      name: String;
+      id: number;
+      name: string;
       type: TypeIngr;
-      quantity: Number;
-      image: String;
+      quantity: number;
+      image: string;
     }
   }
 

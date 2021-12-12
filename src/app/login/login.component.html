@@ -2,7 +2,7 @@
 <div class="bdy-cart container dsp">
   <h1>{{title}}</h1>
 
-  <form [formGroup]="form" (ngSubmit)="submit()">
+  <form [formGroup]="form" (keyup.enter)="submit()" (ngSubmit)="submit()">
     <div class="corona form-group lg10">
       <input
         formControlName="email"

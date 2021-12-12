@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UserTabComponent } from './SearchUser/user-tab/user-tab.component';
+import { UserTabComponent } from './search-friend/user-tab/user-tab.component';
 import {ModeratorModule} from "../moderator/moderator.module";
 import { UserIngredientsComponent } from './user-ingredients/user-ingredients.component';
 

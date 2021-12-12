@@ -8,7 +8,7 @@ import {ModeratorPersonalComponent} from "./moderatorPersonal/moderator.personal
 import {ConfirmUserComponent} from "./registration/confirmUserComponent";
 import {RoleGuardGuard} from "./auth/role-guard.guard";
 import {PermissionDeniedComponent} from "./errors/permission-denied/permission-denied.component";
-import {SearchUserComponent} from "./Components/auth-user/SearchUser/search-user.component";
+import {SearchUserComponent} from "./Components/auth-user/search-friend/search-user.component";
 import {IngredientListComponent} from "./Components/moderator/ingredient-list/ingredient-list.component";
 import {IngredientEditComponent} from "./Components/moderator/ingredient-edit/ingredient-edit.component";
 import {IngredientAddComponent} from "./Components/moderator/ingredient-add/ingredient-add.component";

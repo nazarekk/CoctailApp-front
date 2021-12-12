@@ -14,12 +14,12 @@ export class FilterKitchenwareComponent implements OnInit {
   filterInfo: KitchenwareInfo;
   constructor() {
     this.filterInfo = new class implements KitchenwareInfo {
-      active: Boolean;
+      active: boolean;
       category: CategoryEnumKitch;
-      id: Number;
-      name: String;
+      id: number;
+      name: string;
       type: TypeEnumKitch;
-      image: String;
+      image: string;
     }
   }
 
