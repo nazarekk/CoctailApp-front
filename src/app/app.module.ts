@@ -21,6 +21,7 @@ import {IngredientListComponent} from "./Components/moderator/ingredient-list/in
 import {AuthUserModule} from "./Components/auth-user/auth-user.module";
 import {ModeratorModule} from "./Components/moderator/moderator.module";
 import { NavbarComponent } from './Components/navbar/navbar.component';
+import {UserPersonalInfoComponent} from "./userPersonalInfo/userPersonalInfo.component";
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
@@ -34,6 +35,7 @@ const INTERCEPTOR_PROVIDER: Provider = {
     AppComponent,
     RegistrationComponent,
     LoginComponent,
+    UserPersonalInfoComponent,
     ModeratorComponent,
     ModeratorVerificationComponent,
     ModeratorPersonalComponent,

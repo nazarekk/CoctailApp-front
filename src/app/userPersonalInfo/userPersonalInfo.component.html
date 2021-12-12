@@ -1,0 +1,40 @@
+<app-navbar-user></app-navbar-user>
+
+<link rel="stylesheet" href="userPersonalInfo.component.css">
+<div class="container-xxl">
+  <form [formGroup]="form" *ngIf="user">
+    <section class="container">
+
+      <div class="row g-0 d-flex justify-content-start">
+        <div class="col-auto me-auto">
+          <div>
+            <img src="https://klike.net/uploads/posts/2019-03/1551511801_1.jpg" alt="Avatar" class="avatar">
+          </div>
+        </div>
+        <div class="col-auto me-auto align-self-center text_nickname">
+          <label for="nickname" class="form-label"><strong>Nickname</strong></label>
+          <input class="form-control"
+                 id="nickname"
+                 type="text"
+                 formControlName="nickname"
+                 placeholder="Nickname"
+                 [(ngModel)]="user.nickname" readonly>
+        </div>
+      </div>
+
+    </section>
+    <section class="container" id="section_2">
+      <div class="mb-3">
+        <strong><label for="information" class="form-label">Personal information</label></strong>
+        <textarea class="form-control"
+                  formControlName="information"
+                  id="information"
+                  rows="auto"
+                  placeholder="Something about"
+                  [(ngModel)]="user.information" readonly>
+        </textarea>
+      </div>
+    </section>
+  </form>
+</div>
+
