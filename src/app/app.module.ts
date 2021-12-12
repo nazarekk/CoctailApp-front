@@ -22,7 +22,6 @@ import {AuthUserModule} from "./Components/auth-user/auth-user.module";
 import {ModeratorModule} from "./Components/moderator/moderator.module";
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import {UserPersonalInfoComponent} from "./userPersonalInfo/userPersonalInfo.component";
-import { ErrorAlertComponent } from './Components/error-alert/error-alert.component';
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
@@ -63,8 +62,7 @@ const INTERCEPTOR_PROVIDER: Provider = {
   ],
   providers: [INTERCEPTOR_PROVIDER],
   exports: [
-    NavbarComponent,
-    ErrorAlertComponent
+    NavbarComponent
   ],
   bootstrap: [AppComponent]
 })

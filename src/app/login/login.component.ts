@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit, OnDestroy{
         {
           switch(this.auth.getRole()) {
             case  "ROLE_CONFIRMED": {
-              this.router.navigate(['/settings'])
+              this.router.navigate(['/main'])
               break
             }
             case "ROLE_ADMIN": {
