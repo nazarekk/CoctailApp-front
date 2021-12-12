@@ -21,6 +21,7 @@ import {IngredientListComponent} from "./Components/moderator/ingredient-list/in
 import {AuthUserModule} from "./Components/auth-user/auth-user.module";
 import {ModeratorModule} from "./Components/moderator/moderator.module";
 import { NavbarComponent } from './Components/navbar/navbar.component';
+import {UserPersonalInfoComponent} from "./userPersonalInfo/userPersonalInfo.component";
 import { ErrorAlertComponent } from './Components/error-alert/error-alert.component';
 
 const INTERCEPTOR_PROVIDER: Provider = {
@@ -35,6 +36,7 @@ const INTERCEPTOR_PROVIDER: Provider = {
     AppComponent,
     RegistrationComponent,
     LoginComponent,
+    UserPersonalInfoComponent,
     ModeratorComponent,
     ModeratorVerificationComponent,
     ModeratorPersonalComponent,
@@ -46,8 +48,7 @@ const INTERCEPTOR_PROVIDER: Provider = {
     IngredientListComponent,
     ConfirmUserComponent,
     SettingsComponent,
-    EditPersonalInfoComponent,
-    ErrorAlertComponent,
+    EditPersonalInfoComponent
   ],
   imports: [
     BrowserAnimationsModule,

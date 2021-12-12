@@ -21,6 +21,7 @@ import {DishesListComponent} from "./Components/dishes/dishes-list/dishes-list.c
 import {AddDishComponent} from "./Components/dishes/add-dish/add-dish.component";
 import {ConfirmDishComponent} from "./Components/dishes/confirm-dish/confirm-dish.component";
 import {UserIngredientsComponent} from "./Components/auth-user/user-ingredients/user-ingredients.component";
+import {UserPersonalInfoComponent} from "./userPersonalInfo/userPersonalInfo.component";
 
 const routes: Routes = [
   {
@@ -54,6 +55,14 @@ const routes: Routes = [
     canActivate: [RoleGuardGuard],
     data:{
       expectedRoles: ['ROLE_ADMIN']
+    }
+  },
+  {
+    path: 'main',
+    component: UserPersonalInfoComponent,
+    canActivate: [RoleGuardGuard],
+    data:{
+      expectedRoles: ['ROLE_CONFIRMED']
     }
   },
   {
