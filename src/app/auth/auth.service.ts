@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import {Observable, throwError} from "rxjs";
-import {catchError, tap} from "rxjs/operators";
-import {environment} from "../../environments/environment";
-import {UserPersonalInfo} from "../settings/UserPersonalInfo";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Observable} from "rxjs";
+import {tap} from "rxjs/operators";
+import {UserPersonalInfo} from "../Interfaces/UserPersonalInfo";
+import {JwtToken} from "../Interfaces/JwtToken";import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -11,24 +11,31 @@ import {UserPersonalInfo} from "../settings/UserPersonalInfo";
 
 export class AuthService {
 
-  private rootUrl = environment.apiUrl;
+  private static role = null
+  private rootUrl = "https://coctailapp.herokuapp.com"
+  private token = null
 
   constructor(private http: HttpClient) {
   }
 
-  private handleError(error: HttpErrorResponse) {
-    if (error.status === 0) {
-      // A client-side or network error occurred. Handle it accordingly.
-      console.error('An error occurred:', error.error);
-    } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong.
-      console.error(
-        `Backend returned code ${error.status}, body was: `, error.error);
-    }
-    // Return an observable with a user-facing error message.
-    return throwError(
-      'Something bad happened; please try again later.');
+
+  refreshToken(): Observable<any> {
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': 'Bearer_' + this.getToken()
+      })
+    };
+
+    return this.http.post<JwtToken>(this.rootUrl + '/api/auth/refresh-token', {}, httpOptions)
+      .pipe(
+        tap((token: JwtToken) => {
+          localStorage.removeItem('token')
+          localStorage.setItem('token', token.token);
+          this.setToken(token.token);
+          console.log("Token updated")
+        })
+      );
   }
 
   registerUser(user) {
@@ -75,8 +82,13 @@ export class AuthService {
     return this.http.get<any>(this.rootUrl + '/api/users/settings/edit')
   }
 
+  setToken(token: string) {
+    this.token = token
+  }
+
   getToken(): string {
-    return localStorage.getItem('token')
+    this.token = localStorage.getItem('token')
+    return this.token
   }
 
   getRole(): string {
@@ -84,7 +96,7 @@ export class AuthService {
     let jwtData = this.getToken().split('.')[1]
     let decodedJwtJsonData = window.atob(jwtData)
     let decodedJwtData = JSON.parse(decodedJwtJsonData)
-    let role = decodedJwtData.roles
+    let role = decodedJwtData.role
     return role.toString();
   }
 
@@ -125,5 +137,4 @@ export class AuthService {
     localStorage.clear();
     location.href = "#"
   }
-
 }

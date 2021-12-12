@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../auth/auth.service";
-import {UserPersonalInfo} from "../UserPersonalInfo";
+import {UserPersonalInfo} from "../../Interfaces/UserPersonalInfo";
 
 
 @Component({
@@ -13,9 +13,9 @@ import {UserPersonalInfo} from "../UserPersonalInfo";
 export class EditPersonalInfoComponent implements OnInit {
   form: FormGroup = new FormGroup({});
 
-  success : boolean;
-  message : string;
-  alertClass : string;
+  success:boolean;
+  message: string;
+  alertClass: string;
 
   constructor(private auth: AuthService,
               private fb: FormBuilder
@@ -27,10 +27,10 @@ export class EditPersonalInfoComponent implements OnInit {
 
   ngOnInit() {
     this.auth.getInformation()
-      .subscribe((data:UserPersonalInfo) => this.user = data)
+      .subscribe((data: UserPersonalInfo) => this.user = data)
 
     this.form = this.fb.group({
-      nickname: ['',[Validators.minLength(4),Validators.maxLength(30),Validators.required]],
+      nickname: ['', [Validators.minLength(4), Validators.maxLength(30), Validators.required]],
       information: ['']
     })
   }
@@ -47,10 +47,17 @@ export class EditPersonalInfoComponent implements OnInit {
       this.message = "System error"
       this.alertClass = "alert-danger"
     }
+
+  }
+
+  isSuccess() {
+    this.success = false;
   }
 
   submit() {
-    this.auth.changeInfo(this.form.value).subscribe(response => {this.statusCheck(response.status)},
+    this.auth.changeInfo(this.form.value).subscribe(response => {
+        this.statusCheck(response.status)
+      },
       error => this.statusCheck(error.status))
   }
 
