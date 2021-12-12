@@ -4,7 +4,6 @@ import {Observable} from "rxjs";
 import {tap} from "rxjs/operators";
 import {UserPersonalInfo} from "../Interfaces/UserPersonalInfo";
 import {JwtToken} from "../Interfaces/JwtToken";
-import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
 
 @Injectable({
