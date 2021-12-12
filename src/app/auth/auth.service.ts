@@ -12,7 +12,7 @@ import {JwtToken} from "../Interfaces/JwtToken";import {environment} from "../..
 export class AuthService {
 
   private static role = null
-  private rootUrl = "https://coctailapp.herokuapp.com"
+  private rootUrl = environment.apiUrl;
   private token = null
 
   constructor(private http: HttpClient) {
@@ -26,7 +26,6 @@ export class AuthService {
         'Authorization': 'Bearer_' + this.getToken()
       })
     };
-
     return this.http.post<JwtToken>(this.rootUrl + '/api/auth/refresh-token', {}, httpOptions)
       .pipe(
         tap((token: JwtToken) => {
@@ -43,6 +42,7 @@ export class AuthService {
   }
 
   loginUser(user): Observable<{ token: string }> {
+    console.log(user)
     return this.http.post<{ token: string }>(this.rootUrl + '/api/auth/login', user)
       .pipe(
         tap(

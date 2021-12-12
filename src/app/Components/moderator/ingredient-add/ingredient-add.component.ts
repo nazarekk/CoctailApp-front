@@ -19,7 +19,8 @@ export class IngredientAddComponent implements OnInit {
       name:[''],
       type:[TypeIngr],
       category:[''],
-      isActive:['']
+      isActive:[''],
+      image: ['']
     })
   }
 

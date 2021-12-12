@@ -27,8 +27,8 @@ export class DishesService {
     return this.http.post<any>(this.rootUrl + '/api/moderator/recipe', dish);
   }
 
-  addInrgedient(id: Number, name: String): Observable<Response> {
-    return this.http.post<Response>(this.rootUrl + '/api/moderator/recipe/' + id.toString() + "/ingredients?name=" + name, "");
+  addInrgedient(id: Number, name: String): Observable<any> {
+    return this.http.post<any>(this.rootUrl + '/api/moderator/recipe/' + id.toString() + "/ingredients?name=" + name, {observe: 'response'});
   }
 
   removeInrgedient(id: Number, name: String): Observable<Response> {
@@ -37,5 +37,9 @@ export class DishesService {
 
   editDish(dish): Observable<any> {
     return this.http.put<any>(this.rootUrl + '/api/moderator/recipe', dish);
+  }
+
+  removeDish(id: number): Observable<any> {
+    return this.http.delete(this.rootUrl + '/api/moderator/recipe/' + id.toString(),{observe: 'response'})
   }
 }

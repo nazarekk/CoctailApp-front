@@ -4,6 +4,17 @@
   </div>
   <div class="col-6">
     <form [formGroup]="form" (ngSubmit)="submit()" *ngIf="actualInfo">
+      <img src="{{actualInfo.image}}" class="img-thumbnail" alt="...">
+      <div class="input-group mb-3">
+        <span class="input-group-text">image</span>
+        <input aria-label="Sizing example input"
+               aria-describedby="inputGroup-sizing-default"
+               formControlName="image"
+               id="image"
+               type="text"
+               class="form-control"
+               [(ngModel)]="actualInfo.image">
+      </div>
       <div class="input-group mb-3">
         <span class="input-group-text">Name</span>
         <input aria-label="Sizing example input"

@@ -19,7 +19,8 @@ export class KitchenwareAddComponent implements OnInit {
       name:[''],
       type:[TypeIngr],
       category:[''],
-      isActive:['']
+      isActive:[''],
+      image: ['']
     })
   }
 

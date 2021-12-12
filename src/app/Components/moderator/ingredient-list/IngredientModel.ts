@@ -2,7 +2,7 @@ import {TypeIngr} from "./typeEnum";
 import {CategoryEnum} from "./categoryEnum";
 
 export interface IngrInfo {
-  id: Number
+  id: number
   name: string
   type: TypeIngr
   category: CategoryEnum

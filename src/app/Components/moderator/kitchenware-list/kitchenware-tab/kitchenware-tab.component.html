@@ -11,13 +11,20 @@
   <tbody>
   <tr *ngFor="let models of kitchenwares" >
     <td><img src="{{models.image}}" class="rounded" style="width: 40px"></td>
+    <td>
+      <img
+        src="https://i.imgur.com/UX2wFjV.png"
+        *ngIf="models.active == true"
+        style="width: 20px">
+      <img
+        src="https://i.imgur.com/vpTIf93.png"
+        *ngIf="models.active == false"
+        style="width: 20px">
+    </td>
     <td>{{models.name}}</td>
     <td>{{models.type}}</td>
     <td>{{models.category}}</td>
-    <td>
-      <span class="badge badge-pill badge-success" *ngIf="models.active == true">_____</span>
-      <span class="badge badge-pill badge-danger" *ngIf="models.active == false">_____</span>
-    </td>
+
     <td class = "text-center">
       <button class="btn btn-primary" (click)="editKitch(models.id)">Edit</button>
       <button class="btn btn-danger" *ngIf="models.active == true" (click)="renoveKitch(models.id)">Remove</button>

@@ -21,4 +21,12 @@ export class UserInventoryService {
   searchIngredient(name: String): Observable<IngrInfo[]> {
     return this.http.get<IngrInfo[]>(this.rootUrl + '/api/users/ingredients?name=' + name);
   }
+
+  allIngredients(): Observable<IngrInfo[]> {
+    return this.http.get<IngrInfo[]>(this.rootUrl + '/api/users/ingredients/list');
+  }
+
+  addToStock(id: number): Observable<any> {
+    return this.http.post(this.rootUrl + '/api/users/recipe/favourites/' + id.toString(),"",{observe:"response"});
+  }
 }

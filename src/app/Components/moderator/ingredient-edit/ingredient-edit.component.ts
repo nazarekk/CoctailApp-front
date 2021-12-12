@@ -30,7 +30,8 @@ export class IngredientEditComponent implements OnInit {
       name: [''],
       type: [''],
       category: [''],
-      isActive: ['']
+      isActive: [''],
+      image: ['']
     })
     this.route.queryParams.subscribe(params =>
       this.systemInventory.getIngredient(params.id).subscribe((data: IngrInfo) =>
@@ -40,9 +41,6 @@ export class IngredientEditComponent implements OnInit {
   submit() {
     this.form.value.id = this.actualInfo.id;
     this.form.value.isActive = this.actualInfo.active;
-    if (this.form.value.name == this.actualInfo.name) {
-      this.form.value.name = ""
-    }
     if (this.form.value.type.length == 0) {
       this.form.value.type = this.actualInfo.type.toString()
     }

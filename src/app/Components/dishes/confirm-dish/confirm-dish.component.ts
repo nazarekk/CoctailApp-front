@@ -16,6 +16,7 @@ export class ConfirmDishComponent implements OnInit {
   dishIngrs: IngrInfo[];
   catalogue: IngrInfo[];
   recipeId: Number;
+  showErr: Boolean;
 
   constructor(private route: ActivatedRoute,
               private dishesService: DishesService,
@@ -23,10 +24,12 @@ export class ConfirmDishComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.showErr = false
     this.refreshList()
   }
 
   refreshList() {
+    // this.catalogue = this.catalogue.filter(x => !this.dishIngrs.includes(x))
     this.systemInventory.filterIngredient("", "", true).subscribe(data =>
       this.catalogue = data);
     this.route.queryParams.subscribe(params => {
@@ -37,10 +40,14 @@ export class ConfirmDishComponent implements OnInit {
       });
       this.recipeId = params.id;
     })
+    console.log(this.catalogue)
   }
 
   addToDish(name: String) {
-    this.dishesService.addInrgedient(this.recipeId, name).subscribe(data => this.refreshList())
+    this.dishesService.addInrgedient(this.recipeId, name).subscribe(data => this.refreshList(), error => {
+      this.showErr = true;
+      console.log(error.status)
+    })
     console.log(this.actualInfo)
   }
 
@@ -52,6 +59,17 @@ export class ConfirmDishComponent implements OnInit {
     this.actualInfo.recipe = receipt;
     this.actualInfo.name = "Dish10";
     this.dishesService.editDish(this.actualInfo).subscribe(data => console.log(data))
+  }
+
+  closeErr() {
+    this.showErr = false;
+  }
+
+  removeDish(id: number) {
+    this.dishesService.removeDish(id).subscribe(data => {
+      if (data.status == 200) location.href = "/dishes" +
+        ""
+    })
   }
 
 }

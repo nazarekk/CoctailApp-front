@@ -17,6 +17,7 @@ export class IngredientsTabComponent implements OnInit {
   @Input() ingredients: IngrInfo[];
   @Input() inDish: Boolean = false;
   @Output() delIngrEvent = new EventEmitter();
+  @Output() addToStockEvent = new EventEmitter();
 
   removeIngredient(id: Number) {
     this.delIngrEvent.emit(id);
@@ -36,6 +37,10 @@ export class IngredientsTabComponent implements OnInit {
 
   clickDish(name: String) {
     this.dishEvent.emit(name);
+  }
+
+  addToStock(id: number) {
+    this.addToStockEvent.emit(id);
   }
 
   ngOnInit(): void {

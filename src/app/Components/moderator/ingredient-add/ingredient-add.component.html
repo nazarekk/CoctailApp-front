@@ -9,11 +9,20 @@
                aria-describedby="inputGroup-sizing-default"
                formControlName="name"
                id="name"
-               type="email"
+               type="text"
                class="form-control"
                placeholder="Name">
       </div>
-
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-default">Image</span>
+        <input aria-label="Sizing example input"
+               aria-describedby="inputGroup-sizing-default"
+               formControlName="image"
+               id="image"
+               type="text"
+               class="form-control"
+               placeholder="Image">
+      </div>
       <div class="input-group mb-3">
         <span class="input-group-text" id="inputGroup-sizing-default">Type</span>
         <select class="form-select" formControlName="type" aria-label="Type">

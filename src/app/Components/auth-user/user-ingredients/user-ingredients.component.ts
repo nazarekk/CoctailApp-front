@@ -34,12 +34,16 @@ export class UserIngredientsComponent implements OnInit {
 
   view() {
     if (this.showAll) {
-      this.systemInventory.listIngredient().subscribe((data: IngrInfo[]) => this.ingredients = data)
+      this.userInventoryService.allIngredients().subscribe((data: IngrInfo[]) => this.ingredients = data)
       this.showAll = !this.showAll
     } else {
       this.userInventoryService.listIngredient().subscribe((data: IngrInfo[]) => this.ingredients = data)
       this.showAll = !this.showAll
     }
+  }
+
+  addToStock(id: number) {
+    this.userInventoryService.addToStock(id).subscribe(data => console.log(data));
   }
 
 }
