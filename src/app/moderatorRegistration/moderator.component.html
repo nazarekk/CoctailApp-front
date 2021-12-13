@@ -1,0 +1,36 @@
+<app-navbar [isSearchable]="false"></app-navbar>
+<div class = "bdy-cart container dsp">
+  <h1>{{title}}</h1>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="corona form-group lg10">
+      <input
+        formControlName="email"
+        id="email"
+        type="email"
+        class="form-control"
+        placeholder="email">
+      <div *ngIf="this.form.controls.email.touched && this.form.controls.email.invalid" class="alert alert-danger">
+        <div *ngIf="this.form.controls.email.errors?.required">Email is required.</div>
+      </div>
+    </div>
+      <div class="corona form-group lg10">
+        <input
+          formControlName="isActive"
+          id="isActive"
+          type="text"
+          class="form-control"
+          placeholder="isActive">
+        <div *ngIf="this.form.controls.isActive.touched && this.form.controls.isActive.invalid" class="alert alert-danger">
+          <div *ngIf="this.form.controls.isActive.errors?.required">isActive is required.</div>
+        </div>
+      </div>
+<!--    <div>-->
+<!--      <mat-button-toggle-group name = "name">-->
+<!--        <mat-button-toggle value = "True"> Enable moderator </mat-button-toggle>-->
+<!--        <mat-button-toggle value = "False"> Disable moderator </mat-button-toggle>-->
+<!--      </mat-button-toggle-group>-->
+<!--    </div>-->
+    <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Enter</button>
+  </form>
+</div>

@@ -1,0 +1,27 @@
+<table class="table table-striped table-info">
+  <tbody>
+  <tr *ngFor="let users of friends" [ngSwitch]="users.statusId" >
+    <td><img src="https://imgur.com/{{users.image}}.jpg"
+             class="rounded"
+             alt=" "
+             style="width: 80px"></td>
+    <td>{{users.nickname}}</td>
+    <td>{{users.email}}</td>
+    <td *ngSwitchCase="1" class = "text-center"><button class="btn btn-primary" (click)="addFriend(users)">Add friend</button></td>
+    <td *ngSwitchCase="2" class = "text-center">
+      <button class="btn btn-primary" (click)="acceptFriend(users)">Accept friend</button>
+      <button class="btn btn-danger" (click)="declineFriend(users)">Decline friend</button>
+    </td>
+    <td *ngSwitchCase="3" class = "text-center">
+      <button class="btn btn-primary" (click)="subscribeFriend(users)">Subscribe friend</button>
+      <button class="btn btn-danger" (click)="removeFriend(users)">Remove friend</button>
+    </td>
+    <td *ngSwitchCase="4" class = "text-center">Request sent</td>
+    <td *ngSwitchCase="5" class = "text-center">
+      <button class="btn btn-danger" (click)="unsubscribeFriend(users.id)">Unsubscribe friend</button>
+      <button class="btn btn-danger" (click)="removeFriend(users)">Remove friend</button>
+    </td>
+    <td *ngSwitchDefault> </td>
+  </tr>
+  </tbody>
+</table>

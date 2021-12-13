@@ -1,0 +1,59 @@
+<app-navbar [isSearchable]="false"></app-navbar>
+<div class="row align-items-center">
+  <div class="col-3">
+  </div>
+  <div class="col-6">
+    <form [formGroup]="form" (ngSubmit)="submit()" *ngIf="actualInfo">
+      <img src="{{actualInfo.image}}" class="img-thumbnail" alt="...">
+      <div class="input-group mb-3">
+        <span class="input-group-text">image</span>
+        <input aria-label="Sizing example input"
+               aria-describedby="inputGroup-sizing-default"
+               formControlName="image"
+               id="image"
+               type="text"
+               class="form-control"
+               [(ngModel)]="actualInfo.image">
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text">Name</span>
+        <input aria-label="Sizing example input"
+               aria-describedby="inputGroup-sizing-default"
+               formControlName="name"
+               id="name"
+               type="email"
+               class="form-control"
+               [(ngModel)]="actualInfo.name">
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text">Type</span>
+        <select class="form-select" aria-label="Type" formControlName="type">
+          <option selected>{{actualInfo.type}}</option>
+          <option value="Disposable">Disposable</option>
+          <option value="Reusable">Reusable</option>
+        </select>
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text">Category</span>
+        <select class="form-select" formControlName="category" aria-label="Type">
+          <option selected>{{actualInfo.category}}</option>
+          <option value="Accessory">Accessory</option>
+          <option value="Cookware">Cookware</option>
+        </select>
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text">Activity</span>
+        <select class="form-select" aria-label="Type" formControlName="isActive">
+          <option selected>{{actualInfo.active}}</option>
+          <option value="true">Active</option>
+          <option value="false">Inactive</option>
+        </select>
+      </div>
+      <div class="align-items-center">
+        <button class="btn btn-primary" type="submit">Edit</button>
+      </div>
+    </form>
+  </div>
+  <div class="col-3">
+  </div>
+</div>

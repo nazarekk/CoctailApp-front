@@ -1,0 +1,67 @@
+form{
+  display: block;
+  margin: 0 auto;
+  width: 450px;
+}
+
+h1{
+  font-size: 70px;
+  color:#62A1FE;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.btn{
+  width: 450px;
+}
+
+.form-group{
+  margin-bottom: 15px;
+}
+
+.container{
+  margin-top: 120px;
+}
+
+.nav-link{
+  text-align: center;
+  font-size: 20px;
+}
+
+/*Responsive*/
+
+/* 992px - 1200px*/
+@media screen and (max-width: 1200px) {
+  .container{
+    width: 960px;
+  }
+}
+
+/* 768px - 992px*/
+@media screen and (max-width: 992px) {
+  .container{
+    width: 720px;
+  }
+}
+
+/* 576px - 768px*/
+@media screen and (max-width: 768px) {
+  .container{
+    width: 540px;
+  }
+
+}
+
+/* 0px - 576px*/
+@media screen and (max-width: 576px) {
+  .container{
+    width: 60%;
+  }
+  input{
+    width: 70%;
+  }
+  .btn{
+    width: 70%;
+  }
+}
+
