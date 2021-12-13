@@ -54,6 +54,7 @@ export class EditPersonalInfoComponent implements OnInit {
     this.success = false;
   }
 
+
   submit() {
     this.auth.changeInfo(this.form.value).subscribe(response => {
         this.statusCheck(response.status)
