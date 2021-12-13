@@ -17,7 +17,7 @@
     <td>{{models.category}}</td>
     <td class="text-center" *ngIf="isModerator()">
       <button class="btn btn-primary" (click)="editIngr(models.id)">Edit</button>
-      <button class="btn btn-danger" *ngIf="models.active == true" (click)="removeIngredient(models.id)">Remove</button>
+      <button class="btn btn-danger" *ngIf="models.active == true" (click)="removeIngredient(models.id)">Deactivate</button>
     </td>
     <td class="text-center" *ngIf="isUser()">
       <button class="btn btn-primary" (click)="addToStock(models.id)">{{stockText}}</button>

@@ -40,7 +40,6 @@ export class IngredientEditComponent implements OnInit {
 
   submit() {
     this.form.value.id = this.actualInfo.id;
-    this.form.value.isActive = this.actualInfo.active;
     if (this.form.value.type.length == 0) {
       this.form.value.type = this.actualInfo.type.toString()
     }

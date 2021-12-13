@@ -1,4 +1,8 @@
 <app-navbar [isSearchable]="false"></app-navbar>
+<div class="alert alert-success" role="alert" *ngIf="success">
+  Successfully added
+  <a href = "/ingredients" class="stretched-link"></a>
+</div>
 <div class="row align-items-center">
   <div class="col-3"></div>
   <div class="col-6 ">

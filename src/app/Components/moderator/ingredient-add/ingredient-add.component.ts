@@ -10,6 +10,7 @@ import {TypeIngr} from "../ingredient-list/typeEnum";
   styleUrls: ['./ingredient-add.component.css']
 })
 export class IngredientAddComponent implements OnInit {
+  success: boolean = false;
 
   form: FormGroup = new FormGroup({});
 
@@ -34,7 +35,7 @@ export class IngredientAddComponent implements OnInit {
   submit() {
     this.form.value.isActive = true;
     this.systemInventory.addInrgedient(this.form.value).subscribe(data => {
-      if (data == true) location.href = "/ingredients"
+      if (data == true) this.success=true;
     });
   }
 

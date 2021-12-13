@@ -10,6 +10,7 @@ import {AuthService} from "../../../auth/auth.service";
   styleUrls: ['./kitchenware-add.component.css']
 })
 export class KitchenwareAddComponent implements OnInit {
+  success: boolean = false;
 
   form: FormGroup = new FormGroup({});
 
@@ -34,7 +35,7 @@ export class KitchenwareAddComponent implements OnInit {
   submit() {
     this.form.value.isActive = true;
     this.systemInventory.addKitchenware(this.form.value).subscribe(data => {
-      if (data == true) location.href = "/kitchenwares"
+      if (data == true) this.success = true;
     });
   }
 

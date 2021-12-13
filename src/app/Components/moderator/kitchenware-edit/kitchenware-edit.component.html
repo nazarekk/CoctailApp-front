@@ -41,6 +41,14 @@
           <option value="Cookware">Cookware</option>
         </select>
       </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text">Activity</span>
+        <select class="form-select" aria-label="Type" formControlName="isActive">
+          <option selected>{{actualInfo.active}}</option>
+          <option value="true">Active</option>
+          <option value="false">Inactive</option>
+        </select>
+      </div>
       <div class="align-items-center">
         <button class="btn btn-primary" type="submit">Edit</button>
       </div>
