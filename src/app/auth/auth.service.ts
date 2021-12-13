@@ -75,11 +75,15 @@ export class AuthService {
   }
 
   changeInfo(user) {
-    return this.http.put<any>(this.rootUrl + '/api/users/settings/edit', user, {observe: 'response'})
+    return this.http.patch<any>(this.rootUrl + '/api/users/settings/edit', user, {observe: 'response'})
   }
 
   getInformation(): Observable<UserPersonalInfo> {
     return this.http.get<any>(this.rootUrl + '/api/users/settings/edit')
+  }
+
+  changePhoto(user) {
+    return this.http.put<any>(this.rootUrl + '/api/users/settings/edit', user, {observe: 'response'})
   }
 
   setToken(token: string) {

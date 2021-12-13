@@ -22,7 +22,7 @@
       <div class="row g-0 d-flex justify-content-start">
         <div class="col-auto me-auto">
           <div>
-            <img src="https://klike.net/uploads/posts/2019-03/1551511801_1.jpg" alt="Avatar" class="avatar">
+            <img [src] = "this.imagesUrl + user.photo + this.strJpg" alt="Avatar" class="avatar">
           </div>
           <div class="edit-button">
             <!-- Button trigger modal -->
@@ -40,29 +40,24 @@
                   </div>
                   <div class="modal-body container">
                       <div class="row row-cols-3">
-                        <div class="col "><a class='btn btn-primary background' ><img src="https://klike.net/uploads/posts/2019-03/1551511801_1.jpg" class=" img-fluid select-avatar"></a></div>
-                        <div class="col "><a class='btn btn-primary background' ><img src="https://econet.ru/uploads/pictures/456175/content_photo_1.jpg" class=" img-fluid select-avatar"></a></div>
-                        <div class="col "><a class='btn btn-primary background' ><img src="https://shapka-youtube.ru/wp-content/uploads/2021/02/prikolnaya-avatarka-dlya-patsanov.jpg" class=" img-fluid select-avatar"></a></div>
-                        <div class="col "><a class='btn btn-primary background' ><img src="https://klike.net/uploads/posts/2019-03/1551511801_1.jpg" class="img-fluid select-avatar"></a></div>
-                        <div class="col "><a class='btn btn-primary background' ><img src="https://econet.ru/uploads/pictures/456175/content_photo_1.jpg" class="img-fluid select-avatar"></a></div>
-                        <div class="col "><a class='btn btn-primary background' ><img src="https://shapka-youtube.ru/wp-content/uploads/2021/02/prikolnaya-avatarka-dlya-patsanov.jpg" class="img-fluid select-avatar"></a></div>
-                        <div class="col "><a class='btn btn-primary background' ><img src="https://klike.net/uploads/posts/2019-03/1551511801_1.jpg" class="img-fluid select-avatar"></a></div>
-                        <div class="col "><a class='btn btn-primary background' ><img src="https://econet.ru/uploads/pictures/456175/content_photo_1.jpg" class="img-fluid select-avatar"></a></div>
-                        <div class="col "><a class='btn btn-primary background' ><img src="https://shapka-youtube.ru/wp-content/uploads/2021/02/prikolnaya-avatarka-dlya-patsanov.jpg" class="img-fluid select-avatar"></a></div>
-                        <div class="col "><a class='btn btn-primary background' ><img src="https://klike.net/uploads/posts/2019-03/1551511801_1.jpg" class="img-fluid select-avatar"></a></div>
-                        <div class="col "><a class='btn btn-primary background' ><img src="https://econet.ru/uploads/pictures/456175/content_photo_1.jpg" class="img-fluid select-avatar"></a></div>
-                        <div class="col "><a class='btn btn-primary background' ><img src="https://shapka-youtube.ru/wp-content/uploads/2021/02/prikolnaya-avatarka-dlya-patsanov.jpg" class="img-fluid select-avatar"></a></div>
-                        <div class="col "><a class='btn btn-primary background' ><img src="https://klike.net/uploads/posts/2019-03/1551511801_1.jpg" class="img-fluid select-avatar"></a></div>
-                        <div class="col "><a class='btn btn-primary background' ><img src="https://econet.ru/uploads/pictures/456175/content_photo_1.jpg" class="img-fluid select-avatar"></a></div>
-                        <div class="col "><a class='btn btn-primary background' ><img src="https://shapka-youtube.ru/wp-content/uploads/2021/02/prikolnaya-avatarka-dlya-patsanov.jpg" class="img-fluid select-avatar"></a></div>
-                        <div class="col "><a class='btn btn-primary background' ><img src="https://klike.net/uploads/posts/2019-03/1551511801_1.jpg" class="img-fluid select-avatar"></a></div>
-                        <div class="col "><a class='btn btn-primary background' ><img src="https://econet.ru/uploads/pictures/456175/content_photo_1.jpg" class="img-fluid select-avatar"></a></div>
-                        <div class="col "><a class='btn btn-primary background' ><img src="https://shapka-youtube.ru/wp-content/uploads/2021/02/prikolnaya-avatarka-dlya-patsanov.jpg" class="img-fluid select-avatar"></a></div>
+                        <div class="col "><button type="button" class='btn btn-primary background' (click)="selectPhoto(this.userPhoto.images[0])"><img [src] = "this.imagesUrl + this.userPhoto.images[0] + this.strJpg" class="img-fluid select-avatar"></button></div>
+                        <div class="col "><button type="button" class='btn btn-primary background' (click)="selectPhoto(this.userPhoto.images[1])"><img [src] = "this.imagesUrl + this.userPhoto.images[1] + this.strJpg" class="img-fluid select-avatar"></button></div>
+                        <div class="col "><button type="button" class='btn btn-primary background' (click)="selectPhoto(this.userPhoto.images[2])"><img [src] = "this.imagesUrl + this.userPhoto.images[2] + this.strJpg" class="img-fluid select-avatar"></button></div>
+                        <div class="col "><button type="button" class='btn btn-primary background' (click)="selectPhoto(this.userPhoto.images[3])"><img [src] = "this.imagesUrl + this.userPhoto.images[3] + this.strJpg" class="img-fluid select-avatar"></button></div>
+                        <div class="col "><button type="button" class='btn btn-primary background' (click)="selectPhoto(this.userPhoto.images[4])"><img [src] = "this.imagesUrl + this.userPhoto.images[4] + this.strJpg" class="img-fluid select-avatar"></button></div>
+                        <div class="col "><button type="button" class='btn btn-primary background' (click)="selectPhoto(this.userPhoto.images[5])"><img [src] = "this.imagesUrl + this.userPhoto.images[5] + this.strJpg" class="img-fluid select-avatar"></button></div>
+                        <div class="col "><button type="button" class='btn btn-primary background' (click)="selectPhoto(this.userPhoto.images[6])"><img [src] = "this.imagesUrl + this.userPhoto.images[6] + this.strJpg" class="img-fluid select-avatar"></button></div>
+                        <div class="col "><button type="button" class='btn btn-primary background' (click)="selectPhoto(this.userPhoto.images[7])"><img [src] = "this.imagesUrl + this.userPhoto.images[7] + this.strJpg" class="img-fluid select-avatar"></button></div>
+                        <div class="col "><button type="button" class='btn btn-primary background' (click)="selectPhoto(this.userPhoto.images[8])"><img [src] = "this.imagesUrl + this.userPhoto.images[8] + this.strJpg" class="img-fluid select-avatar"></button></div>
+                        <div class="col "><button type="button" class='btn btn-primary background' (click)="selectPhoto(this.userPhoto.images[9])"><img [src] = "this.imagesUrl + this.userPhoto.images[9] + this.strJpg" class="img-fluid select-avatar"></button></div>
+                        <div class="col "><button type="button" class='btn btn-primary background' (click)="selectPhoto(this.userPhoto.images[10])"><img [src] = "this.imagesUrl + this.userPhoto.images[10] + this.strJpg" class="img-fluid select-avatar"></button></div>
+                        <div class="col "><button type="button" class='btn btn-primary background' (click)="selectPhoto(this.userPhoto.images[11])"><img [src] = "this.imagesUrl + this.userPhoto.images[11] + this.strJpg" class="img-fluid select-avatar"></button></div>
+
                       </div>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" >Save changes</button>
+                    <button type="button" class="btn btn-primary" (click)="submitPhoto()">Save changes</button>
                   </div>
                 </div>
               </div>
