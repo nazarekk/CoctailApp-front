@@ -1,14 +1,19 @@
 .navbar-expand-lg .navbar-collapse {
-  background-color: mediumpurple;
+  background-color: #62A1FE;
   display: flex!important;
   flex-basis: auto;
+  border-radius: 5px;
 }
 
 button, optgroup, select, textarea {
   margin: 5px;
   padding: .175rem .55rem;
-  color: black;
-  background-color: aqua;
+  color: white;
+  background-color: #2981ff;
+}
+
+a {
+  color: #62A1FE;
 }
 
 input {
@@ -16,5 +21,5 @@ input {
 }
 
 .bg-light {
-  background-color: aqua!important;
+  background-color:#ffffff!important;
 }

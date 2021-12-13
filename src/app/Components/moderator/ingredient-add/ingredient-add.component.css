@@ -1,6 +1,7 @@
 .input-group-text {
   padding: .275rem .75rem;
-  background-color: mediumpurple;
+  background-color: #62A1FE;
+  min-width: 90px;
 }
 
 .input-group {
@@ -8,10 +9,14 @@
 }
 
 .btn {
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
   color: #212529;
-  background-color: mediumpurple;
+  background-color: #62A1FE;
   padding: .275rem .55rem;
-  margin: 5px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
