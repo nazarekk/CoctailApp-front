@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {DishesService} from "../../../api/dishes-service";
 import {DishModel} from "../dishModel";
 import {SystemInventory} from "../../../api/system-inventory";
+import {FormBuilder} from "@angular/forms";
 
 @Component({
   selector: 'app-confirm-dish',
@@ -20,7 +21,8 @@ export class ConfirmDishComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private dishesService: DishesService,
-              private systemInventory: SystemInventory) {
+              private systemInventory: SystemInventory,
+              private fb: FormBuilder) {
   }
 
   ngOnInit(): void {
@@ -55,9 +57,7 @@ export class ConfirmDishComponent implements OnInit {
     this.dishesService.removeInrgedient(this.recipeId, name).subscribe(data => this.refreshList())
   }
 
-  Save(receipt: string) {
-    this.actualInfo.recipe = receipt;
-    this.actualInfo.name = "Dish10";
+  Save() {
     this.dishesService.editDish(this.actualInfo).subscribe(data => console.log(data))
   }
 
@@ -70,6 +70,13 @@ export class ConfirmDishComponent implements OnInit {
       if (data.status == 200) location.href = "/dishes" +
         ""
     })
+  }
+
+  preview(image: string, recipe: string, type: string, category: string) {
+    this.actualInfo.recipe = recipe;
+    this.actualInfo.image = image;
+    this.actualInfo.alcohol = type;
+    this.actualInfo.sugarless = (category == "true");
   }
 
 }

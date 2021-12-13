@@ -26,6 +26,8 @@ export class AddDishComponent implements OnInit {
       rating: number;
       recipe: string;
       alcohol: string;
+      liked: Boolean;
+      favourite: Boolean;
     }
     this.dish.name = name;
     this.dish.alcohol = type;

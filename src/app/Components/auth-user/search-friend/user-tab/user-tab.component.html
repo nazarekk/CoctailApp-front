@@ -17,9 +17,9 @@
       <button class="btn btn-danger" (click)="removeFriend(users)">Remove friend</button>
     </td>
     <td *ngSwitchCase="4" class = "text-center">Request sent</td>
-    <td *ngSwitchCase="5" class = "text-center">>
+    <td *ngSwitchCase="5" class = "text-center">
+      <button class="btn btn-danger" (click)="unsubscribeFriend(users.id)">Unsubscribe friend</button>
       <button class="btn btn-danger" (click)="removeFriend(users)">Remove friend</button>
-<!--      <button class="btn btn-danger" (click)="unsubscribeFriend(users.id)">Unsubscribe friend</button>-->
     </td>
     <td *ngSwitchDefault> </td>
   </tr>

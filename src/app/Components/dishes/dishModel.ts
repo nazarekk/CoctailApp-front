@@ -9,4 +9,6 @@ export interface DishModel {
   ingredientList: IngrInfo[]
   recipe: string
   image: string
+  liked: Boolean
+  favourite: Boolean
 }

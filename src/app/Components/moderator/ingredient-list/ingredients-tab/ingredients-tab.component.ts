@@ -18,6 +18,7 @@ export class IngredientsTabComponent implements OnInit {
   @Input() inDish: Boolean = false;
   @Output() delIngrEvent = new EventEmitter();
   @Output() addToStockEvent = new EventEmitter();
+  @Input() stockText: String;
 
   removeIngredient(id: Number) {
     this.delIngrEvent.emit(id);

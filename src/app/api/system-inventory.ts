@@ -16,10 +16,6 @@ export class SystemInventory {
   constructor(private http: HttpClient) {
   }
 
-  searchIngredient(name: String): Observable<IngrInfo[]> {
-    return this.http.get<IngrInfo[]>(this.rootUrl + '/api/moderator/ingredients?name=' + name);
-  }
-
   removeIngredient(id: Number) {
     console.log(this.rootUrl + '/api/moderator/ingredients/' + id.toString());
     return this.http.delete<any>(this.rootUrl + '/api/moderator/ingredients/' + id.toString());
@@ -33,12 +29,12 @@ export class SystemInventory {
     return this.http.put(this.rootUrl + '/api/moderator/ingredients', ingredient);
   }
 
-  listIngredient(): Observable<IngrInfo[]> {
-    return this.http.get<IngrInfo[]>(this.rootUrl + '/api/moderator/ingredients/list');
+  searchIngredient(name: String): Observable<IngrInfo[]> {
+    return this.http.get<IngrInfo[]>(this.rootUrl + '/api/moderator/ingredients?name=' + name);
   }
 
-  addInrgedient(ingredient): Observable<any> {
-    return this.http.post<any>(this.rootUrl + '/api/moderator/ingredients', ingredient);
+  listIngredient(): Observable<IngrInfo[]> {
+    return this.http.get<IngrInfo[]>(this.rootUrl + '/api/moderator/ingredients/list');
   }
 
   filterIngredient(type: String, category: String, active: Boolean): Observable<IngrInfo[]> {
@@ -46,6 +42,10 @@ export class SystemInventory {
       + type + "&category=" + category);
     return this.http.get<IngrInfo[]>(this.rootUrl + '/api/moderator/ingredients/filter?type='
       + type + "&category=" + category + "&active=" + active);
+  }
+
+  addInrgedient(ingredient): Observable<any> {
+    return this.http.post<any>(this.rootUrl + '/api/moderator/ingredients', ingredient);
   }
 
   searchKitchenware(name: String): Observable<KitchenwareInfo[]> {

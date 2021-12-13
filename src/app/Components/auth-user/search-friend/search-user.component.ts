@@ -51,8 +51,8 @@ export class SearchUserComponent implements OnInit {
     this.authService.subscribeFriend(user.id).subscribe(data => this.refreshList(data));
   }
 
-  unsubscribeFriend(user: UserInfo) {
-    this.authService.unsubscribeFriend(user.id).subscribe(data =>
+  unsubscribeFriend(id: number) {
+    this.authService.unsubscribeFriend(id).subscribe(data =>
       this.refreshList(data))
   }
 

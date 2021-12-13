@@ -15,12 +15,12 @@
     <td>{{models.name}}</td>
     <td>{{models.type}}</td>
     <td>{{models.category}}</td>
-    <td class = "text-center" *ngIf="isModerator()">
+    <td class="text-center" *ngIf="isModerator()">
       <button class="btn btn-primary" (click)="editIngr(models.id)">Edit</button>
       <button class="btn btn-danger" *ngIf="models.active == true" (click)="removeIngredient(models.id)">Remove</button>
     </td>
-    <td class = "text-center" *ngIf="isUser()">
-      <button class="btn btn-primary" (click)="addToStock(models.id)">Add to stock/Remove</button>
+    <td class="text-center" *ngIf="isUser()">
+      <button class="btn btn-primary" (click)="addToStock(models.id)">{{stockText}}</button>
     </td>
   </tr>
   </tbody>
@@ -28,7 +28,7 @@
   <tr *ngFor="let models of ingredients" class="align-content-center">
     <td><img src="{{models.image}}" class="rounded" style="width: 40px"></td>
     <td>{{models.name}}</td>
-    <td class = "text-center">
+    <td class="text-center">
       <button class="btn btn-primary" (click)="clickDish(models.name)">{{eventText}}</button>
     </td>
   </tr>

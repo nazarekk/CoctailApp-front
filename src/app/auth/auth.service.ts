@@ -126,7 +126,7 @@ export class AuthService {
   }
 
   unsubscribeFriend(id: Number) {
-    return this.http.patch<any>(this.rootUrl + '/api/users/subscribe/' + id, "")
+    return this.http.patch<any>(this.rootUrl + '/api/users/unsubscribe/' + id, "")
   }
 
   isAuthenticated(): boolean {

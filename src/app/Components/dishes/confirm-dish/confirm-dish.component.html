@@ -13,14 +13,24 @@
       <div class="card-body">
         <h5 class="card-title">Name: {{actualInfo.name}}</h5>
         <p class="card-text">Recipe: {{actualInfo.recipe}}</p>
-        <p class="card-text">Alcohol: {{actualInfo.alcohol}}</p>
-        <p class="card-text">Sugar: {{actualInfo.sugarless}}</p>
+        <div [ngSwitch]="actualInfo.alcohol" style="display: inline">
+          <img *ngSwitchCase="'LOWALCOHOL'" src="https://i.imgur.com/SMTnYwV.png" style="width: 40px">
+          <img *ngSwitchCase="'ALCOHOL'" src="https://i.imgur.com/HHBqoWl.png" style="width: 40px">
+          <img *ngSwitchCase="'NONALCOHOL'" src="https://i.imgur.com/v8bq8Mh.png" style="width: 40px">
+        </div>
+        <div [ngSwitch]="actualInfo.sugarless" style="display: inline">
+          <img *ngSwitchCase="true" src="https://i.imgur.com/2818hgh.png" style="width: 40px">
+          <img *ngSwitchCase="false" src="https://i.imgur.com/HqbrJko.jpg" style="width: 40px">
+        </div>
         <p class="card-text" style="display: inline">Ingredients: </p>
         <p class="card-text" style="display: inline"
            *ngFor="let ingredients of actualInfo.ingredientList">{{ingredients.name}} </p>
         <p></p>
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        <button type="button" class="btn btn-primary" (click)="Save()">
+          Save
+        </button>
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
           Remove
         </button>
 
@@ -46,7 +56,33 @@
       </div>
     </div>
   </div>
-  <div class="col-9">
+  <div class="col-9 align-content-center" *ngIf="this.actualInfo">
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon1">Image</span>
+      <input type="text"
+             class="form-control"
+             placeholder="Image"
+             aria-describedby="basic-addon1"
+             #image>
+    </div>
+    <div class="input-group">
+      <span class="input-group-text">Recipe</span>
+      <textarea class="form-control" aria-label="With textarea" #recipe>{{this.actualInfo.recipe}}</textarea>
+    </div>
+    <select class="form-select" #type aria-label="Alcohol">
+      <option value="NONALCOHOL">Non-alcohol</option>
+      <option value="LOWALCOHOL">Low-alcohol</option>
+      <option value="ALCOHOL">Alcohol</option>
+    </select>
+    <select class="form-select" #category aria-label="Taste">
+      <option value="true">Sweet</option>
+      <option value="false">Sour</option>
+    </select>
+    <button type="button"
+            class="btn btn-primary align-content-center"
+            (click)="preview(image.value,recipe.value,type.value,category.value)">
+      Preview
+    </button>
   </div>
 </div>
 <div class="row">

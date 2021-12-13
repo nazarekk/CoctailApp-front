@@ -42,4 +42,16 @@ export class DishesService {
   removeDish(id: number): Observable<any> {
     return this.http.delete(this.rootUrl + '/api/moderator/recipe/' + id.toString(),{observe: 'response'})
   }
+
+  likeDish(id: number, like: Boolean) {
+    return this.http.patch(this.rootUrl + '/api/users/recipe/' + id.toString() + '?like=' + like.valueOf(),"",{observe:"response"})
+  }
+
+  favouriteDish(id: number, like: Boolean) {
+    return this.http.patch(this.rootUrl + '/api/users/recipe/favourites/' + id.toString() + '?favourite=' + like.valueOf(),"",{observe:"response"})
+  }
+
+  searchDishes(name: String): Observable<DishModel[]> {
+    return this.http.get<DishModel[]>(this.rootUrl + '/api/users/recipe?name=' + name);
+  }
 }

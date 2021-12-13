@@ -13,6 +13,7 @@ export class UserIngredientsComponent implements OnInit {
   ingredients: IngrInfo[] = [];
   sorted: Boolean = true;
   showAll: Boolean = true;
+  stockText: String = "";
 
   constructor(private userInventoryService: UserInventoryService,
               private systemInventory: SystemInventory) {
@@ -20,6 +21,7 @@ export class UserIngredientsComponent implements OnInit {
 
   ngOnInit(): void {
     this.userInventoryService.listIngredient().subscribe((data: IngrInfo[]) => this.ingredients = data)
+    this.stockText = "Remove from stock";
   }
 
   search(searchValue) {
@@ -36,14 +38,26 @@ export class UserIngredientsComponent implements OnInit {
     if (this.showAll) {
       this.userInventoryService.allIngredients().subscribe((data: IngrInfo[]) => this.ingredients = data)
       this.showAll = !this.showAll
+      this.stockText = "Add to stock";
     } else {
       this.userInventoryService.listIngredient().subscribe((data: IngrInfo[]) => this.ingredients = data)
       this.showAll = !this.showAll
+      this.stockText = "Remove from stock";
     }
   }
 
   addToStock(id: number) {
-    this.userInventoryService.addToStock(id).subscribe(data => console.log(data));
+    if (this.showAll) {
+      this.userInventoryService.removeFromStock(id).subscribe(data => {
+        this.showAll = !this.showAll;
+        this.view();
+      });
+    } else {
+      this.userInventoryService.addToStock(id).subscribe(data => {
+        this.showAll = !this.showAll;
+        this.view();
+      });
+    }
   }
 
 }

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {DishModel} from "../../dishModel";
 import {AuthService} from "../../../../auth/auth.service";
 
@@ -10,6 +10,8 @@ import {AuthService} from "../../../../auth/auth.service";
 export class DishesComponent implements OnInit {
 
   @Input() dish: DishModel;
+  @Output() likeEvent: EventEmitter<any> = new EventEmitter()
+  @Output() favouriteEvent: EventEmitter<any> = new EventEmitter()
 
   constructor(private auth: AuthService) { }
 
@@ -22,6 +24,14 @@ export class DishesComponent implements OnInit {
 
   isUser(): Boolean {
     return (this.auth.getRole() == "ROLE_CONFIRMED")
+  }
+
+  like() {
+    this.likeEvent.emit(this.dish);
+  }
+
+  favourite() {
+    this.favouriteEvent.emit(this.dish)
   }
 
 }

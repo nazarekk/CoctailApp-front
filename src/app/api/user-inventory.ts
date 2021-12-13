@@ -27,6 +27,10 @@ export class UserInventoryService {
   }
 
   addToStock(id: number): Observable<any> {
-    return this.http.post(this.rootUrl + '/api/users/recipe/favourites/' + id.toString(),"",{observe:"response"});
+    return this.http.post(this.rootUrl + '/api/users/stock/ingredients?ingredientId=' + id.toString() + "&quantity=1",{observe:"response"});
+  }
+
+  removeFromStock(id: number): Observable<any> {
+    return this.http.delete(this.rootUrl + '/api/users/stock/' + id.toString(),{observe:"response"});
   }
 }
