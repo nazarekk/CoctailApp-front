@@ -22,6 +22,8 @@ import {AddDishComponent} from "./Components/dishes/add-dish/add-dish.component"
 import {ConfirmDishComponent} from "./Components/dishes/confirm-dish/confirm-dish.component";
 import {UserIngredientsComponent} from "./Components/auth-user/user-ingredients/user-ingredients.component";
 import {UserPersonalInfoComponent} from "./userPersonalInfo/userPersonalInfo.component";
+import {EventsListComponent} from "./Components/events/events-list/events-list.component";
+import {CreateEventComponent} from "./Components/events/create-event/create-event.component";
 
 const routes: Routes = [
   {
@@ -151,11 +153,11 @@ const routes: Routes = [
   },
   {
     path: 'dishes/add',
-    component: AddDishComponent,
+    component: AddDishComponent/*,
     canActivate: [RoleGuardGuard],
     data:{
       expectedRoles: ['ROLE_MODERATOR']
-    }
+    }*/
   },
   {
     path: 'dishes/edit',
@@ -172,7 +174,19 @@ const routes: Routes = [
     data:{
       expectedRoles: ['ROLE_CONFIRMED']
     }
-  }
+  },
+  {
+    path: 'events',
+    component: EventsListComponent,
+  },
+  {
+    path: 'events/create',
+    component: CreateEventComponent/*,
+    canActivate: [RoleGuardGuard],
+    data:{
+      expectedRoles: ['ROLE_MODERATOR']
+    }*/
+  },
 ];
 
 @NgModule({
