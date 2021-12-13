@@ -23,11 +23,8 @@ section {
 .text_nickname {
   margin-top: 10px;
 }
-.ok{
-  border-radius: 10%;
-}
-.cansel {
-  margin-right: 5px;
+.d-flex flex-row-reverse{
+  margin: 5px;
 }
 #nickname {
   width: 300px;
