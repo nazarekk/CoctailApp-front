@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
+import {Component, OnInit} from '@angular/core';
+import {MatTableDataSource} from '@angular/material/table';
 
-import { Router } from "@angular/router";
-import { AuthService } from "../../auth/auth.service";
-import { moderInfo } from "./moderList.model";
-
+import {Router} from "@angular/router";
+import {AuthService} from "../../auth/auth.service";
+import {moderInfo} from "./moderList.model";
 
 
 @Component({
@@ -98,7 +97,6 @@ export class ModeratorListInfoComponent implements OnInit {
     console.log(this.filteredModers);
     console.log(this.isFiltered);
   }
-
 
 }
 
