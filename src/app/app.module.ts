@@ -24,6 +24,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { EditModeratorPersonalDataComponent } from './Components/edit-moderator-personal-data/edit-moderator-personal-data.component';
+import { ModeratorEditComponent } from './moderator-edit/moderator-edit.component';
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
@@ -49,7 +51,9 @@ const INTERCEPTOR_PROVIDER: Provider = {
     SearchfriendComponent,
     NavbarUserComponent,
     ModeratorPersonalComponent,
-    ConfirmUserComponent
+    ConfirmUserComponent,
+    EditModeratorPersonalDataComponent,
+    ModeratorEditComponent
   ],
   imports: [
     BrowserAnimationsModule,

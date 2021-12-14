@@ -13,6 +13,7 @@ import {ModeratorListComponent} from "./moderator-list/moderator-list.component"
 import {SearchfriendComponent} from "./searchfriend/searchfriend.component";
 import {AuthService} from "./auth/auth.service";
 import {RoleGuardGuard} from "./auth/role-guard.guard";
+import {ModeratorEditComponent} from "./moderator-edit/moderator-edit.component";
 
 const routes: Routes = [
   {
@@ -41,7 +42,7 @@ const routes: Routes = [
     component: ModeratorVerificationComponent
   },
   {
-    path: 'moderator/edit',
+    path: '12',
     component: ModeratorPersonalComponent,
     canActivate: [RoleGuardGuard],
     data:{
@@ -67,6 +68,10 @@ const routes: Routes = [
   {
     path: "moderatorlist",
     component: ModeratorListComponent
+  },
+  {
+    path: 'moderator/edit/:id',
+    component: ModeratorEditComponent
   }
 ];
 

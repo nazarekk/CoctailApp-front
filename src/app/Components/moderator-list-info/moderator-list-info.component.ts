@@ -16,7 +16,7 @@ export class ModeratorListInfoComponent implements OnInit {
 
   public info: moderInfo[];
   isAscendic = true;
-  public filteredModers: moderInfo[];
+  public filteredModers: moderInfo[] = [];
   isFiltered = false;
 
 
@@ -77,28 +77,27 @@ export class ModeratorListInfoComponent implements OnInit {
       return 0;
     });
   }
-  appendObjTo(thatArray, newObj) {
-    const frozenObj = Object.freeze(newObj);
-    return Object.freeze(thatArray.concat(frozenObj));
-  }
 
-  activeModers(){
 
-    if(this.isFiltered==false) {
+  activeModers() {
+      this.filteredModers = [];
       for (let i = 0; i < this.info.length; i++) {
-        if (this.info[i].isactive == true) {
+        if (this.info[i].isActive === true) {
           this.filteredModers.push(this.info[i]);
         }
       }
       this.isFiltered = true;
+    console.log(this.info);
+    console.log(this.filteredModers);
+    console.log(this.isFiltered);
+  }
 
-    }
-    else{
-      this.isFiltered = false;
-    }
-
-}
-
+  showAll(){
+    this.isFiltered = false;
+    console.log(this.info);
+    console.log(this.filteredModers);
+    console.log(this.isFiltered);
+  }
 
 
 }

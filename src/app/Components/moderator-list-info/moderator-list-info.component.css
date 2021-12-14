@@ -22,12 +22,13 @@
 }
 
 .moderlist{
-
+  display: flex;
+  flex-wrap: wrap;
 
 }
 
 .moder{
-  width: 129%;
+
   display: flex;
   justify-content: space-between;
   margin: 10px 0;
@@ -83,8 +84,11 @@
   justify-content: space-between;
   margin-right: 10px;
 
+
 }
 
 .spec{
 
 }
+
+

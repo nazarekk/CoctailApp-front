@@ -44,7 +44,7 @@ export class AuthService {
   }
 
   editModerator(user) {
-    return this.http.post<any>(this.rootUrl + '/api/admin/moderator/edit', user)
+    return this.http.patch<any>(this.rootUrl + '/api/admin/moderator/edit', user)
   }
 
   verifyUser(code: string) {
@@ -80,8 +80,13 @@ export class AuthService {
   }
 
   deleteModer(id) {
-    return this.http.delete(`${this.rootUrl}/moderators/remove/${id}`);
+    return this.http.delete(`${this.rootUrl}/users/${id}`);
   }
+
+  getInfoById(id): Observable<moderInfo>{
+    return this.http.get<moderInfo>(`${this.rootUrl}/api/admin/users/${id}`);
+  }
+
 
 
 }
