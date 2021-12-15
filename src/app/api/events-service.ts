@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {EventModel} from "../Components/events/eventModel";
 import {Injectable} from "@angular/core";
+import {DishModel} from "../Components/dishes/dishModel";
 
 @Injectable({
   providedIn: 'root'
@@ -17,5 +18,13 @@ export class EventsService {
 
   createEvent(event): Observable<any> {
     return this.http.post<any>(this.rootUrl + '/api/users/events', event);
+  }
+
+  listEvents(): Observable<EventModel[]> {
+    return this.http.get<EventModel[]>(this.rootUrl + '/api/users/events/list');
+  }
+
+  getEvent(id: Number): Observable<EventModel> {
+    return this.http.get<EventModel>(this.rootUrl + '/api/users/events/' + id.toString());
   }
 }

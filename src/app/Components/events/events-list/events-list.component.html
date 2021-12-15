@@ -1,1 +1,5 @@
-<p>events-list works!</p>
+<div class="row events" *ngIf="events">
+  <div class="col-md-4" *ngFor="let model of events">
+    <app-events [event]="model"></app-events>
+  </div>
+</div>

@@ -24,6 +24,7 @@ import {UserIngredientsComponent} from "./Components/auth-user/user-ingredients/
 import {UserPersonalInfoComponent} from "./userPersonalInfo/userPersonalInfo.component";
 import {EventsListComponent} from "./Components/events/events-list/events-list.component";
 import {CreateEventComponent} from "./Components/events/create-event/create-event.component";
+import {EventInfoComponent} from "./Components/events/event-info/event-info.component";
 
 const routes: Routes = [
   {
@@ -153,11 +154,11 @@ const routes: Routes = [
   },
   {
     path: 'dishes/add',
-    component: AddDishComponent/*,
+    component: AddDishComponent,
     canActivate: [RoleGuardGuard],
     data:{
       expectedRoles: ['ROLE_MODERATOR']
-    }*/
+    }
   },
   {
     path: 'dishes/edit',
@@ -181,11 +182,19 @@ const routes: Routes = [
   },
   {
     path: 'events/create',
-    component: CreateEventComponent/*,
+    component: CreateEventComponent,
     canActivate: [RoleGuardGuard],
     data:{
-      expectedRoles: ['ROLE_MODERATOR']
-    }*/
+      expectedRoles: ['ROLE_CONFIRMED']
+    }
+  },
+  {
+    path: 'event-info/:eventId',
+    component: EventInfoComponent,
+    canActivate: [RoleGuardGuard],
+    data:{
+      expectedRoles: ['ROLE_CONFIRMED']
+    }
   },
 ];
 

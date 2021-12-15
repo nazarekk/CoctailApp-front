@@ -1,0 +1,8 @@
+
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">{{event.name}}</h5>
+    <p class="card-text">{{event.eventTime}}</p>
+    <a [routerLink]="['/event-info', event.id]" class="stretched-link"></a>
+  </div>
+</div>
