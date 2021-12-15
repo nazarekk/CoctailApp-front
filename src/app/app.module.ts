@@ -22,6 +22,7 @@ import {AuthUserModule} from "./Components/auth-user/auth-user.module";
 import {ModeratorModule} from "./Components/moderator/moderator.module";
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import {UserPersonalInfoComponent} from "./userPersonalInfo/userPersonalInfo.component";
+import { CaptchaComponent } from './captcha/captcha.component';
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
@@ -47,7 +48,8 @@ const INTERCEPTOR_PROVIDER: Provider = {
     IngredientListComponent,
     ConfirmUserComponent,
     SettingsComponent,
-    EditPersonalInfoComponent
+    EditPersonalInfoComponent,
+    CaptchaComponent
   ],
   imports: [
     BrowserAnimationsModule,

@@ -28,6 +28,10 @@ h1{
   font-size: 20px;
 }
 
+.text-error {
+  margin-top: 10px;
+}
+
 /*Responsive*/
 
 /* 992px - 1200px*/

@@ -12,6 +12,10 @@ import{Router} from "@angular/router";
 export class LoginComponent implements OnInit, OnDestroy{
 
   title = 'Sign In'
+  error = false;
+  success = false;
+  message: string;
+  alertClass: string;
 
   form: FormGroup = new FormGroup({});
   sSub: Subscription
@@ -31,6 +35,24 @@ export class LoginComponent implements OnInit, OnDestroy{
     if(this.sSub){
       this.sSub.unsubscribe()
     }
+  }
+
+  statusCheck(value: any) {
+    this.success = true
+    if (value == 200) {
+      this.message = "Authorization successful"
+      this.alertClass = "alert-success"
+    } else if (value == 204) {
+      this.message = "Fall captcha"
+      this.alertClass = "alert-danger"
+    } else {
+      this.message = "System error"
+      this.alertClass = "alert-danger"
+    }
+  }
+
+  isSuccess() {
+    this.success = false;
   }
 
   submit(){
@@ -53,7 +75,7 @@ export class LoginComponent implements OnInit, OnDestroy{
             }
           }
         },
-        err=>console.log(err)
+        error => this.statusCheck(error.status)
       )
   }
 }
