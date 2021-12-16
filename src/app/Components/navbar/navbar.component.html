@@ -17,6 +17,9 @@
         <li class="nav-item" *ngIf="isUser()">
           <a class="nav-link active" aria-current="page" href="/settings">Settings</a>
         </li>
+        <li class="nav-item" *ngIf="isUser()">
+          <a class="nav-link active" aria-current="page" href="/friendlist">My friends</a>
+        </li>
         <li class="nav-item" *ngIf="isModerator()">
           <a class="nav-link active" aria-current="page" href="/kitchenwares">Kitchenware</a>
         </li>
@@ -31,7 +34,7 @@
         </li>
       </ul>
       <input class="form-control me-2" style="width: 200px; height: 30px" type="search" *ngIf="isSearchable" #searchValue placeholder="Search" aria-label="Search"
-             (keyup.enter)="search(searchValue.value)">
+             (keydown.enter)="search(searchValue.value)">
       <button type="button" class="btn btn-light" *ngIf="isAuthenticated()" (click)="Logout()">Logout</button>
     </div>
   </div>

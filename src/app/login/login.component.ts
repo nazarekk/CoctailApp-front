@@ -17,6 +17,8 @@ export class LoginComponent implements OnInit, OnDestroy{
   message: string;
   alertClass: string;
 
+  isError: Boolean = false;
+
   form: FormGroup = new FormGroup({});
   sSub: Subscription
 

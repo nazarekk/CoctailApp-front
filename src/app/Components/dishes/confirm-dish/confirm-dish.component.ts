@@ -4,7 +4,6 @@ import {ActivatedRoute} from "@angular/router";
 import {DishesService} from "../../../api/dishes-service";
 import {DishModel} from "../dishModel";
 import {SystemInventory} from "../../../api/system-inventory";
-import {FormBuilder} from "@angular/forms";
 
 @Component({
   selector: 'app-confirm-dish',
@@ -18,11 +17,11 @@ export class ConfirmDishComponent implements OnInit {
   catalogue: IngrInfo[];
   recipeId: Number;
   showErr: Boolean;
+  errorText: String;
 
   constructor(private route: ActivatedRoute,
               private dishesService: DishesService,
-              private systemInventory: SystemInventory,
-              private fb: FormBuilder) {
+              private systemInventory: SystemInventory) {
   }
 
   ngOnInit(): void {
@@ -38,37 +37,37 @@ export class ConfirmDishComponent implements OnInit {
       this.dishesService.getDishes(params.id).subscribe((data: DishModel) => {
         this.actualInfo = data;
         this.dishIngrs = data.ingredientList;
-        console.log(data)
       });
       this.recipeId = params.id;
     })
-    console.log(this.catalogue)
   }
 
   addToDish(name: String) {
-    this.dishesService.addInrgedient(this.recipeId, name).subscribe(data => this.refreshList(), error => {
+    this.dishesService.addIngredient(this.recipeId, name).subscribe(() => this.refreshList(), () => {
       this.showErr = true;
-      console.log(error.status)
+      this.errorText = "This ingredient is already included"
     })
-    console.log(this.actualInfo)
   }
 
   removeFromDish(name: String) {
-    this.dishesService.removeInrgedient(this.recipeId, name).subscribe(data => this.refreshList())
+    this.dishesService.removeIngredient(this.recipeId, name).subscribe(() => this.refreshList())
   }
 
   Save() {
-    this.dishesService.editDish(this.actualInfo).subscribe(data => console.log(data))
-  }
-
-  closeErr() {
-    this.showErr = false;
+    this.dishesService.editDish(this.actualInfo).subscribe(data => {
+      if (data.status == 200) location.href = "/dishes"
+    },
+      () => {
+      this.ngOnInit();
+      this.showErr = true;
+      this.errorText = "Error occurred while editing dish";
+      }
+    )
   }
 
   removeDish(id: number) {
     this.dishesService.removeDish(id).subscribe(data => {
-      if (data.status == 200) location.href = "/dishes" +
-        ""
+      if (data.status == 200) location.href = "/dishes"
     })
   }
 
