@@ -79,8 +79,8 @@ export class AuthService {
     return this.http.get<moderInfo[]>(this.rootUrl + '/api/admin/moderators');
   }
 
-  deleteModer(id) {
-    return this.http.delete(`${this.rootUrl}/users/${id}`);
+  deleteModer(moder: moderInfo): Observable<any> {
+    return this.http.delete<moderInfo>(`${this.rootUrl}/api/admin/moderators/remove`,{body: moder});
   }
 
   getInfoById(id): Observable<moderInfo>{

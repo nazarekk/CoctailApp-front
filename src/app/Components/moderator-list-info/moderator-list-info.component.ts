@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {MatTableDataSource} from '@angular/material/table';
 
 import {Router} from "@angular/router";
 import {AuthService} from "../../auth/auth.service";
@@ -12,10 +11,10 @@ import {moderInfo} from "./moderList.model";
   styleUrls: ['./moderator-list-info.component.css']
 })
 export class ModeratorListInfoComponent implements OnInit {
-
-  public info: moderInfo[];
+  moder: moderInfo;
+  info: moderInfo[];
   isAscendic = true;
-  public filteredModers: moderInfo[] = [];
+  filteredModers: moderInfo[] = [];
   isFiltered = false;
 
 
@@ -37,21 +36,19 @@ export class ModeratorListInfoComponent implements OnInit {
       });
   }
 
-  deleteModer(id){
-    this.auth.deleteModer(id).subscribe(() => {
-      this.fetchIssues();
-    });
+  deleteModer(moder) {
+    this.auth.deleteModer(moder).subscribe();
   }
 
-  editModer(id){
+  editModer(id) {
     this.router.navigate([`moderator/edit/${id}`]);
   }
 
-  sortModer(){
+  sortModer() {
     this.isAscendic?this.ascendic():this.descendic()
   }
 
-  ascendic(){
+  ascendic() {
     this.isAscendic = false;
     this.info = this.info.sort((n1,n2) => {
       if (n1.nickname < n2.nickname) {
@@ -64,7 +61,7 @@ export class ModeratorListInfoComponent implements OnInit {
     });
   }
 
-  descendic(){
+  descendic() {
     this.isAscendic = true
     this.info = this.info.sort((n1,n2) => {
       if (n1.nickname > n2.nickname) {
@@ -86,16 +83,12 @@ export class ModeratorListInfoComponent implements OnInit {
         }
       }
       this.isFiltered = true;
-    console.log(this.info);
-    console.log(this.filteredModers);
-    console.log(this.isFiltered);
+
   }
 
-  showAll(){
+  showAll() {
     this.isFiltered = false;
-    console.log(this.info);
-    console.log(this.filteredModers);
-    console.log(this.isFiltered);
+
   }
 
 }

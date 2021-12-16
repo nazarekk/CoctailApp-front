@@ -11,7 +11,7 @@ import {Validators, FormBuilder} from "@angular/forms";
 })
 export class EditModeratorPersonalDataComponent implements OnInit {
 
-  checkboxValue:boolean;
+
 
   editModeratorForm = this.formBuilder.group({
     userid: ['', [Validators.required]],
@@ -20,7 +20,7 @@ export class EditModeratorPersonalDataComponent implements OnInit {
     isActive: ['', [Validators.required]],
   });
 
-  public info: moderInfo;
+  info: moderInfo;
   moderID = parseInt(this.route.snapshot.paramMap.get('id')!);
 
   constructor(public auth: AuthService, public route: ActivatedRoute, private formBuilder: FormBuilder) { }
@@ -40,7 +40,7 @@ export class EditModeratorPersonalDataComponent implements OnInit {
           data.email,
           data.isActive
         );
-        this.editModeratorForm.setValue(this.info);
+        this.editModeratorForm.patchValue(this.info);
         console.log('Data requested ...');
         console.log(this.info);
       });
@@ -56,6 +56,8 @@ export class EditModeratorPersonalDataComponent implements OnInit {
     this.info = this.editModeratorForm.value;
     this.auth.editModerator(this.info).subscribe();
   }
+
+
 
 
 
