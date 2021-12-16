@@ -22,6 +22,7 @@ import {AddDishComponent} from "./Components/dishes/add-dish/add-dish.component"
 import {ConfirmDishComponent} from "./Components/dishes/confirm-dish/confirm-dish.component";
 import {UserIngredientsComponent} from "./Components/auth-user/user-ingredients/user-ingredients.component";
 import {UserPersonalInfoComponent} from "./userPersonalInfo/userPersonalInfo.component";
+import {FriendlistComponent} from "./Components/auth-user/friendlist/friendlist.component";
 
 const routes: Routes = [
   {
@@ -168,6 +169,14 @@ const routes: Routes = [
   {
     path: 'my/ingredients',
     component: UserIngredientsComponent,
+    canActivate: [RoleGuardGuard],
+    data:{
+      expectedRoles: ['ROLE_CONFIRMED']
+    }
+  },
+  {
+    path: 'friendlist',
+    component: FriendlistComponent,
     canActivate: [RoleGuardGuard],
     data:{
       expectedRoles: ['ROLE_CONFIRMED']

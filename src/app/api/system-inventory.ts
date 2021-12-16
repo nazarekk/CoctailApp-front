@@ -38,8 +38,6 @@ export class SystemInventory {
   }
 
   filterIngredient(type: String, category: String, active: Boolean): Observable<IngrInfo[]> {
-    console.log(this.rootUrl + '/api/moderator/ingredients/filter?type='
-      + type + "&category=" + category);
     return this.http.get<IngrInfo[]>(this.rootUrl + '/api/moderator/ingredients/filter?type='
       + type + "&category=" + category + "&active=" + active);
   }
@@ -75,7 +73,7 @@ export class SystemInventory {
 
   filterKitchenware(type: String, category: String, active: Boolean): Observable<KitchenwareInfo[]> {
     console.log(this.rootUrl + '/api/moderator/kitchenware/filter?type='
-      + type + "&category=" + category);
+      + type + "&category=" + category + "&active=" + active);
     return this.http.get<KitchenwareInfo[]>(this.rootUrl + '/api/moderator/kitchenware/filter?type='
       + type + "&category=" + category + "&active=" + active);
   }

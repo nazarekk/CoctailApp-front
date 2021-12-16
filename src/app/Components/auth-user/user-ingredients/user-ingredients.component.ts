@@ -1,31 +1,42 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {IngrInfo} from "../../moderator/ingredient-list/IngredientModel";
 import {UserInventoryService} from "../../../api/user-inventory";
-import {SystemInventory} from "../../../api/system-inventory";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-user-ingredients',
   templateUrl: './user-ingredients.component.html',
   styleUrls: ['./user-ingredients.component.css']
 })
-export class UserIngredientsComponent implements OnInit {
+export class UserIngredientsComponent implements OnInit, OnDestroy {
 
   ingredients: IngrInfo[] = [];
   sorted: Boolean = true;
   showAll: Boolean = true;
-  stockText: String = "";
+  errorEvent: Boolean = false;
+  ingredientSubscription: Subscription;
+  serverResponse: Subscription;
 
-  constructor(private userInventoryService: UserInventoryService,
-              private systemInventory: SystemInventory) {
+  constructor(private userInventoryService: UserInventoryService) {
   }
 
   ngOnInit(): void {
-    this.userInventoryService.listIngredient().subscribe((data: IngrInfo[]) => this.ingredients = data)
-    this.stockText = "Remove from stock";
+    this.ingredientSubscription = this.userInventoryService.listIngredient().subscribe((data: IngrInfo[]) => this.ingredients = data)
   }
 
-  search(searchValue) {
-    this.userInventoryService.searchIngredient(searchValue).subscribe((data: IngrInfo[]) => this.ingredients = data)
+  ngOnDestroy() {
+    this.ingredientSubscription.unsubscribe();
+    this.serverResponse.unsubscribe();
+  }
+
+  search(searchValue: String) {
+    this.ingredientSubscription.unsubscribe();
+    if (this.showAll) {
+      this.ingredientSubscription = this.userInventoryService.searchIngredient(searchValue).subscribe((data: IngrInfo[]) => this.ingredients = data)
+    } else {
+      this.ingredientSubscription = this.userInventoryService.searchAllIngredient(searchValue).subscribe((data: IngrInfo[]) => this.ingredients = data)
+    }
+
   }
 
   sort() {
@@ -35,28 +46,52 @@ export class UserIngredientsComponent implements OnInit {
   }
 
   view() {
+    this.ingredientSubscription.unsubscribe();
     if (this.showAll) {
-      this.userInventoryService.allIngredients().subscribe((data: IngrInfo[]) => this.ingredients = data)
+      this.ingredientSubscription = this.userInventoryService.allIngredients().subscribe((data: IngrInfo[]) => this.ingredients = data)
       this.showAll = !this.showAll
-      this.stockText = "Add to stock";
     } else {
-      this.userInventoryService.listIngredient().subscribe((data: IngrInfo[]) => this.ingredients = data)
+      this.ingredientSubscription = this.userInventoryService.listIngredient().subscribe((data: IngrInfo[]) => this.ingredients = data)
       this.showAll = !this.showAll
-      this.stockText = "Remove from stock";
     }
   }
 
-  addToStock(id: number) {
+  addToStock(ingr: IngrInfo) {
+    this.serverResponse.unsubscribe();
     if (this.showAll) {
-      this.userInventoryService.removeFromStock(id).subscribe(data => {
+      this.serverResponse = this.userInventoryService.removeFromStock(ingr.id).subscribe(() => {
         this.showAll = !this.showAll;
         this.view();
       });
     } else {
-      this.userInventoryService.addToStock(id).subscribe(data => {
+      if (ingr.quantity == undefined) ingr.quantity = 1;
+      this.serverResponse = this.userInventoryService.addToStock(ingr.id, ingr.quantity).subscribe(() => {
         this.showAll = !this.showAll;
         this.view();
+      }, error => {
+        if (error.status == 406) this.errorEvent = true;
       });
+    }
+  }
+
+  editStock(ingr: IngrInfo) {
+    this.serverResponse.unsubscribe();
+    this.serverResponse = this.userInventoryService.editStock(ingr.id, ingr.quantity).subscribe(data => {
+      if (data.status == 200) {
+        this.showAll = !this.showAll;
+        this.view();
+      }
+    })
+  }
+
+  filter(ingr: IngrInfo) {
+    this.serverResponse.unsubscribe();
+    if (this.showAll) {
+      this.serverResponse = this.userInventoryService.filterIngredient(ingr.type, ingr.category,
+        true).subscribe(data => this.ingredients = data);
+    } else {
+      this.serverResponse = this.userInventoryService.filterAllIngredient(ingr.type, ingr.category,
+        true).subscribe(data => this.ingredients = data);
     }
   }
 

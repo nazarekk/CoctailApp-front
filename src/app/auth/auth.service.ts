@@ -3,7 +3,9 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {tap} from "rxjs/operators";
 import {UserPersonalInfo} from "../Interfaces/UserPersonalInfo";
-import {JwtToken} from "../Interfaces/JwtToken";import {environment} from "../../environments/environment";
+import {JwtToken} from "../Interfaces/JwtToken";
+import {environment} from "../../environments/environment";
+import {UserInfo} from "../Components/auth-user/search-friend/user-model";
 
 @Injectable({
   providedIn: 'root'
@@ -54,7 +56,7 @@ export class AuthService {
   }
 
   registerModerator(user) {
-    return this.http.post<any>(this.rootUrl + '/api/admin/moderators', user)
+    return this.http.post<any>(this.rootUrl + '/api/admin/moderators', user, {observe: "response"})
   }
 
   verificateModerator(user) {
@@ -66,10 +68,9 @@ export class AuthService {
   }
 
   verifyUser(verifyUser) {
-    return this.http.patch<any>(this.rootUrl + '/api/users/activation', verifyUser).subscribe(
-      res => console.log(res)
-    )
+    return this.http.patch<any>(this.rootUrl + '/api/users/activation', verifyUser, {observe: "response"})
   }
+
   changePassword(user) {
     return this.http.put<any>(this.rootUrl + '/api/users/settings', user, {observe: 'response'})
   }
@@ -105,8 +106,12 @@ export class AuthService {
   }
 
 
-  searchFriend(nickname: String) {
-    return this.http.get<any>(this.rootUrl + '/api/users/find?nickname=' + nickname);
+  searchFriend(nickname: String): Observable<UserInfo[]> {
+    return this.http.get<UserInfo[]>(this.rootUrl + '/api/users/find?nickname=' + nickname);
+  }
+
+  friendList(): Observable<UserInfo[]> {
+    return this.http.get<UserInfo[]>(this.rootUrl + '/api/users/friendlist');
   }
 
   addFriend(id: Number) {

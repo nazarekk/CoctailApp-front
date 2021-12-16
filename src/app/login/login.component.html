@@ -1,4 +1,7 @@
 <app-navbar [isSearchable]="false"></app-navbar>
+<div class="alert alert-danger" role="alert" *ngIf="isError" (click)="isError = false">
+  Wrong email or password try again
+</div>
 <div class="bdy-cart container dsp">
   <h1>{{title}}</h1>
 

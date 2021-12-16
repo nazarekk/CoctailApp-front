@@ -1,33 +1,43 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {SystemInventory} from "../../../api/system-inventory";
 import {environment} from "../../../../environments/environment";
 import {KitchenwareInfo} from "./KitchenwareModel";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-kitchenware-list',
   templateUrl: './kitchenware-list.component.html',
   styleUrls: ['./kitchenware-list.component.css']
 })
-export class KitchenwareListComponent implements OnInit {
+export class KitchenwareListComponent implements OnInit, OnDestroy {
 
   searchValue: string;
   kitchenwares: KitchenwareInfo[] = [];
   sorted: Boolean = true;
+  objectSubscription: Subscription;
+  serverResponse: Subscription;
 
   constructor(private systemInventory: SystemInventory) { }
 
   ngOnInit() {
-    this.systemInventory.listKitchenware().subscribe((data: KitchenwareInfo[]) => this.kitchenwares = data);
+    this.objectSubscription = this.systemInventory.listKitchenware().subscribe((data: KitchenwareInfo[]) => this.kitchenwares = data);
     console.log("ingred" + this.kitchenwares)
   }
 
+  ngOnDestroy() {
+    this.objectSubscription.unsubscribe();
+    this.serverResponse.unsubscribe();
+  }
+
   search(searchValue) {
-    this.systemInventory.searchKitchenware(searchValue).subscribe((data: KitchenwareInfo[]) => this.kitchenwares = data);
+    this.objectSubscription.unsubscribe();
+    this.objectSubscription = this.systemInventory.searchKitchenware(searchValue).subscribe((data: KitchenwareInfo[]) => this.kitchenwares = data);
     console.log(this.kitchenwares);
   }
 
   removeKitchenware (id: Number) {
-    this.systemInventory.removeKitchenware(id).subscribe(
+    if (!(this.serverResponse == undefined)) this.serverResponse.unsubscribe();
+    this.serverResponse = this.systemInventory.removeKitchenware(id).subscribe(
       data => {
         if (data == true) {
           for (var i = 0; i < this.kitchenwares.length; i++) {
@@ -49,7 +59,8 @@ export class KitchenwareListComponent implements OnInit {
   }
 
   filter(data) {
-    this.systemInventory.filterKitchenware(data.type, data.category, data.active).subscribe( data => this.kitchenwares = data);
+    this.objectSubscription.unsubscribe();
+    this.objectSubscription = this.systemInventory.filterKitchenware(data.type, data.category, data.active).subscribe( data => this.kitchenwares = data);
 
   }
 

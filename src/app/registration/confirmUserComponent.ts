@@ -11,6 +11,7 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 
 export class ConfirmUserComponent implements OnInit{
   user: FormGroup = new FormGroup({});
+  isError: Boolean = false;
   constructor( private auth: AuthService,
                private fb: FormBuilder,
                private route: ActivatedRoute){
@@ -30,7 +31,8 @@ export class ConfirmUserComponent implements OnInit{
     });
     this.user.value.nickname = nickname;
     console.log(this.user.value);
-    this.auth.verifyUser(this.user.value);
-    location.href = "#";
+    this.auth.verifyUser(this.user.value).subscribe(data => {
+      if (data.status == 200) location.href = "/login";
+    }, () => this.isError = true);
   }
 }
