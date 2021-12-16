@@ -1,11 +1,11 @@
 import {NgModule, Provider} from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {BrowserModule} from '@angular/platform-browser';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { RegistrationComponent } from './registration/registration.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {RegistrationComponent} from './registration/registration.component';
 import {FormsModule} from "@angular/forms";
-import { LoginComponent } from './login/login.component';
+import {LoginComponent} from './login/login.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {ModeratorComponent} from "./moderatorRegistration/moderator.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
@@ -20,8 +20,10 @@ import {EditPersonalInfoComponent} from "./settings/editPersonalInfo/edit-person
 import {IngredientListComponent} from "./Components/moderator/ingredient-list/ingredient-list.component";
 import {AuthUserModule} from "./Components/auth-user/auth-user.module";
 import {ModeratorModule} from "./Components/moderator/moderator.module";
-import { NavbarComponent } from './Components/navbar/navbar.component';
+import {NavbarComponent} from './Components/navbar/navbar.component';
 import {UserPersonalInfoComponent} from "./userPersonalInfo/userPersonalInfo.component";
+import {CaptchaComponent} from './captcha/captcha.component';
+import {RecaptchaModule, RecaptchaFormsModule} from "ng-recaptcha";
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
@@ -47,7 +49,8 @@ const INTERCEPTOR_PROVIDER: Provider = {
     IngredientListComponent,
     ConfirmUserComponent,
     SettingsComponent,
-    EditPersonalInfoComponent
+    EditPersonalInfoComponent,
+    CaptchaComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -58,7 +61,9 @@ const INTERCEPTOR_PROVIDER: Provider = {
     ReactiveFormsModule,
     AuthUserModule,
     ReactiveFormsModule,
-    ModeratorModule
+    ModeratorModule,
+    RecaptchaModule,
+    RecaptchaFormsModule
   ],
   providers: [INTERCEPTOR_PROVIDER],
   exports: [
@@ -67,4 +72,5 @@ const INTERCEPTOR_PROVIDER: Provider = {
   bootstrap: [AppComponent]
 })
 export class AppModule {
+
 }

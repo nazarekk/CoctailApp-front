@@ -2,7 +2,6 @@ import {Component, OnInit} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../auth/auth.service";
 import {UserPersonalInfo} from "../../Interfaces/UserPersonalInfo";
-import {response} from "express";
 import {UserPhoto} from "../../Interfaces/UserPhoto";
 
 

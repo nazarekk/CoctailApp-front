@@ -47,6 +47,7 @@ export class AuthService {
       .pipe(
         tap(
           ({token}) => {
+            localStorage.removeItem('_grecaptcha')
             localStorage.setItem('token', token)
           }
         )
