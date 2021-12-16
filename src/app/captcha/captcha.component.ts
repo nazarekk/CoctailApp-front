@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, Renderer2} from '@angular/core';
 
 @Component({
   selector: 'app-captcha',
@@ -7,9 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CaptchaComponent implements OnInit {
 
-  constructor() { }
+  @Output() captchaEvent: EventEmitter<string> = new EventEmitter();
 
-  ngOnInit(): void {
+  constructor(private renderer: Renderer2) {
   }
 
+  ngOnInit(): void {
+    let script = this.renderer.createComment('script');
+    script.defer = true;
+    script.asyns = true;
+    script.src = "https://www.google.com/recaptcha/api.js";
+    this.renderer.appendChild(document.body, script);
+  }
+
+
+  resolved(token: string): void{
+    this.captchaEvent.emit(token);
+  }
 }
