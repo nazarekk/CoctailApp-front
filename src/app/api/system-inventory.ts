@@ -17,7 +17,6 @@ export class SystemInventory {
   }
 
   removeIngredient(id: Number) {
-    console.log(this.rootUrl + '/api/moderator/ingredients/' + id.toString());
     return this.http.delete<any>(this.rootUrl + '/api/moderator/ingredients/' + id.toString());
   }
 
@@ -51,7 +50,6 @@ export class SystemInventory {
   }
 
   removeKitchenware(id: Number) {
-    console.log(this.rootUrl + '/api/moderator/kitchenware/' + id.toString());
     return this.http.delete<any>(this.rootUrl + '/api/moderator/kitchenware/' + id.toString());
   }
 
@@ -72,8 +70,6 @@ export class SystemInventory {
   }
 
   filterKitchenware(type: String, category: String, active: Boolean): Observable<KitchenwareInfo[]> {
-    console.log(this.rootUrl + '/api/moderator/kitchenware/filter?type='
-      + type + "&category=" + category + "&active=" + active);
     return this.http.get<KitchenwareInfo[]>(this.rootUrl + '/api/moderator/kitchenware/filter?type='
       + type + "&category=" + category + "&active=" + active);
   }

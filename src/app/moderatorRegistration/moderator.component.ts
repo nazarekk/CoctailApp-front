@@ -34,7 +34,6 @@ export class ModeratorComponent implements OnInit,OnDestroy{
   }
 
   submit(){
-    console.log(this.form.value)
     this.sSub = this.auth.registerModerator(this.form.value)
       .subscribe(
         ()=>{

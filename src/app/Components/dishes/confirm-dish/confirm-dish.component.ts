@@ -37,20 +37,16 @@ export class ConfirmDishComponent implements OnInit {
       this.dishesService.getDishes(params.id).subscribe((data: DishModel) => {
         this.actualInfo = data;
         this.dishIngrs = data.ingredientList;
-        console.log(data)
       });
       this.recipeId = params.id;
     })
-    console.log(this.catalogue)
   }
 
   addToDish(name: String) {
-    this.dishesService.addIngredient(this.recipeId, name).subscribe(() => this.refreshList(), error => {
+    this.dishesService.addIngredient(this.recipeId, name).subscribe(() => this.refreshList(), () => {
       this.showErr = true;
       this.errorText = "This ingredient is already included"
-      console.log(error.status)
     })
-    console.log(this.actualInfo)
   }
 
   removeFromDish(name: String) {

@@ -21,7 +21,6 @@ export class SearchUserComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.searchValue = "";
     this.friendsSubscription = this.authService.searchFriend("").subscribe((data: UserInfo[]) => this.friends = data);
-    console.log(this.friends);
   }
 
   ngOnDestroy() {
@@ -33,7 +32,6 @@ export class SearchUserComponent implements OnInit, OnDestroy {
     this.friendsSubscription.unsubscribe();
     this.searchValue = searchValue;
     this.friendsSubscription = this.authService.searchFriend(searchValue).subscribe((data: UserInfo[]) => this.friends = data);
-    console.log(this.friends);
   }
 
   addFriend(user: UserInfo) {

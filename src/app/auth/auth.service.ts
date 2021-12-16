@@ -34,7 +34,6 @@ export class AuthService {
           localStorage.removeItem('token')
           localStorage.setItem('token', token.token);
           this.setToken(token.token);
-          console.log("Token updated")
         })
       );
   }
@@ -44,7 +43,6 @@ export class AuthService {
   }
 
   loginUser(user): Observable<{ token: string }> {
-    console.log(user)
     return this.http.post<{ token: string }>(this.rootUrl + '/api/auth/login', user)
       .pipe(
         tap(

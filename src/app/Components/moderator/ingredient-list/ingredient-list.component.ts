@@ -21,7 +21,6 @@ export class IngredientListComponent implements OnInit, OnDestroy{
 
   ngOnInit() {
     this.ingredientsSubscription = this.systemInventory.listIngredient().subscribe((data: IngrInfo[]) => this.ingredients = data);
-    console.log("ingred" + this.ingredients)
   }
 
   ngOnDestroy() {
@@ -32,7 +31,6 @@ export class IngredientListComponent implements OnInit, OnDestroy{
   search(searchValue) {
     this.ingredientsSubscription.unsubscribe();
     this.ingredientsSubscription = this.systemInventory.searchIngredient(searchValue).subscribe((data: IngrInfo[]) => this.ingredients = data);
-    console.log(this.ingredients);
   }
 
   removeIngredient (id: Number) {

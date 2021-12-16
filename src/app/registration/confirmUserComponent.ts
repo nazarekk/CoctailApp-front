@@ -30,7 +30,6 @@ export class ConfirmUserComponent implements OnInit{
       this.user.value.verificationCode = params.code
     });
     this.user.value.nickname = nickname;
-    console.log(this.user.value);
     this.auth.verifyUser(this.user.value).subscribe(data => {
       if (data.status == 200) location.href = "/login";
     }, () => this.isError = true);

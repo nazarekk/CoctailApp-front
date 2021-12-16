@@ -21,7 +21,6 @@ export class KitchenwareListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.objectSubscription = this.systemInventory.listKitchenware().subscribe((data: KitchenwareInfo[]) => this.kitchenwares = data);
-    console.log("ingred" + this.kitchenwares)
   }
 
   ngOnDestroy() {
@@ -32,7 +31,6 @@ export class KitchenwareListComponent implements OnInit, OnDestroy {
   search(searchValue) {
     this.objectSubscription.unsubscribe();
     this.objectSubscription = this.systemInventory.searchKitchenware(searchValue).subscribe((data: KitchenwareInfo[]) => this.kitchenwares = data);
-    console.log(this.kitchenwares);
   }
 
   removeKitchenware (id: Number) {

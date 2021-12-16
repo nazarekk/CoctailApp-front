@@ -41,7 +41,8 @@ export class RegistrationComponent implements OnInit {
   submit() {
     this.auth.registerUser(this.removeDoubleCheckPass(this.form.value))
       .subscribe(
-        res => console.log(res),
+        () => {
+        },
         err => {
           if (err.status == 417) {
             this.isError = true;

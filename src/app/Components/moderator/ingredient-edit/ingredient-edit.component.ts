@@ -52,9 +52,7 @@ export class IngredientEditComponent implements OnInit, OnDestroy {
     if (this.form.value.category.length == 0) {
       this.form.value.category = this.actualInfo.category.toString()
     }
-    console.log(this.form.value)
-    this.systemInventory.editIngredient(this.form.value).subscribe(data =>
-      console.log(data));
+    this.systemInventory.editIngredient(this.form.value).subscribe(() =>{})
   }
 
 }
