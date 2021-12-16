@@ -54,7 +54,7 @@ export class ConfirmDishComponent implements OnInit {
   }
 
   removeFromDish(name: String) {
-    this.dishesService.removeInrgedient(this.recipeId, name).subscribe(() => this.refreshList())
+    this.dishesService.removeIngredient(this.recipeId, name).subscribe(() => this.refreshList())
   }
 
   Save() {

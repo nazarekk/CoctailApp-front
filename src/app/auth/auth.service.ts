@@ -59,7 +59,7 @@ export class AuthService {
     return this.http.post<any>(this.rootUrl + '/api/admin/moderators', user, {observe: "response"})
   }
 
-  verificateModerator(user) {
+  verificationModerator(user) {
     return this.http.post<any>(this.rootUrl + '/api/moderator/activation', user)
   }
 

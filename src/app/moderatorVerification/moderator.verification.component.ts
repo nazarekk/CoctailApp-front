@@ -51,7 +51,7 @@ export class ModeratorVerificationComponent implements OnInit{
 
   submit(){
     console.log(this.addVerificationCode(this.removeDoubleCheckPass(this.form.value)))
-    this.auth.verificateModerator(this.addVerificationCode(this.removeDoubleCheckPass(this.form.value)))
+    this.auth.verificationModerator(this.addVerificationCode(this.removeDoubleCheckPass(this.form.value)))
       .subscribe(
         res=>console.log(res),
         err=>console.log(err)
