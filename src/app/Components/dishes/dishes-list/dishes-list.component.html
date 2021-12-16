@@ -1,9 +1,10 @@
 <app-navbar [isSearchable]="true" (searchEvent)="search($event)"></app-navbar>
-<app-add-dish *ngIf="isModerator()"></app-add-dish>
+<app-add-dish *ngIf="isModerator()" style="display: inline"></app-add-dish>
+<app-dishes-filter (filterDishEvent)="filterDish($event)"></app-dishes-filter>
 <div class="row dishes" *ngIf="dishes">
   <div class="col-md-6" *ngFor="let model of dishes">
     <app-dishes [dish]="model"
                 (likeEvent)="like($event)"
-    (favouriteEvent)="favourite($event)"></app-dishes>
+                (favouriteEvent)="favourite($event)"></app-dishes>
   </div>
 </div>

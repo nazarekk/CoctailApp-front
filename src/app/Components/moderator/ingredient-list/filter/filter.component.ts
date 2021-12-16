@@ -10,6 +10,7 @@ import {CategoryEnum} from "../categoryEnum";
 })
 export class FilterComponent implements OnInit {
 
+
   @Output() filterEvent = new EventEmitter();
   filterInfo: IngrInfo;
   constructor() {

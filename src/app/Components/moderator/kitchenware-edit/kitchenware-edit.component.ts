@@ -1,19 +1,21 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {SystemInventory} from "../../../api/system-inventory";
 import {ActivatedRoute} from "@angular/router";
 import {AuthService} from "../../../auth/auth.service";
 import {KitchenwareInfo} from "../kitchenware-list/KitchenwareModel";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-kitchenware-edit',
   templateUrl: './kitchenware-edit.component.html',
   styleUrls: ['./kitchenware-edit.component.css']
 })
-export class KitchenwareEditComponent implements OnInit {
+export class KitchenwareEditComponent implements OnInit, OnDestroy{
 
   actualInfo: KitchenwareInfo;
   form: FormGroup = new FormGroup({});
+  infoSubscription: Subscription;
 
   constructor(private fb: FormBuilder,
               private systemInventory: SystemInventory,
@@ -34,8 +36,12 @@ export class KitchenwareEditComponent implements OnInit {
       image: ['']
     })
     this.route.queryParams.subscribe(params =>
-      this.systemInventory.getKitchenware(params.id).subscribe(data =>
+      this.infoSubscription = this.systemInventory.getKitchenware(params.id).subscribe(data =>
         this.actualInfo = data))
+  }
+
+  ngOnDestroy() {
+    this.infoSubscription.unsubscribe();
   }
 
   submit() {
@@ -46,9 +52,7 @@ export class KitchenwareEditComponent implements OnInit {
     if (this.form.value.category.length == 0) {
       this.form.value.category = this.actualInfo.category.toString()
     }
-    console.log(this.form.value)
-    this.systemInventory.editKitchenware(this.form.value).subscribe(data =>
-      console.log(data));
+    this.systemInventory.editKitchenware(this.form.value).subscribe(() => {})
   }
 
 }

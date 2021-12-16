@@ -35,7 +35,6 @@ export class AddDishComponent implements OnInit {
     this.dish.recipe = receipt;
     if (image === "") image = "https://cdn0.iconfinder.com/data/icons/documents-50/32/undefined-document-512.png"
     this.dish.image = image
-    console.log(this.dish)
     this.dishesService.addDish(this.dish).subscribe(data => {if (data>0) location.href = "dishes/edit?id=" + data.toString()})
   }
 

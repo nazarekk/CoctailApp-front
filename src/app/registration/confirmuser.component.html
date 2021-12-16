@@ -1,5 +1,13 @@
 <app-navbar [isSearchable]="false"></app-navbar>
-<div class = "bdy-cart container dsp text-center">
-  <input type="email" class="form-control" #nickname placeholder="Nickname" aria-label="Nickname" >
-  <button (click)="submit(nickname.value)" (keyup.enter)="submit(nickname.value)" type="submit" class="btn btn-primary btn-lg">Confirm User</button>
+<div class="alert alert-danger" role="alert" *ngIf="isError" (click)="isError = false">
+  Error occurred while activating this user
 </div>
+<form class="bdy-cart container dsp text-center">
+  <div class="corona form-group lg10 text-center" style="place-items: center">
+    <input type="text" class="form-control" #nickname placeholder="Enter your nickname here" aria-label="Nickname"
+           style="margin-bottom: 10px">
+    <button (click)="submit(nickname.value)" (keyup.enter)="submit(nickname.value)" type="submit"
+            class="btn btn-primary btn-lg">Confirm User
+    </button>
+  </div>
+</form>

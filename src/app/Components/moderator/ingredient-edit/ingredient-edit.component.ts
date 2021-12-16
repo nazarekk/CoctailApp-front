@@ -1,18 +1,20 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthService} from "../../../auth/auth.service";
 import {ActivatedRoute} from "@angular/router";
 import {IngrInfo} from "../ingredient-list/IngredientModel";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {SystemInventory} from "../../../api/system-inventory";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-ingredient-edit',
   templateUrl: './ingredient-edit.component.html',
   styleUrls: ['./ingredient-edit.component.css']
 })
-export class IngredientEditComponent implements OnInit {
+export class IngredientEditComponent implements OnInit, OnDestroy {
 
   actualInfo: IngrInfo;
+  infoSubscription: Subscription;
   form: FormGroup = new FormGroup({});
 
   constructor(private fb: FormBuilder,
@@ -34,8 +36,12 @@ export class IngredientEditComponent implements OnInit {
       image: ['']
     })
     this.route.queryParams.subscribe(params =>
-      this.systemInventory.getIngredient(params.id).subscribe((data: IngrInfo) =>
+      this.infoSubscription = this.systemInventory.getIngredient(params.id).subscribe((data: IngrInfo) =>
         this.actualInfo = data))
+  }
+
+  ngOnDestroy() {
+    this.infoSubscription.unsubscribe();
   }
 
   submit() {
@@ -46,9 +52,7 @@ export class IngredientEditComponent implements OnInit {
     if (this.form.value.category.length == 0) {
       this.form.value.category = this.actualInfo.category.toString()
     }
-    console.log(this.form.value)
-    this.systemInventory.editIngredient(this.form.value).subscribe(data =>
-      console.log(data));
+    this.systemInventory.editIngredient(this.form.value).subscribe(() =>{})
   }
 
 }

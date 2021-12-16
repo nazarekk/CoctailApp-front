@@ -1,29 +1,37 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {DishModel} from "../dishModel";
 import {TypeEnum} from "../typeEnum";
 import {DishesService} from "../../../api/dishes-service";
 import {AuthService} from "../../../auth/auth.service";
-import {SystemInventory} from "../../../api/system-inventory";
+import {FilterInterface} from "./dishes-filter/filter-interface";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-dishes-list',
   templateUrl: './dishes-list.component.html',
   styleUrls: ['./dishes-list.component.css']
 })
-export class DishesListComponent implements OnInit {
+export class DishesListComponent implements OnInit, OnDestroy {
 
   dishes: DishModel[] = [];
-  typeEnum: TypeEnum
+  typeEnum: TypeEnum;
+  dishesSubscription: Subscription;
+  serverResponse: Subscription;
 
   constructor(private dishesService: DishesService,
-              private auth: AuthService,
-              private systemInventory: SystemInventory) { }
+              private auth: AuthService) { }
 
   ngOnInit(): void {
-    this.refreshList();
+    this.dishesSubscription = this.dishesService.listDishes().subscribe((data: DishModel[]) => this.dishes = data);
+  }
+
+  ngOnDestroy() {
+    this.dishesSubscription.unsubscribe();
+    this.serverResponse.unsubscribe();
   }
 
   refreshList() {
+    this.dishesSubscription.unsubscribe();
     this.dishesService.listDishes().subscribe((data: DishModel[]) => this.dishes = data);
   }
 
@@ -32,15 +40,23 @@ export class DishesListComponent implements OnInit {
   }
 
   like(dish: DishModel) {
-    this.dishesService.likeDish(dish.id, !dish.liked).subscribe(data => this.refreshList())
+    if (!(this.serverResponse == undefined)) this.serverResponse.unsubscribe();
+    this.serverResponse = this.dishesService.likeDish(dish.id, !dish.liked).subscribe(() => this.refreshList())
   }
 
   favourite(dish: DishModel) {
-    this.dishesService.favouriteDish(dish.id, !dish.favourite).subscribe(data => this.refreshList())
+    if (!(this.serverResponse == undefined)) this.serverResponse.unsubscribe();
+    this.serverResponse = this.dishesService.favouriteDish(dish.id, !dish.favourite).subscribe(() => this.refreshList())
   }
 
   search(searchvalue) {
-    this.dishesService.searchDishes(searchvalue).subscribe((data: DishModel[]) => this.dishes = data);
+    this.dishesSubscription.unsubscribe();
+    this.dishesSubscription = this.dishesService.searchDishes(searchvalue).subscribe((data: DishModel[]) => this.dishes = data);
+  }
+
+  filterDish(filter: FilterInterface) {
+    this.dishesSubscription.unsubscribe();
+    this.dishesSubscription = this.dishesService.filterDishes(filter.sugarless, filter.alcohol).subscribe((data: DishModel[]) => this.dishes = data)
   }
 
 }

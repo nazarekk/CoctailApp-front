@@ -27,16 +27,16 @@ export class DishesService {
     return this.http.post<any>(this.rootUrl + '/api/moderator/recipe', dish);
   }
 
-  addInrgedient(id: Number, name: String): Observable<any> {
+  addIngredient(id: Number, name: String): Observable<any> {
     return this.http.post<any>(this.rootUrl + '/api/moderator/recipe/' + id.toString() + "/ingredients?name=" + name, {observe: 'response'});
   }
 
-  removeInrgedient(id: Number, name: String): Observable<Response> {
+  removeIngredient(id: Number, name: String): Observable<Response> {
     return this.http.delete<Response>(this.rootUrl + '/api/moderator/recipe/' + id.toString() + "/ingredients?name=" + name);
   }
 
-  editDish(dish): Observable<any> {
-    return this.http.put<any>(this.rootUrl + '/api/moderator/recipe', dish);
+  editDish(dish) {
+    return this.http.put<any>(this.rootUrl + '/api/moderator/recipe', dish,{observe: "response"});
   }
 
   removeDish(id: number): Observable<any> {
@@ -53,5 +53,9 @@ export class DishesService {
 
   searchDishes(name: String): Observable<DishModel[]> {
     return this.http.get<DishModel[]>(this.rootUrl + '/api/users/recipe?name=' + name);
+  }
+
+  filterDishes(sugarless: String, alcohol: String): Observable<DishModel[]> {
+    return this.http.get<DishModel[]>(this.rootUrl + '/api/users/recipe/filter?sugarless=' + sugarless + '&alcohol=' + alcohol);
   }
 }

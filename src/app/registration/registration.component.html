@@ -1,4 +1,7 @@
 <app-navbar [isSearchable]="false"></app-navbar>
+<div class="alert alert-danger" role="alert" *ngIf="isError" (click)="isError = false">
+  {{this.alertText}}
+</div>
 <div class="bdy-cart container dsp">
   <h1>{{title}}</h1>
 
@@ -38,7 +41,6 @@
       </div>
     </div>
     <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Enter</button>
-    <div *ngIf="this.success">Registration was successful .</div>
   </form>
   <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
 </div>

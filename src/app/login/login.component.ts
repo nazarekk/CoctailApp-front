@@ -13,6 +13,8 @@ export class LoginComponent implements OnInit, OnDestroy{
 
   title = 'Sign In'
 
+  isError: Boolean = false;
+
   form: FormGroup = new FormGroup({});
   sSub: Subscription
 
@@ -53,7 +55,9 @@ export class LoginComponent implements OnInit, OnDestroy{
             }
           }
         },
-        err=>console.log(err)
+        err=> {
+          if (err.status == 404) this.isError = true;
+        }
       )
   }
 }
