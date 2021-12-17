@@ -1,0 +1,36 @@
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  Filter
+</button>
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Select filter</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <select class="form-select" #type aria-label="Type">
+          <option selected value="">Select type</option>
+          <option value="Alcohol">Alcohol</option>
+          <option value="Fruit">Fruit</option>
+          <option value="Beverage">Beverage</option>
+        </select>
+        <select class="form-select" #category aria-label="Category">
+          <option selected value="">Select category</option>
+          <option value="Premium">Premium</option>
+          <option value="Medium">Medium</option>
+          <option value="Econom">Econom</option>
+        </select>
+        <select class="form-select" #active aria-label="Activity">
+          <option selected value="">Show all</option>
+          <option value="true" >Show active only</option>
+          <option value="false">Show inactive only</option>
+        </select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="filter(type.value,category.value,active.value)">Choose filter</button>
+      </div>
+    </div>
+  </div>
+</div>

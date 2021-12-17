@@ -1,7 +1,11 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {tap} from "rxjs/operators";
+import {UserPersonalInfo} from "../Interfaces/UserPersonalInfo";
+import {JwtToken} from "../Interfaces/JwtToken";
+import {environment} from "../../environments/environment";
+import {UserInfo} from "../Components/auth-user/search-friend/user-model";
 import {moderInfo} from "../Components/moderator-list-info/moderList.model";
 import {userInfo} from "../user-profile/userProfile.model";
 
@@ -11,7 +15,6 @@ import {userInfo} from "../user-profile/userProfile.model";
 
 export class AuthService {
 
-  private static token = null
   private static role = null
   private rootUrl = "http://localhost:8080"
   private token = null
@@ -19,55 +22,134 @@ export class AuthService {
   constructor(private http: HttpClient) {
   }
 
+
+  refreshToken(): Observable<any> {
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': 'Bearer_' + this.getToken()
+      })
+    };
+    return this.http.post<JwtToken>(this.rootUrl + '/api/auth/refresh-token', {}, httpOptions)
+      .pipe(
+        tap((token: JwtToken) => {
+          localStorage.removeItem('token')
+          localStorage.setItem('token', token.token);
+          this.setToken(token.token);
+        })
+      );
+  }
+
   registerUser(user) {
     return this.http.post<any>(this.rootUrl + '/api/users', user)
   }
 
-  loginUser(user): Observable<{ token: string, role: string }> {
-    return this.http.post<{ token: string, role: string }>(this.rootUrl + '/api/auth/login', user)
+  loginUser(user): Observable<{ token: string }> {
+    return this.http.post<{ token: string }>(this.rootUrl + '/api/auth/login', user)
       .pipe(
         tap(
-          ({token, role}) => {
+          ({token}) => {
+            localStorage.removeItem('_grecaptcha')
             localStorage.setItem('token', token)
-            localStorage.setItem('role', role)
           }
         )
       )
   }
 
   registerModerator(user) {
-    return this.http.post<any>(this.rootUrl + '/api/admin/moderators', user)
+    return this.http.post<any>(this.rootUrl + '/api/admin/moderators', user, {observe: "response"})
   }
 
-  verificateModerator(user) {
-    return this.http.post<any>(this.rootUrl + 'api/moderator/activation', user)
+  verificationModerator(user) {
+    return this.http.post<any>(this.rootUrl + '/api/moderator/activation', user)
   }
 
   editModerator(user) {
     return this.http.patch<any>(this.rootUrl + '/api/admin/moderator/edit', user)
   }
 
-  verifyUser(code: string) {
-    console.log((this.rootUrl + '/api/users/activation?code=' + code))
-    return this.http.get<any>(this.rootUrl + '/api/users/activation?code=' + code).subscribe(
-      res => console.log(res)
-    )
+  verifyUser(verifyUser) {
+    return this.http.patch<any>(this.rootUrl + '/api/users/activation', verifyUser, {observe: "response"})
+  }
+
+  changePassword(user) {
+    return this.http.put<any>(this.rootUrl + '/api/users/settings', user, {observe: 'response'})
+  }
+
+  changeInfo(user) {
+    return this.http.patch<any>(this.rootUrl + '/api/users/settings/edit', user, {observe: 'response'})
+  }
+
+  getInformation(): Observable<UserPersonalInfo> {
+    return this.http.get<any>(this.rootUrl + '/api/users/settings/edit')
+  }
+
+  changePhoto(user) {
+    return this.http.put<any>(this.rootUrl + '/api/users/settings/edit', user, {observe: 'response'})
   }
 
   setToken(token: string) {
     this.token = token
   }
 
-  static getToken(): string {
-    return localStorage.getItem('token')
+  getToken(): string {
+    this.token = localStorage.getItem('token')
+    return this.token
+  }
+
+  getRole(): string {
+    if (this.getToken() == null) return null;
+    let jwtData = this.getToken().split('.')[1]
+    let decodedJwtJsonData = window.atob(jwtData)
+    let decodedJwtData = JSON.parse(decodedJwtJsonData)
+    let role = decodedJwtData.role
+    return role.toString();
+  }
+
+
+  searchFriend(nickname: String): Observable<UserInfo[]> {
+    return this.http.get<UserInfo[]>(this.rootUrl + '/api/users/find?nickname=' + nickname);
+  }
+
+  friendList(): Observable<UserInfo[]> {
+    return this.http.get<UserInfo[]>(this.rootUrl + '/api/users/friendlist');
   }
 
   static getRole(): string {
     return localStorage.getItem('role')
   }
 
+  addFriend(id: Number) {
+    return this.http.post<any>(this.rootUrl + '/api/users/add/' + id, "")
+  }
+
+  acceptFriend(id: Number) {
+    return this.http.patch<any>(this.rootUrl + '/api/users/accept/' + id, "")
+  }
+
+  declineFriend(id: Number) {
+    return this.http.patch<any>(this.rootUrl + '/api/users/decline/' + id, "")
+  }
+
+  removeFriend(id: Number) {
+    return this.http.delete<any>(this.rootUrl + '/api/users/remove/' + id)
+  }
+
+  subscribeFriend(id: Number) {
+    return this.http.patch<any>(this.rootUrl + '/api/users/subscribe/' + id, "")
+  }
+
+  unsubscribeFriend(id: Number) {
+    return this.http.patch<any>(this.rootUrl + '/api/users/unsubscribe/' + id, "")
+  }
+
+  isAuthenticated(): boolean {
+    return !!localStorage.token
+  }
+
   static logout() {
     localStorage.clear();
+    location.href = "#"
   }
 
   getUserInfo(): Observable<userInfo> {

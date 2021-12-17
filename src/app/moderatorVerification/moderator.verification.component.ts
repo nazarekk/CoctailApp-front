@@ -1,9 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import { ConfirmedValidator } from './confirmed.validator';
 import {AuthService} from "../auth/auth.service";
-import {Subscription} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
@@ -51,12 +50,12 @@ export class ModeratorVerificationComponent implements OnInit{
   }
 
   submit(){
-    console.log(this.addVerificationCode(this.removeDoubleCheckPass(this.form.value)))
-    this.auth.verificateModerator(this.addVerificationCode(this.removeDoubleCheckPass(this.form.value)))
+    this.auth.verificationModerator(this.addVerificationCode(this.removeDoubleCheckPass(this.form.value)))
       .subscribe(
-        res=>console.log(res),
-        err=>console.log(err)
+        ()=>{},
+        ()=>{}
       )
+    location.href = "#";
 
   }
 

@@ -2,7 +2,6 @@ import {Component, OnInit} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../auth/auth.service";
 import {Subscription} from "rxjs";
-import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-moderator-personal',
@@ -18,9 +17,7 @@ export class ModeratorPersonalComponent implements OnInit{
 
 
   constructor(private fb: FormBuilder,
-              private auth: AuthService,
-              private router: Router,
-              private route: ActivatedRoute) {}
+              private auth: AuthService) {}
 
   ngOnInit(){
     this.form = this.fb.group({
@@ -37,11 +34,6 @@ export class ModeratorPersonalComponent implements OnInit{
   }
 
   submit(){
-    console.log(this.form.value)
-    this.sSub = this.auth.editModerator(this.form.value)
-      .subscribe(
-        res=>console.log(res),
-        err=>console.log(err)
-      )
+    this.sSub = this.auth.editModerator(this.form.value).subscribe(()=>{})
   }
 }

@@ -1,7 +1,13 @@
+<app-navbar [isSearchable]="false"></app-navbar>
+<div class="alert {{this.alertClass}}" role="alert" *ngIf="this.success">
+  {{this.message}}
+</div>
+
+
 <div class="bdy-cart container dsp">
   <h1>{{title}}</h1>
 
-  <form [formGroup]="form" (ngSubmit)="submit()">
+  <form [formGroup]="form" (keyup.enter)="submit()" (ngSubmit)="submit()">
     <div class="corona form-group lg10">
       <input
         formControlName="email"
@@ -20,12 +26,17 @@
         type="password"
         class="form-control"
         placeholder="password">
-      <div *ngIf="this.form.controls.password.touched && this.form.controls.password.invalid" class="alert alert-danger">
+      <div *ngIf="this.form.controls.password.touched && this.form.controls.password.invalid"
+           class="alert alert-danger">
         <div *ngIf="this.form.controls.password.errors?.required">Password is required.</div>
       </div>
     </div>
-    <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Enter</button>
+    <button class="btn btn-primary" type="submit" (click)="isSuccess()"
+            [disabled]="!form.valid || !validCaptcha(this.countError) ">Enter
+    </button>
+    <div class="form-group corona lg10" *ngIf="countError>=5 && this.success">
+      <app-captcha (captchaEvent)="getCaptcha($event)"></app-captcha>
+    </div>
   </form>
   <a class="nav-link" routerLink="/registration" routerLinkActive="active">Registration</a>
 </div>
-

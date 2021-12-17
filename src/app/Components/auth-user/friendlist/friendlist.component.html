@@ -1,0 +1,12 @@
+<app-navbar [isSearchable]="false"></app-navbar>
+<div class="alert alert-warning" role="alert" *ngIf="friends == null" (click)="discover()" >
+  It looks like your friendlist is empty! Click to discover
+</div>
+<app-user-tab [friends]="friends"
+              (addFriendEvent)="addFriend($event)"
+              (acceptFriendEvent)="acceptFriend($event)"
+              (declineFriendEvent)="declineFriend($event)"
+              (removeFriendEvent)="removeFriend($event)"
+              (subscribeFriendEvent)="subscribeFriend($event)"
+              (unsubscribeFriendEvent)="unsubscribeFriend($event)">
+</app-user-tab>

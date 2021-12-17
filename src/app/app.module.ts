@@ -12,9 +12,18 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ModeratorVerificationComponent} from "./moderatorVerification/moderator.verification.component";
 import {ModeratorPersonalComponent} from "./moderatorPersonal/moderator.personal.component";
 import {AuthInterceptor} from "./auth/auth-interceptor";
-import {SearchfriendComponent} from './searchfriend/searchfriend.component';
-import {NavbarUserComponent} from './Components/navbar-user/navbar-user.component';
+import {PermissionDeniedComponent} from "./errors/permission-denied/permission-denied.component";
+import {SearchUserComponent} from "./Components/auth-user/search-friend/search-user.component";
 import {ConfirmUserComponent} from "./registration/confirmUserComponent";
+import {SettingsComponent} from "./settings/settings.component";
+import {EditPersonalInfoComponent} from "./settings/editPersonalInfo/edit-personal-info.component";
+import {IngredientListComponent} from "./Components/moderator/ingredient-list/ingredient-list.component";
+import {AuthUserModule} from "./Components/auth-user/auth-user.module";
+import {ModeratorModule} from "./Components/moderator/moderator.module";
+import {NavbarComponent} from './Components/navbar/navbar.component';
+import {UserPersonalInfoComponent} from "./userPersonalInfo/userPersonalInfo.component";
+import {CaptchaComponent} from './captcha/captcha.component';
+import {RecaptchaModule, RecaptchaFormsModule} from "ng-recaptcha";
 import { ToolBarComponent } from './Components/tool-bar/tool-bar.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserInfoComponent } from './Components/user-info/user-info.component';
@@ -39,6 +48,7 @@ const INTERCEPTOR_PROVIDER: Provider = {
     AppComponent,
     RegistrationComponent,
     LoginComponent,
+    UserPersonalInfoComponent,
     ModeratorComponent,
     ModeratorVerificationComponent,
     ModeratorPersonalComponent,
@@ -52,6 +62,15 @@ const INTERCEPTOR_PROVIDER: Provider = {
     NavbarUserComponent,
     ModeratorPersonalComponent,
     ConfirmUserComponent,
+    PermissionDeniedComponent,
+    ConfirmUserComponent,
+    SearchUserComponent,
+    IngredientListComponent,
+    ConfirmUserComponent,
+    SettingsComponent,
+    EditPersonalInfoComponent,
+    CaptchaComponent
+    ConfirmUserComponent,
     EditModeratorPersonalDataComponent,
     ModeratorEditComponent
   ],
@@ -62,11 +81,21 @@ const INTERCEPTOR_PROVIDER: Provider = {
     HttpClientModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    AuthUserModule,
+    ReactiveFormsModule,
+    ModeratorModule,
+    RecaptchaModule,
+    RecaptchaFormsModule,
     MatTableModule,
     MatInputModule,
     MDBBootstrapModule.forRoot()
   ],
   providers: [INTERCEPTOR_PROVIDER],
+  exports: [
+    NavbarComponent
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+}

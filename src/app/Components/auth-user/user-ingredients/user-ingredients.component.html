@@ -1,0 +1,21 @@
+<app-navbar [isSearchable]="true" (searchEvent)="search($event)"></app-navbar>
+<div class="alert alert-danger" role="alert"
+     *ngIf="errorEvent" (click)="errorEvent = false">
+  This ingredient is in your inventory already!
+</div>
+<div class = align-items-center>
+  <app-stock-filter (filterEvent)="filter($event)"></app-stock-filter>
+  <button type="button" class="btn btn-primary" *ngIf="sorted" (click)="sort()">Sort(a-z)</button>
+  <button type="button" class="btn btn-primary" *ngIf="!sorted" (click)="sort()">Sort(z-a)</button>
+  <button type="button" class="btn btn-primary" *ngIf="!showAll" (click)="view()">
+    Show my stock only
+  </button>
+  <button type="button" class="btn btn-primary" *ngIf="showAll" (click)="view()">
+    Show catalogue
+  </button>
+</div>
+<app-ingredients-list [showStock]="showAll"
+                      [ingredients]="ingredients"
+                      (addToStockEvent)="addToStock($event)"
+(editStockEvent)="editStock($event)">
+</app-ingredients-list>
