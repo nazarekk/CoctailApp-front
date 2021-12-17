@@ -1,2 +1,14 @@
-<p>event-info works!</p>
-<h1>{{}}</h1>
+<div class="col-3">
+  <div *ngIf="event">
+    <div class="card-body">
+      <h5 class="card-title">Name: {{event.name}}</h5>
+      <p *ngIf="event.creatorName" class="card-text">Creator: {{event.creatorName}}</p>
+      <p class="card-text">Alcohol: {{event.eventTime}}</p>
+      <p class="card-text" style="display: inline">Ingredients: </p>
+      <p class="card-text" style="display: inline"
+         *ngFor="let dishes of event.dishesList">{{dishes.name}} </p>
+      <p></p>
+
+    </div>
+  </div>
+</div>

@@ -11,7 +11,6 @@ import {JwtToken} from "../Interfaces/JwtToken";import {environment} from "../..
 
 export class AuthService {
 
-  private static role = null
   private rootUrl = environment.apiUrl;
   private token = null
 

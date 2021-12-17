@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {DishModel} from "../../dishes/dishModel";
-import {EventModel} from "../eventModel";
+import {EventModel} from "../models/eventModel";
 import {EventsService} from "../../../api/events-service";
-import {UserInfo} from "../../auth-user/search-friend/user-model";
+import {DishForEventModel} from "../models/dishForEventModel";
+import {UserForEventModel} from "../models/userForEventModel";
 
 @Component({
   selector: 'app-create-event',
@@ -24,8 +24,8 @@ export class CreateEventComponent implements OnInit {
       name: string
       creatorName: string
       eventTime: Date
-      dishesList: DishModel[]
-      userList: UserInfo[]
+      dishesList: DishForEventModel[]
+      userList: UserForEventModel[]
     }
     this.event.name = name;
     this.event.eventTime = new Date(eventTime);

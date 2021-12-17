@@ -1,7 +1,7 @@
 import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {EventModel} from "../Components/events/eventModel";
+import {EventModel} from "../Components/events/models/eventModel";
 import {Injectable} from "@angular/core";
 import {DishModel} from "../Components/dishes/dishModel";
 

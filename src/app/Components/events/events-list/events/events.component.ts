@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {EventModel} from "../../eventModel";
+import {EventModel} from "../../models/eventModel";
 
 @Component({
   selector: 'app-events',
