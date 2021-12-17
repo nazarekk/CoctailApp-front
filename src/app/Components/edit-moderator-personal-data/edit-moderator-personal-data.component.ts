@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import { moderInfo } from "../moderator-list-info/moderList.model";
+import {moderInfo} from "../moderator-list-info/moderList.model";
 import {AuthService} from "../../auth/auth.service";
-import {ActivatedRoute, RouterModule} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {Validators, FormBuilder} from "@angular/forms";
 
 @Component({
@@ -41,15 +41,8 @@ export class EditModeratorPersonalDataComponent implements OnInit {
           data.isActive
         );
         this.editModeratorForm.patchValue(this.info);
-        console.log('Data requested ...');
-        console.log(this.info);
       });
 
-  }
-
-  saveChanges(){
-    console.log(this.info.nickname);
-    this.auth.editModerator(this.info);
   }
 
   onSubmit() {
