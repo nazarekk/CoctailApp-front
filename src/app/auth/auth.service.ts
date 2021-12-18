@@ -4,7 +4,6 @@ import {Observable} from "rxjs";
 import {tap} from "rxjs/operators";
 import {UserPersonalInfo} from "../Interfaces/UserPersonalInfo";
 import {JwtToken} from "../Interfaces/JwtToken";
-import {environment} from "../../environments/environment";
 import {UserInfo} from "../Components/auth-user/search-friend/user-model";
 import {moderInfo} from "../Components/moderator-list-info/moderList.model";
 import {userInfo} from "../user-profile/userProfile.model";
