@@ -28,3 +28,62 @@ h1{
   font-size: 20px;
 }
 
+/*Responsive*/
+
+/* 992px - 1200px*/
+@media screen and (max-width: 1200px) {
+  .container{
+    width: 960px;
+  }
+}
+
+/* 768px - 992px*/
+@media screen and (max-width: 992px) {
+  .container{
+    width: 720px;
+  }
+}
+
+/* 576px - 768px*/
+@media screen and (max-width: 768px) {
+  .container{
+    width: 540px;
+  }
+
+}
+
+/* 400px - 576px*/
+@media screen and (max-width: 576px) {
+  .container{
+    width: 60%;
+    margin-left: 10%;
+  }
+  input{
+    width: 60%;
+  }
+  .btn{
+    width: 60%;
+  }
+  h1{
+    font-size: 40px;
+  }
+}
+
+/* 0px - 400px*/
+@media screen and (max-width: 400px) {
+  .container {
+    margin-left: 5%;
+  }
+
+  input {
+    width: 50%;
+  }
+
+  .btn {
+    width: 50%;
+  }
+
+  h1 {
+    font-size: 35px;
+  }
+}

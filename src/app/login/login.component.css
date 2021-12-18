@@ -52,16 +52,36 @@ h1{
 
 }
 
-/* 0px - 576px*/
+/* 400px - 576px*/
 @media screen and (max-width: 576px) {
   .container{
     width: 60%;
+    margin-left: 10%;
   }
   input{
-    width: 70%;
+    width: 60%;
   }
   .btn{
-    width: 70%;
+    width: 60%;
+  }
+  h1{
+    font-size: 40px;
+  }
+}
+
+/* 0px - 400px*/
+@media screen and (max-width: 400px) {
+  .container{
+    margin-left: 5%;
+  }
+  input{
+    width: 50%;
+  }
+  .btn{
+    width: 50%;
+  }
+  h1{
+    font-size: 35px;
   }
 }
 
