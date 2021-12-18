@@ -16,7 +16,7 @@ import {userInfo} from "../user-profile/userProfile.model";
 export class AuthService {
 
   private static role = null
-  private rootUrl = "http://localhost:8080"
+  private rootUrl = environment.apiUrl;
   private token = null
 
   constructor(private http: HttpClient) {

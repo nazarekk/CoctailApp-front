@@ -59,4 +59,10 @@ export class DishesListComponent implements OnInit, OnDestroy {
     this.dishesSubscription = this.dishesService.filterDishes(filter.sugarless, filter.alcohol).subscribe((data: DishModel[]) => this.dishes = data)
   }
 
+  suggestedDish() {
+    this.dishesSubscription.unsubscribe();
+    this.dishesSubscription = this.dishesService.suggestedDishes().subscribe((data: DishModel[]) => this.dishes = data)
+  }
+
+
 }

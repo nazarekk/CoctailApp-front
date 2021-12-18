@@ -58,4 +58,8 @@ export class DishesService {
   filterDishes(sugarless: String, alcohol: String): Observable<DishModel[]> {
     return this.http.get<DishModel[]>(this.rootUrl + '/api/users/recipe/filter?sugarless=' + sugarless + '&alcohol=' + alcohol);
   }
+
+  suggestedDishes(): Observable<DishModel[]> {
+    return this.http.get<DishModel[]>(this.rootUrl + '/api/users/recipe/suggestion');
+  }
 }
