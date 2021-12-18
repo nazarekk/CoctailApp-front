@@ -6,6 +6,12 @@ import {ModeratorComponent} from "./moderatorRegistration/moderator.component";
 import {ModeratorVerificationComponent} from "./moderatorVerification/moderator.verification.component";
 import {ModeratorPersonalComponent} from "./moderatorPersonal/moderator.personal.component";
 import {ConfirmUserComponent} from "./registration/confirmUserComponent";
+
+import {UserProfileComponent} from "./user-profile/user-profile.component";
+import {ModeratorListComponent} from "./moderator-list/moderator-list.component";
+
+
+
 import {RoleGuardGuard} from "./auth/role-guard.guard";
 import {PermissionDeniedComponent} from "./errors/permission-denied/permission-denied.component";
 import {SearchUserComponent} from "./Components/auth-user/search-friend/search-user.component";
@@ -23,6 +29,10 @@ import {ConfirmDishComponent} from "./Components/dishes/confirm-dish/confirm-dis
 import {UserIngredientsComponent} from "./Components/auth-user/user-ingredients/user-ingredients.component";
 import {UserPersonalInfoComponent} from "./userPersonalInfo/userPersonalInfo.component";
 import {FriendlistComponent} from "./Components/auth-user/friendlist/friendlist.component";
+import {ModeratorEditComponent} from "./moderator-edit/moderator-edit.component";
+
+
+
 
 const routes: Routes = [
   {
@@ -51,7 +61,7 @@ const routes: Routes = [
     component: ModeratorVerificationComponent
   },
   {
-    path: 'moderator/edit',
+    path: '12',
     component: ModeratorPersonalComponent,
     canActivate: [RoleGuardGuard],
     data:{
@@ -181,6 +191,18 @@ const routes: Routes = [
     data:{
       expectedRoles: ['ROLE_CONFIRMED']
     }
+  },
+  {
+    path: "userprofile",
+    component: UserProfileComponent
+  },
+  {
+    path: "moderatorlist",
+    component: ModeratorListComponent
+  },
+  {
+    path: 'moderator/edit/:id',
+    component: ModeratorEditComponent
   }
 ];
 

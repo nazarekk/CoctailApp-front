@@ -1,0 +1,35 @@
+<div class="card container top" >
+  <div class="container1" >
+  <div class="photo">
+  <img src="...">
+  </div>
+    <div class="other">
+      <div class="name">
+        {{userinfo.nickname}}
+      </div>
+      <div class="buttons">
+        <button type="button" class="btn button" (click)="friendsList()">Friends</button>
+        <br>
+        <button type="button" class="btn button">Events</button>
+      </div>
+
+    </div>
+    <div class="card info">
+      <div class="text">
+        Personal Info:
+      </div>
+      <div class="info-content">
+       email: {{userinfo.email}}
+      </div>
+    </div>
+    <br>
+    <div class="text blog-title">
+      Blog
+    </div>
+    <div class="card blog">
+      <div class="blog-content">
+        тут будут посты юзера
+      </div>
+    </div>
+  </div>
+</div>

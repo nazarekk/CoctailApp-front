@@ -1,0 +1,97 @@
+.top{
+  margin-top: 20px;
+  width:80%;
+}
+
+.content{
+  width: 100%;
+  height: 100%;
+
+}
+
+.button{
+  border: 2px solid #62A1FE;
+  margin-left: 10px;
+}
+
+.bar{
+  justify-content: space-between;
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.moderlist{
+  display: flex;
+  flex-wrap: wrap;
+
+}
+
+.moder{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+
+
+
+}
+
+.photo{
+  border: 4px double black;
+  margin: 0 15px;
+  vertical-align: middle;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+}
+
+.name{
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 42px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: column;
+
+}
+
+.smth{
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  color: grey;
+  flex-wrap: wrap;
+
+}
+
+.nick{
+
+}
+
+.buttons{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.name_buttons{
+
+  width: 20%;
+  display: flex;
+
+
+
+
+}
+
+.spec{
+
+}
+
+

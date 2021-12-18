@@ -6,6 +6,8 @@ import {UserPersonalInfo} from "../Interfaces/UserPersonalInfo";
 import {JwtToken} from "../Interfaces/JwtToken";
 import {environment} from "../../environments/environment";
 import {UserInfo} from "../Components/auth-user/search-friend/user-model";
+import {moderInfo} from "../Components/moderator-list-info/moderList.model";
+import {userInfo} from "../user-profile/userProfile.model";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +16,7 @@ import {UserInfo} from "../Components/auth-user/search-friend/user-model";
 export class AuthService {
 
   private static role = null
-  private rootUrl = environment.apiUrl;
+  private rootUrl = "http://localhost:8080"
   private token = null
 
   constructor(private http: HttpClient) {
@@ -63,7 +65,7 @@ export class AuthService {
   }
 
   editModerator(user) {
-    return this.http.post<any>(this.rootUrl + '/api/admin/moderator/edit', user)
+    return this.http.patch<any>(this.rootUrl + '/api/admin/moderator/edit', user)
   }
 
   verifyUser(verifyUser) {
@@ -113,6 +115,10 @@ export class AuthService {
     return this.http.get<UserInfo[]>(this.rootUrl + '/api/users/friendlist');
   }
 
+  static getRole(): string {
+    return localStorage.getItem('role')
+  }
+
   addFriend(id: Number) {
     return this.http.post<any>(this.rootUrl + '/api/users/add/' + id, "")
   }
@@ -145,4 +151,24 @@ export class AuthService {
     localStorage.clear();
     location.href = "#"
   }
+
+  getUserInfo(): Observable<userInfo> {
+    return this.http.get<userInfo>(this.rootUrl + '/api/users/info');
+  }
+
+
+  getModerInfo(): Observable<moderInfo[]> {
+    return this.http.get<moderInfo[]>(this.rootUrl + '/api/admin/moderators');
+  }
+
+  deleteModer(moder: moderInfo): Observable<any> {
+    return this.http.delete<moderInfo>(`${this.rootUrl}/api/admin/moderators/remove`,{body: moder});
+  }
+
+  getInfoById(id): Observable<moderInfo>{
+    return this.http.get<moderInfo>(`${this.rootUrl}/api/admin/users/${id}`);
+  }
+
+
+
 }

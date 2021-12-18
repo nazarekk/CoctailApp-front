@@ -24,6 +24,19 @@ import {NavbarComponent} from './Components/navbar/navbar.component';
 import {UserPersonalInfoComponent} from "./userPersonalInfo/userPersonalInfo.component";
 import {CaptchaComponent} from './captcha/captcha.component';
 import {RecaptchaModule, RecaptchaFormsModule} from "ng-recaptcha";
+import {ToolBarComponent} from './Components/tool-bar/tool-bar.component';
+import {UserProfileComponent} from './user-profile/user-profile.component';
+import {UserInfoComponent} from './Components/user-info/user-info.component';
+import {ModeratorListComponent} from './moderator-list/moderator-list.component';
+import {ModeratorListInfoComponent} from './Components/moderator-list-info/moderator-list-info.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatInputModule} from '@angular/material/input';
+import {MDBBootstrapModule} from 'angular-bootstrap-md';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import {EditModeratorPersonalDataComponent} from './Components/edit-moderator-personal-data/edit-moderator-personal-data.component';
+import {ModeratorEditComponent} from './moderator-edit/moderator-edit.component';
+
+
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
@@ -41,6 +54,12 @@ const INTERCEPTOR_PROVIDER: Provider = {
     ModeratorComponent,
     ModeratorVerificationComponent,
     ModeratorPersonalComponent,
+    ConfirmUserComponent,
+    ToolBarComponent,
+    UserProfileComponent,
+    UserInfoComponent,
+    ModeratorListComponent,
+    ModeratorListInfoComponent,
     ModeratorPersonalComponent,
     ConfirmUserComponent,
     PermissionDeniedComponent,
@@ -50,7 +69,11 @@ const INTERCEPTOR_PROVIDER: Provider = {
     ConfirmUserComponent,
     SettingsComponent,
     EditPersonalInfoComponent,
-    CaptchaComponent
+    CaptchaComponent,
+    ConfirmUserComponent,
+    EditModeratorPersonalDataComponent,
+    ModeratorEditComponent
+
   ],
   imports: [
     BrowserAnimationsModule,
@@ -63,7 +86,10 @@ const INTERCEPTOR_PROVIDER: Provider = {
     ReactiveFormsModule,
     ModeratorModule,
     RecaptchaModule,
-    RecaptchaFormsModule
+    RecaptchaFormsModule,
+    MatTableModule,
+    MatInputModule,
+    MDBBootstrapModule.forRoot()
   ],
   providers: [INTERCEPTOR_PROVIDER],
   exports: [

@@ -1,0 +1,71 @@
+<div class="card top container">
+  <div class="content">
+    <div class="bar">
+      <div class="left">
+        <button type="button" class="btn button" (click)="createNew()">Create new moderator account</button>
+      </div>
+      <div>
+        <div class="btn-group">
+          <button type="button" class="btn dropdown-toggle button" data-bs-toggle="dropdown" aria-expanded="false">
+            Filter
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" (click)="showAll()">All moderators</a></li>
+            <li><a class="dropdown-item" (click)="activeModers()">Only active</a></li>
+          </ul>
+        </div>
+        <div class="btn-group">
+          <button type="button" class="btn dropdown-toggle button" data-bs-toggle="dropdown" aria-expanded="false">
+            Sort
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" (click)="descendic()">Aa-Zz</a></li>
+            <li><a class="dropdown-item" (click)="ascendic()">Zz-Aa</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="moderlist" *ngFor="let element of info; let moder of filteredModers">
+
+
+          <div class="moder" *ngIf="!this.isFiltered">
+            <div >
+              <img src="https://imgur.com/{{element.image}}.jpg" alt="Avatar" class="photo">
+            </div>
+            <div class="nick">
+              <span class="name" >{{element.nickname}}</span>
+              <span class="smth">id: {{element.userid}}</span>
+              <br>
+              <span class="smth">email: {{element.email}}</span>
+            </div>
+            <div class="buttons name_buttons">
+              <button type="button" class="btn button" (click)="editModer(element.userid)">Edit</button>
+              <button type="button" class="btn button spec" (click)="deleteModer(element)">Delete</button>
+            </div>
+          </div>
+
+
+            <div class="moder" *ngIf="this.isFiltered">
+              <div class="photo">
+                <img src="https://imgur.com/{{moder.image}}.jpg" alt="Avatar" class="photo">
+              </div>
+              <div class="nick">
+                <span class="name" >{{moder.nickname}}</span>
+                <span class="smth">id: {{moder.userid}}</span>
+                <br>
+                <span class="smth">email: {{moder.email}}</span>
+              </div>
+              <div class="buttons name_buttons">
+                <button type="button" class="btn button" (click)="editModer(moder.userid)">Edit</button>
+                <button type="button" class="btn button spec" (click)="deleteModer(moder.userid)">Delete</button>
+              </div>
+            </div>
+
+
+
+
+
+
+    </div>
+  </div>
+</div>
