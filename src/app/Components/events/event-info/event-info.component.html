@@ -13,14 +13,23 @@
       <p class="card-text" style="display: inline">Dishes:<br></p>
       <p class="card-text" style="display: inline"
          *ngFor="let dish of event.recipeList">
-        <img src="{{dish.image}}"
-             class="img-thumbnail">
         {{dish.name}}
-        <button type="button" class="btn btn-primary" (click)="removeDish()">
+        <button type="button" class="btn btn-primary" (click)="removeDish(dish.name)">
           Remove
         </button>
         <br>
       </p>
+      <form [formGroup]="formForDish" (keyup.enter)="submitDish()" (ngSubmit)="submitDish()">
+      <input
+        formControlName="dishName"
+        id="dishName"
+        type="text"
+        class="form-control"
+        placeholder="dish">
+      <button type="submit" class="btn btn-primary">
+        Add
+      </button>
+      </form>
       <p class="card-text" style="display: inline">Users:<br></p>
       <p class="card-text" style="display: inline"
          *ngFor="let user of event.userList">{{user.nickname}}

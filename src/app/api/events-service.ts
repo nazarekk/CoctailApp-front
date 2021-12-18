@@ -20,11 +20,19 @@ export class EventsService {
   }
 
   join(id: string): Observable<any> {
-    return this.http.post<any>(this.rootUrl + '/api/users/join/' + id, {observe: 'response'});
+    return this.http.post<any>(this.rootUrl + '/api/users/join/' + id, {},{observe: 'response'});
   }
 
   leave(id: string): Observable<any> {
     return this.http.delete(this.rootUrl + '/api/users/leave/' + id, {observe: 'response'})
+  }
+
+  addDish(id: string, name: string): Observable<any> {
+    return this.http.post<any>(this.rootUrl + '/api/users/events/' + id + "/recipe?name=" + name, {});
+  }
+
+  removeDish(id: string, name: string): Observable<Response> {
+    return this.http.delete<Response>(this.rootUrl + '/api/users/events/' + id + "/recipe?name=" + name);
   }
 
   listEvents(): Observable<EventModel[]> {
