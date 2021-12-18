@@ -24,7 +24,7 @@ export class CreateEventComponent implements OnInit {
       name: string
       creatorName: string
       eventTime: Date
-      dishesList: DishForEventModel[]
+      recipeList: DishForEventModel[]
       userList: UserForEventModel[]
     }
     this.event.name = name;

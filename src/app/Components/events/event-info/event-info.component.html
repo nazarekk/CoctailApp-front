@@ -2,13 +2,29 @@
   <div *ngIf="event">
     <div class="card-body">
       <h5 class="card-title">Name: {{event.name}}</h5>
+      <button type="button" class="btn btn-primary" (click)="join()">
+        Join
+      </button>
+      <button type="button" class="btn btn-primary" (click)="leave()">
+        Leave
+      </button>
       <p *ngIf="event.creatorName" class="card-text">Creator: {{event.creatorName}}</p>
       <p class="card-text">Event time: {{event.eventTime}}</p>
-      <p class="card-text" style="display: inline">Dishes: </p>
+      <p class="card-text" style="display: inline">Dishes:<br></p>
       <p class="card-text" style="display: inline"
-         *ngFor="let dishes of event.dishesList">{{dishes.name}} </p>
-      <p></p>
-
+         *ngFor="let dish of event.recipeList">
+        <img src="{{dish.image}}"
+             class="img-thumbnail">
+        {{dish.name}}
+        <button type="button" class="btn btn-primary" (click)="removeDish()">
+          Remove
+        </button>
+        <br>
+      </p>
+      <p class="card-text" style="display: inline">Users:<br></p>
+      <p class="card-text" style="display: inline"
+         *ngFor="let user of event.userList">{{user.nickname}}
+        <br></p>
     </div>
   </div>
 </div>

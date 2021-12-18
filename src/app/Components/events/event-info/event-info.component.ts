@@ -13,9 +13,10 @@ import {DishForEventModel} from "../models/dishForEventModel";
 })
 export class EventInfoComponent implements OnInit {
 
+  id: string
   event: EventModel
-  usersList: UserForEventModel[]
-  recipesList: DishForEventModel[]
+  usersList: UserForEventModel[] = []
+  dishesList: DishForEventModel[] = []
 
   private routeSub: Subscription
 
@@ -23,18 +24,36 @@ export class EventInfoComponent implements OnInit {
               private eventService: EventsService) { }
 
   ngOnInit(): void {
+    this.routeSub = this.route.params.subscribe(params => {
+      this.id = params['eventId']
+    });
     this.refreshInfo()
   }
 
   refreshInfo(): void{
     this.routeSub = this.route.params.subscribe(params => {
-      this.eventService.getEvent(params['eventId']).subscribe((data: EventModel) => {
+      this.eventService.getEvent(this.id).subscribe((data: EventModel) => {
         this.event = data;
-        this.recipesList = data.dishesList;
+        this.dishesList = data.recipeList;
         this.usersList = data.userList;
         console.log(data)
       })
+
     });
+  }
+
+  removeDish(): void{
+
+  }
+
+  join(): void{
+    this.eventService.join(this.id);
+    this.refreshInfo()
+  }
+
+  leave(): void{
+    this.eventService.leave(this.id);
+    this.refreshInfo()
   }
 
 }

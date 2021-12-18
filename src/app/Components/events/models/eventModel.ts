@@ -7,6 +7,6 @@ export interface EventModel {
   name: string
   creatorName: string
   eventTime: Date
-  dishesList: DishForEventModel[]
+  recipeList: DishForEventModel[]
   userList: UserForEventModel[]
 }
