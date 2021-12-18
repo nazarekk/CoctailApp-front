@@ -14,7 +14,6 @@ import {Subscription} from "rxjs";
 export class DishesListComponent implements OnInit, OnDestroy {
 
   dishes: DishModel[] = [];
-  typeEnum: TypeEnum;
   dishesSubscription: Subscription;
   serverResponse: Subscription;
 
