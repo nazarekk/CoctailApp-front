@@ -11,7 +11,7 @@ import {moderInfo} from "./moderList.model";
   styleUrls: ['./moderator-list-info.component.css']
 })
 export class ModeratorListInfoComponent implements OnInit {
-  moder: moderInfo;
+
   info: moderInfo[];
   isAscendic = true;
   filteredModers: moderInfo[] = [];
@@ -31,8 +31,6 @@ export class ModeratorListInfoComponent implements OnInit {
       .getModerInfo()
       .subscribe((data: moderInfo[]) => {
       this.info = data;
-      console.log('Data requested ...');
-      console.log(this.info);
       });
   }
 
@@ -83,12 +81,14 @@ export class ModeratorListInfoComponent implements OnInit {
         }
       }
       this.isFiltered = true;
-
   }
 
   showAll() {
     this.isFiltered = false;
+  }
 
+  createNew() {
+    this.router.navigate([`moderator`]);
   }
 
 }

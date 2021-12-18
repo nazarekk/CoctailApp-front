@@ -2,7 +2,7 @@
   <div class="content">
     <div class="bar">
       <div class="left">
-        <button type="button" class="btn button">Create new moderator account</button>
+        <button type="button" class="btn button" (click)="createNew()">Create new moderator account</button>
       </div>
       <div>
         <div class="btn-group">
@@ -19,8 +19,8 @@
             Sort
           </button>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" (click)="ascendic()">Aa-Zz</a></li>
-            <li><a class="dropdown-item" (click)="descendic()">Zz-Aa</a></li>
+            <li><a class="dropdown-item" (click)="descendic()">Aa-Zz</a></li>
+            <li><a class="dropdown-item" (click)="ascendic()">Zz-Aa</a></li>
           </ul>
         </div>
       </div>
@@ -29,8 +29,8 @@
 
 
           <div class="moder" *ngIf="!this.isFiltered">
-            <div class="photo">
-
+            <div >
+              <img src="https://imgur.com/{{element.image}}.jpg" alt="Avatar" class="photo">
             </div>
             <div class="nick">
               <span class="name" >{{element.nickname}}</span>
@@ -47,7 +47,7 @@
 
             <div class="moder" *ngIf="this.isFiltered">
               <div class="photo">
-
+                <img src="https://imgur.com/{{moder.image}}.jpg" alt="Avatar" class="photo">
               </div>
               <div class="nick">
                 <span class="name" >{{moder.nickname}}</span>

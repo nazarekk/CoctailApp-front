@@ -6,12 +6,12 @@ import {ModeratorComponent} from "./moderatorRegistration/moderator.component";
 import {ModeratorVerificationComponent} from "./moderatorVerification/moderator.verification.component";
 import {ModeratorPersonalComponent} from "./moderatorPersonal/moderator.personal.component";
 import {ConfirmUserComponent} from "./registration/confirmUserComponent";
-import { ToolBarComponent } from './Components/tool-bar/tool-bar.component';
+
 import {UserProfileComponent} from "./user-profile/user-profile.component";
 import {ModeratorListComponent} from "./moderator-list/moderator-list.component";
 
-import {SearchfriendComponent} from "./searchfriend/searchfriend.component";
-import {AuthService} from "./auth/auth.service";
+
+
 import {RoleGuardGuard} from "./auth/role-guard.guard";
 import {PermissionDeniedComponent} from "./errors/permission-denied/permission-denied.component";
 import {SearchUserComponent} from "./Components/auth-user/search-friend/search-user.component";
@@ -30,6 +30,9 @@ import {UserIngredientsComponent} from "./Components/auth-user/user-ingredients/
 import {UserPersonalInfoComponent} from "./userPersonalInfo/userPersonalInfo.component";
 import {FriendlistComponent} from "./Components/auth-user/friendlist/friendlist.component";
 import {ModeratorEditComponent} from "./moderator-edit/moderator-edit.component";
+
+
+
 
 const routes: Routes = [
   {

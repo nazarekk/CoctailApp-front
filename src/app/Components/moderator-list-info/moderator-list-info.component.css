@@ -10,7 +10,7 @@
 }
 
 .button{
-  border: 2px solid #D9A4F8;
+  border: 2px solid #62A1FE;
   margin-left: 10px;
 }
 
@@ -28,19 +28,22 @@
 }
 
 .moder{
-
+  width: 100%;
   display: flex;
   justify-content: space-between;
   margin: 10px 0;
+
 
 
 }
 
 .photo{
   border: 4px double black;
-  width: 140px;
-  height: 140px;
   margin: 0 15px;
+  vertical-align: middle;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
 }
 
 .name{
@@ -81,8 +84,8 @@
 
   width: 20%;
   display: flex;
-  justify-content: space-between;
-  margin-right: 10px;
+
+
 
 
 }

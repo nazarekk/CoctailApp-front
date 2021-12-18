@@ -2,32 +2,80 @@
   name="EditModerator"
   [formGroup]="editModeratorForm"
   (ngSubmit)="onSubmit()"
+  *ngIf="info"
 >
 
 <div class="card container top">
   <div class="onion">
-  <div class="edit-photo">
-    <div class="photo">
 
+  <div class="edit-photo">
+    <div >
+      <input type="image" [src] = "this.imagesUrl + info.image + this.strJpg" alt="Avatar" class="photo" formControlName="image">
     </div>
-    <div>
-      <button type="button" class="btn button">Edit photo</button>
+
+
+
+    <div class="edit-button">
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Edit photo
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Choose picture from selected for your avatar</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body container">
+              <div class="row row-cols-3">
+                <div class="col "><button type="button" class='btn btn-primary background' (click)="selectPhoto(this.userPhoto.images[0])"><img [src] = "this.imagesUrl + this.userPhoto.images[0] + this.strJpg" class="img-fluid select-avatar"></button></div>
+                <div class="col "><button type="button" class='btn btn-primary background' (click)="selectPhoto(this.userPhoto.images[1])"><img [src] = "this.imagesUrl + this.userPhoto.images[1] + this.strJpg" class="img-fluid select-avatar"></button></div>
+                <div class="col "><button type="button" class='btn btn-primary background' (click)="selectPhoto(this.userPhoto.images[2])"><img [src] = "this.imagesUrl + this.userPhoto.images[2] + this.strJpg" class="img-fluid select-avatar"></button></div>
+                <div class="col "><button type="button" class='btn btn-primary background' (click)="selectPhoto(this.userPhoto.images[3])"><img [src] = "this.imagesUrl + this.userPhoto.images[3] + this.strJpg" class="img-fluid select-avatar"></button></div>
+                <div class="col "><button type="button" class='btn btn-primary background' (click)="selectPhoto(this.userPhoto.images[4])"><img [src] = "this.imagesUrl + this.userPhoto.images[4] + this.strJpg" class="img-fluid select-avatar"></button></div>
+                <div class="col "><button type="button" class='btn btn-primary background' (click)="selectPhoto(this.userPhoto.images[5])"><img [src] = "this.imagesUrl + this.userPhoto.images[5] + this.strJpg" class="img-fluid select-avatar"></button></div>
+                <div class="col "><button type="button" class='btn btn-primary background' (click)="selectPhoto(this.userPhoto.images[6])"><img [src] = "this.imagesUrl + this.userPhoto.images[6] + this.strJpg" class="img-fluid select-avatar"></button></div>
+                <div class="col "><button type="button" class='btn btn-primary background' (click)="selectPhoto(this.userPhoto.images[7])"><img [src] = "this.imagesUrl + this.userPhoto.images[7] + this.strJpg" class="img-fluid select-avatar"></button></div>
+                <div class="col "><button type="button" class='btn btn-primary background' (click)="selectPhoto(this.userPhoto.images[8])"><img [src] = "this.imagesUrl + this.userPhoto.images[8] + this.strJpg" class="img-fluid select-avatar"></button></div>
+                <div class="col "><button type="button" class='btn btn-primary background' (click)="selectPhoto(this.userPhoto.images[9])"><img [src] = "this.imagesUrl + this.userPhoto.images[9] + this.strJpg" class="img-fluid select-avatar"></button></div>
+                <div class="col "><button type="button" class='btn btn-primary background' (click)="selectPhoto(this.userPhoto.images[10])"><img [src] = "this.imagesUrl + this.userPhoto.images[10] + this.strJpg" class="img-fluid select-avatar"></button></div>
+                <div class="col "><button type="button" class='btn btn-primary background' (click)="selectPhoto(this.userPhoto.images[11])"><img [src] = "this.imagesUrl + this.userPhoto.images[11] + this.strJpg" class="img-fluid select-avatar"></button></div>
+
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" (click)="submitPhoto()">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="edit-nick">
-    <span class="name"><input type="text" size="20" formControlName="nickname"></span>
-  </div>
+
+
+
     <div class="edit-info">
       <div class="qwer">
-      <span class="name">Personal Info</span>
+        <span class="name">Personal Info</span>
 
       </div>
       <div class="inf">
-        <span class="email_text">Email: <input type="text" size="40" formControlName="email"></span>
+        <span class="email_text">Nickname: <input type="text" size="10" formControlName="nickname"></span>
+        <br>
+        <span class="email_text">Email: <input type="text" size="20" formControlName="email"></span>
         <br>
         <span class="email_text">Active:  <input type="checkbox" formControlName="isActive"></span>
       </div>
-    </div>
+
+
+
+
+  </div>
+
 
       <button class="btn i-button" type="submit"> Save changes
         <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -36,6 +84,9 @@
         </svg>
       </button>
 
+  </div>
+  <div class="alert alert-primary" role="alert" *ngIf="alert" (click)="alert = false">
+    {{this.displayText}}
   </div>
 </div>
 
