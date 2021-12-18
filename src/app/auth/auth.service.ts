@@ -8,6 +8,7 @@ import {environment} from "../../environments/environment";
 import {UserInfo} from "../Components/auth-user/search-friend/user-model";
 import {moderInfo} from "../Components/moderator-list-info/moderList.model";
 import {userInfo} from "../user-profile/userProfile.model";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ import {userInfo} from "../user-profile/userProfile.model";
 export class AuthService {
 
   private static role = null
-  private rootUrl = "http://localhost:8080"
+  private rootUrl = environment.apiUrl;
   private token = null
 
   constructor(private http: HttpClient) {
