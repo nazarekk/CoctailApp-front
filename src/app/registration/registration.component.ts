@@ -1,21 +1,23 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import {ConfirmedValidator} from './confirmed.validator';
 import {AuthService} from "../auth/auth.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 })
-export class RegistrationComponent implements OnInit {
+export class RegistrationComponent implements OnInit, OnDestroy {
 
   title = 'Sign Up'
 
   form: FormGroup = new FormGroup({});
   isError: Boolean = false;
   alertText: String;
+  sSub: Subscription
 
   constructor(private fb: FormBuilder,
               private auth: AuthService) {
@@ -39,7 +41,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   submit() {
-    this.auth.registerUser(this.removeDoubleCheckPass(this.form.value))
+    this.sSub = this.auth.registerUser(this.removeDoubleCheckPass(this.form.value))
       .subscribe(
         () => {
         },
@@ -54,5 +56,11 @@ export class RegistrationComponent implements OnInit {
           }
         }
       )
+  }
+
+  ngOnDestroy(): void {
+    if (this.sSub) {
+      this.sSub.unsubscribe()
+    }
   }
 }

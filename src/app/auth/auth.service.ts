@@ -13,7 +13,6 @@ import {UserInfo} from "../Components/auth-user/search-friend/user-model";
 
 export class AuthService {
 
-  private static role = null
   private rootUrl = environment.apiUrl;
   private token = null
 
