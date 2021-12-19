@@ -15,6 +15,7 @@ export class DishesListComponent implements OnInit, OnDestroy {
   dishes: DishModel[] = [];
   dishesSubscription: Subscription;
   serverResponse: Subscription;
+  showSuggested: Boolean = false;
 
   constructor(private dishesService: DishesService,
               private auth: AuthService) { }
@@ -31,6 +32,7 @@ export class DishesListComponent implements OnInit, OnDestroy {
   refreshList() {
     this.dishesSubscription.unsubscribe();
     this.dishesService.listDishes().subscribe((data: DishModel[]) => this.dishes = data);
+    this.showSuggested = !this.showSuggested;
   }
 
   isModerator(): Boolean {
@@ -62,9 +64,23 @@ export class DishesListComponent implements OnInit, OnDestroy {
   }
 
   suggestedDish() {
-    this.dishesSubscription.unsubscribe();
-    this.dishesSubscription = this.dishesService.suggestedDishes().subscribe((data: DishModel[]) => this.dishes = data)
+    if (this.showSuggested === false) {
+      this.dishesSubscription.unsubscribe();
+      this.dishesSubscription = this.dishesService.suggestedDishes().subscribe((data: DishModel[]) => this.dishes = data)
+      this.showSuggested = !this.showSuggested;
+    } else {
+      this.refreshList()
+    }
   }
 
+  favouriteDish() {
+    if (this.showSuggested === false) {
+      this.dishesSubscription.unsubscribe();
+      this.dishesSubscription = this.dishesService.favouritesDishes().subscribe((data: DishModel[]) => this.dishes = data)
+      this.showSuggested = !this.showSuggested;
+    } else {
+      this.refreshList();
+    }
+  }
 
 }
