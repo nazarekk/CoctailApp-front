@@ -89,3 +89,67 @@
   font-size: 25px;
   line-height: 42px;
 }
+
+.avatar {
+  vertical-align: middle;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  border: 5px blueviolet solid;
+}
+
+.select-avatar {
+  padding-bottom: 3px;
+  padding-top: 3px;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.background {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background-color: white;
+  border: #0d6efd 5px;
+}
+.background:hover{background-color: gray}
+
+.edit-button {
+  margin-left: 10px;
+}
+.form-control {
+  height: 40%;
+}
+section {
+  margin: 20px 0;
+}
+#section_2 {
+  margin-top: 50px;
+}
+.row {
+  display: flex;
+}
+.text_nickname {
+  margin-top: 10px;
+}
+.d-flex flex-row-reverse{
+  margin: 5px;
+}
+#nickname {
+  width: 300px;
+}
+.alert-window {
+  justify-content: space-between;
+  display: flex;
+  width: 350px;
+  height: 20px;
+  margin-top: 45px;
+}
+.valid {
+  margin-top: 10px;
+  padding-top: 5px;
+  height: 35px;
+  text-align: center;
+  vertical-align: center;
+}
