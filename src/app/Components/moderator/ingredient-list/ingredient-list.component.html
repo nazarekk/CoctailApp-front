@@ -1,6 +1,6 @@
 <app-navbar [isSearchable]="true" (searchEvent)="search($event)"></app-navbar>
 <div class = align-items-center>
-  <button type="button" class="btn btn-primary" (click)="relocateAdd()">Add ingredient</button>
+  <button type="button" class="btn btn-primary" (click)="relocateAdd()">Show dishes for me</button>
   <app-filter (filterEvent)="filter($event)" ></app-filter>
   <button type="button" class="btn btn-primary" *ngIf="sorted" (click)="sort()">Sort(a-z)</button>
   <button type="button" class="btn btn-primary" *ngIf="!sorted" (click)="sort()">Sort(z-a)</button>

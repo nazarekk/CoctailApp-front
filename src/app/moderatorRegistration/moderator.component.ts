@@ -22,8 +22,8 @@ export class ModeratorComponent implements OnInit,OnDestroy{
 
   ngOnInit(){
     this.form = this.fb.group({
-      email: ['', [Validators.required]],
-      isActive: [true, [Validators.required]]
+      email: ['',[Validators.email,Validators.required]],
+      isActive: [true]
     })
   }
 

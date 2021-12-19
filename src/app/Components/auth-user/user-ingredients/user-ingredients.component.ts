@@ -57,7 +57,7 @@ export class UserIngredientsComponent implements OnInit, OnDestroy {
   }
 
   addToStock(ingr: IngrInfo) {
-    this.serverResponse.unsubscribe();
+    if (!(this.serverResponse == undefined)) this.serverResponse.unsubscribe();
     if (this.showAll) {
       this.serverResponse = this.userInventoryService.removeFromStock(ingr.id).subscribe(() => {
         this.showAll = !this.showAll;
@@ -75,7 +75,7 @@ export class UserIngredientsComponent implements OnInit, OnDestroy {
   }
 
   editStock(ingr: IngrInfo) {
-    this.serverResponse.unsubscribe();
+    if (!(this.serverResponse == undefined)) this.serverResponse.unsubscribe();
     this.serverResponse = this.userInventoryService.editStock(ingr.id, ingr.quantity).subscribe(data => {
       if (data.status == 200) {
         this.showAll = !this.showAll;
@@ -85,7 +85,7 @@ export class UserIngredientsComponent implements OnInit, OnDestroy {
   }
 
   filter(ingr: IngrInfo) {
-    this.serverResponse.unsubscribe();
+    if (!(this.serverResponse == undefined)) this.serverResponse.unsubscribe();
     if (this.showAll) {
       this.serverResponse = this.userInventoryService.filterIngredient(ingr.type, ingr.category,
         true).subscribe(data => this.ingredients = data);

@@ -4,8 +4,10 @@ import {Observable} from "rxjs";
 import {tap} from "rxjs/operators";
 import {UserPersonalInfo} from "../Interfaces/UserPersonalInfo";
 import {JwtToken} from "../Interfaces/JwtToken";
-import {environment} from "../../environments/environment";
 import {UserInfo} from "../Components/auth-user/search-friend/user-model";
+import {moderInfo} from "../Components/moderator-list-info/moderList.model";
+import {userInfo} from "../user-profile/userProfile.model";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -62,7 +64,7 @@ export class AuthService {
   }
 
   editModerator(user) {
-    return this.http.post<any>(this.rootUrl + '/api/admin/moderator/edit', user)
+    return this.http.patch<any>(this.rootUrl + '/api/admin/moderator/edit', user)
   }
 
   verifyUser(verifyUser) {
@@ -112,6 +114,10 @@ export class AuthService {
     return this.http.get<UserInfo[]>(this.rootUrl + '/api/users/friendlist');
   }
 
+  static getRole(): string {
+    return localStorage.getItem('role')
+  }
+
   addFriend(id: Number) {
     return this.http.post<any>(this.rootUrl + '/api/users/add/' + id, "")
   }
@@ -144,4 +150,24 @@ export class AuthService {
     localStorage.clear();
     location.href = "#"
   }
+
+  getUserInfo(): Observable<userInfo> {
+    return this.http.get<userInfo>(this.rootUrl + '/api/users/info');
+  }
+
+
+  getModerInfo(): Observable<moderInfo[]> {
+    return this.http.get<moderInfo[]>(this.rootUrl + '/api/admin/moderators');
+  }
+
+  deleteModer(moder: moderInfo): Observable<any> {
+    return this.http.delete<moderInfo>(`${this.rootUrl}/api/admin/moderators/remove`,{body: moder});
+  }
+
+  getInfoById(id): Observable<moderInfo>{
+    return this.http.get<moderInfo>(`${this.rootUrl}/api/admin/users/${id}`);
+  }
+
+
+
 }

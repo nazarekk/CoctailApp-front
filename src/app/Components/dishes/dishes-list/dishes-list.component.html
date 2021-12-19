@@ -1,5 +1,8 @@
 <app-navbar [isSearchable]="true" (searchEvent)="search($event)"></app-navbar>
 <app-add-dish *ngIf="isModerator()" style="display: inline"></app-add-dish>
+<button type="button" class="btn btn-primary" *ngIf="isUser()" (click)="suggestedDish()" style="display: inline">
+  Show dishes for me
+</button>
 <app-dishes-filter (filterDishEvent)="filterDish($event)"></app-dishes-filter>
 <div class="row dishes" *ngIf="dishes">
   <div class="col-md-6" *ngFor="let model of dishes">
