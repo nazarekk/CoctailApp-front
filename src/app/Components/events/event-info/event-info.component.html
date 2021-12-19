@@ -1,4 +1,5 @@
-<div class="col-3">
+<div class="container">
+  <app-navbar [isSearchable]="false"></app-navbar>
   <div *ngIf="event">
     <div class="card-body">
       <h5 class="card-title">Name: {{event.name}}</h5>
@@ -26,7 +27,7 @@
                      #time>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="Edit(name.value,time.value)">Edit event</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="edit(name.value,time.value)">Edit event</button>
               </div>
             </div>
           </div>
@@ -49,14 +50,14 @@
         </button>
         <br>
       </p>
-      <form [formGroup]="formForDish" (keyup.enter)="submitDish()" (ngSubmit)="submitDish()">
+      <form class="dishForm" [formGroup]="formForDish" (keyup.enter)="submitDish()" (ngSubmit)="submitDish()">
       <input
         formControlName="dishName"
         id="dishName"
         type="text"
         class="form-control"
         placeholder="dish">
-      <button type="submit" class="btn btn-primary">
+      <button type="submit" id="dishButton" class="btn btn-primary">
         Add
       </button>
       </form>

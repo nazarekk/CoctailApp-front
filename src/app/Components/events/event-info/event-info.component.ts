@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router, RouterModule} from '@angular/router';
 import {EventModel} from "../models/eventModel";
 import {EventsService} from "../../../api/events-service";
 import {Subscription} from "rxjs";
@@ -35,7 +35,7 @@ export class EventInfoComponent implements OnInit {
     this.refreshInfo()
   }
 
-  Edit(name: string, eventTime: string) {
+  edit(name: string, eventTime: string) {
     this.event.name = name;
     this.event.eventTime = new Date(eventTime);
     console.log(this.event)

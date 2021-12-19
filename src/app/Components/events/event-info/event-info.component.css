@@ -1,1 +1,11 @@
+button {
+  margin: 5px;
+}
 
+.dishForm{
+  width: 40%;
+}
+
+#dishButton{
+  width: 99%;
+}

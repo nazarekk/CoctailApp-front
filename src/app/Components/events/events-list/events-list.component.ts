@@ -14,7 +14,15 @@ export class EventsListComponent implements OnInit {
   constructor(private eventService: EventsService) { }
 
   ngOnInit(): void {
+    this.refreshList()
+  }
+
+  refreshList(): void{
     this.eventService.listEvents().subscribe((data: EventModel[]) => this.events = data)
+  }
+
+  search(searchvalue) {
+
   }
 
 }
