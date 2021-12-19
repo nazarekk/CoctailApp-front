@@ -62,4 +62,8 @@ export class DishesService {
   suggestedDishes(): Observable<DishModel[]> {
     return this.http.get<DishModel[]>(this.rootUrl + '/api/users/recipe/suggestion');
   }
+
+  favouritesDishes(): Observable<DishModel[]> {
+    return this.http.get<DishModel[]>(this.rootUrl + '/api/users/recipe/favourites');
+  }
 }

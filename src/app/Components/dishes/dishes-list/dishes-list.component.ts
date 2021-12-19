@@ -15,9 +15,11 @@ export class DishesListComponent implements OnInit, OnDestroy {
   dishes: DishModel[] = [];
   dishesSubscription: Subscription;
   serverResponse: Subscription;
+  showSuggested: Boolean = false;
 
   constructor(private dishesService: DishesService,
-              private auth: AuthService) { }
+              private auth: AuthService) {
+  }
 
   ngOnInit(): void {
     this.dishesSubscription = this.dishesService.listDishes().subscribe((data: DishModel[]) => this.dishes = data);
@@ -31,6 +33,7 @@ export class DishesListComponent implements OnInit, OnDestroy {
   refreshList() {
     this.dishesSubscription.unsubscribe();
     this.dishesService.listDishes().subscribe((data: DishModel[]) => this.dishes = data);
+    this.showSuggested = false;
   }
 
   isModerator(): Boolean {
@@ -64,7 +67,13 @@ export class DishesListComponent implements OnInit, OnDestroy {
   suggestedDish() {
     this.dishesSubscription.unsubscribe();
     this.dishesSubscription = this.dishesService.suggestedDishes().subscribe((data: DishModel[]) => this.dishes = data)
+    this.showSuggested = true;
   }
 
+  favouriteDish() {
+    this.dishesSubscription.unsubscribe();
+    this.dishesSubscription = this.dishesService.favouritesDishes().subscribe((data: DishModel[]) => this.dishes = data)
+    this.showSuggested = true;
+  }
 
 }

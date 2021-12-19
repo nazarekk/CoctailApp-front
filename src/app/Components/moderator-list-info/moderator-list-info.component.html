@@ -1,3 +1,6 @@
+<div *ngIf="alert" (click)="alert = false" class="alert alert-success" role="alert">
+  Moderator successfully deactivated!
+</div>
 <div class="card top container">
   <div class="bar">
     <div class="left">
@@ -38,12 +41,13 @@
           <br>
           <span class="smth">email: {{element.email}}</span>
           <br>
-          <span  *ngIf="element.isActive" class="smth">Active</span>
-          <span  *ngIf="!element.isActive" class="smth">Inactive</span>
+          <span *ngIf="element.isActive" class="smth">Active</span>
+          <span *ngIf="!element.isActive" class="smth">Inactive</span>
         </div>
         <div class="buttons name_buttons">
           <button type="button" class="btn button" (click)="editModer(element.userid)">Edit</button>
-          <button type="button" class="btn button spec" (click)="deleteModer(element)">Delete</button>
+          <button type="button" class="btn button spec"
+                  *ngIf="element.isActive" (click)="deleteModer(element)">Deactivate</button>
         </div>
       </div>
 

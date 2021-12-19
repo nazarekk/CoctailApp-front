@@ -16,6 +16,7 @@ export class ModeratorListInfoComponent implements OnInit {
   isAscendic = true;
   filteredModers: moderInfo[] = [];
   isFiltered = false;
+  alert: boolean = false;
 
 
   constructor(public auth: AuthService, private router: Router) {
@@ -35,7 +36,12 @@ export class ModeratorListInfoComponent implements OnInit {
   }
 
   deleteModer(moder) {
-    this.auth.deleteModer(moder).subscribe();
+    this.auth.deleteModer(moder).subscribe(data => {
+      if (data.status === 200) {
+        this.alert = true;
+        this.fetchIssues();
+      }
+    });
   }
 
   editModer(id) {
