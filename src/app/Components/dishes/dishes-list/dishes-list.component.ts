@@ -18,7 +18,8 @@ export class DishesListComponent implements OnInit, OnDestroy {
   showSuggested: Boolean = false;
 
   constructor(private dishesService: DishesService,
-              private auth: AuthService) { }
+              private auth: AuthService) {
+  }
 
   ngOnInit(): void {
     this.dishesSubscription = this.dishesService.listDishes().subscribe((data: DishModel[]) => this.dishes = data);
@@ -32,7 +33,7 @@ export class DishesListComponent implements OnInit, OnDestroy {
   refreshList() {
     this.dishesSubscription.unsubscribe();
     this.dishesService.listDishes().subscribe((data: DishModel[]) => this.dishes = data);
-    this.showSuggested = !this.showSuggested;
+    this.showSuggested = false;
   }
 
   isModerator(): Boolean {
@@ -64,23 +65,15 @@ export class DishesListComponent implements OnInit, OnDestroy {
   }
 
   suggestedDish() {
-    if (this.showSuggested === false) {
-      this.dishesSubscription.unsubscribe();
-      this.dishesSubscription = this.dishesService.suggestedDishes().subscribe((data: DishModel[]) => this.dishes = data)
-      this.showSuggested = !this.showSuggested;
-    } else {
-      this.refreshList()
-    }
+    this.dishesSubscription.unsubscribe();
+    this.dishesSubscription = this.dishesService.suggestedDishes().subscribe((data: DishModel[]) => this.dishes = data)
+    this.showSuggested = true;
   }
 
   favouriteDish() {
-    if (this.showSuggested === false) {
-      this.dishesSubscription.unsubscribe();
-      this.dishesSubscription = this.dishesService.favouritesDishes().subscribe((data: DishModel[]) => this.dishes = data)
-      this.showSuggested = !this.showSuggested;
-    } else {
-      this.refreshList();
-    }
+    this.dishesSubscription.unsubscribe();
+    this.dishesSubscription = this.dishesService.favouritesDishes().subscribe((data: DishModel[]) => this.dishes = data)
+    this.showSuggested = true;
   }
 
 }

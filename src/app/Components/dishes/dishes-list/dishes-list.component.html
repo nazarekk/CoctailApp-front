@@ -4,13 +4,13 @@
   <button type="button" class="btn dropdown-toggle button" data-bs-toggle="dropdown" aria-expanded="false">
     Dishes List
   </button>
-  <ul class="dropdown-menu">
+  <ul class="dropdown-menu" style="cursor: pointer">
     <li><a class="dropdown-item" (click)="suggestedDish()">Depending from my stock</a></li>
     <li><a class="dropdown-item" (click)="refreshList()">Show all</a></li>
     <li><a class="dropdown-item" (click)="favouriteDish()">Show my favourites</a></li>
   </ul>
 </div>
-<app-dishes-filter (filterDishEvent)="filterDish($event)"></app-dishes-filter>
+<app-dishes-filter *ngIf="!showSuggested" (filterDishEvent)="filterDish($event)"></app-dishes-filter>
 <div class="row dishes" *ngIf="dishes">
   <div class="col-md-6" *ngFor="let model of dishes">
     <app-dishes [dish]="model"
