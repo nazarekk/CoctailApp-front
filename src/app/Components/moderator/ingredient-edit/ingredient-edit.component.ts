@@ -16,6 +16,7 @@ export class IngredientEditComponent implements OnInit, OnDestroy {
   actualInfo: IngrInfo;
   infoSubscription: Subscription;
   form: FormGroup = new FormGroup({});
+  alert: boolean = false;
 
   constructor(private fb: FormBuilder,
               private systemInventory: SystemInventory,
@@ -52,7 +53,9 @@ export class IngredientEditComponent implements OnInit, OnDestroy {
     if (this.form.value.category.length == 0) {
       this.form.value.category = this.actualInfo.category.toString()
     }
-    this.systemInventory.editIngredient(this.form.value).subscribe(() =>{})
+    this.systemInventory.editIngredient(this.form.value).subscribe(data =>{
+      if (data.status === 200) location.href = "/ingredients";
+    }, () => this.alert = true)
   }
 
 }

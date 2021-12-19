@@ -5,17 +5,19 @@ import {ActivatedRoute} from "@angular/router";
 import {AuthService} from "../../../auth/auth.service";
 import {KitchenwareInfo} from "../kitchenware-list/KitchenwareModel";
 import {Subscription} from "rxjs";
+import {error} from "@angular/compiler/src/util";
 
 @Component({
   selector: 'app-kitchenware-edit',
   templateUrl: './kitchenware-edit.component.html',
   styleUrls: ['./kitchenware-edit.component.css']
 })
-export class KitchenwareEditComponent implements OnInit, OnDestroy{
+export class KitchenwareEditComponent implements OnInit, OnDestroy {
 
   actualInfo: KitchenwareInfo;
   form: FormGroup = new FormGroup({});
   infoSubscription: Subscription;
+  alert: boolean = false;
 
   constructor(private fb: FormBuilder,
               private systemInventory: SystemInventory,
@@ -52,7 +54,9 @@ export class KitchenwareEditComponent implements OnInit, OnDestroy{
     if (this.form.value.category.length == 0) {
       this.form.value.category = this.actualInfo.category.toString()
     }
-    this.systemInventory.editKitchenware(this.form.value).subscribe(() => {})
+    this.systemInventory.editKitchenware(this.form.value).subscribe(data => {
+      if (data.status === 200) location.href = "/kitchenwares"
+    }, error => this.alert = true)
   }
 
 }

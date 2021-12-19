@@ -25,7 +25,7 @@ export class SystemInventory {
   }
 
   editIngredient(ingredient) {
-    return this.http.put(this.rootUrl + '/api/moderator/ingredients', ingredient);
+    return this.http.put(this.rootUrl + '/api/moderator/ingredients', ingredient, {observe:"response"});
   }
 
   searchIngredient(name: String): Observable<IngrInfo[]> {
@@ -58,7 +58,7 @@ export class SystemInventory {
   }
 
   editKitchenware(kitchenware) {
-    return this.http.put(this.rootUrl + '/api/moderator/kitchenware', kitchenware);
+    return this.http.put(this.rootUrl + '/api/moderator/kitchenware', kitchenware, {observe:"response"});
   }
 
   listKitchenware(): Observable<KitchenwareInfo[]> {
