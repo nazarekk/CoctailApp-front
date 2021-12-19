@@ -1,6 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {DishModel} from "../dishModel";
-import {TypeEnum} from "../typeEnum";
 import {DishesService} from "../../../api/dishes-service";
 import {AuthService} from "../../../auth/auth.service";
 import {FilterInterface} from "./dishes-filter/filter-interface";
@@ -36,6 +35,10 @@ export class DishesListComponent implements OnInit, OnDestroy {
 
   isModerator(): Boolean {
     return (this.auth.getRole() == "ROLE_MODERATOR")
+  }
+
+  isUser(): Boolean {
+    return (this.auth.getRole() == "ROLE_CONFIRMED")
   }
 
   like(dish: DishModel) {
