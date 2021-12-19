@@ -1,7 +1,11 @@
-
-button {
-  text-align: center;
-  margin-left: 12px;
+.btn {
+  display: inline;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: white;
   background-color: #62A1FE;
+  padding: .275rem .55rem;
+  margin-left: 5px;
+  margin-right: 5px;
 }
-

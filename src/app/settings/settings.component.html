@@ -48,8 +48,9 @@
              id="newPassword"
              placeholder="new password">
       <label for="newPassword">new password</label>
-      <div *ngIf="this.form.controls.newPassword.touched && this.form.controls.newPassword.invalid"
-           class="alert alert-danger alert-error">
+      <div
+        *ngIf="this.form.controls.newPassword.touched && this.form.controls.newPassword.invalid"
+        class="alert alert-danger alert-error">
         <div class="padd" *ngIf="this.form.controls.newPassword.errors?.required">Password is required.</div>
       </div>
     </div>

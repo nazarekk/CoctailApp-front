@@ -54,9 +54,8 @@ export class ConfirmDishComponent implements OnInit {
   }
 
   Save() {
-    console.log(this.actualInfo)
     this.dishesService.editDish(this.actualInfo).subscribe(data => {
-      // if (data.status == 200) location.href = "/dishes"
+      if (data.status == 200) location.href = "/dishes"
     },
       () => {
       this.ngOnInit();

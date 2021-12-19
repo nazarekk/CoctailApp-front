@@ -26,7 +26,7 @@
           </div>
           <div class="edit-button">
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button type="button" class="btn btn-primary btn-select-photo" data-bs-toggle="modal" data-bs-target="#exampleModal">
               Edit photo
             </button>
 
@@ -40,19 +40,13 @@
                   </div>
                   <div class="modal-body container">
                       <div class="row row-cols-3">
-                        <div class="col "><button type="button" class='btn btn-primary background' (click)="selectPhoto(this.userPhoto.images[0])"><img [src] = "this.imagesUrl + this.userPhoto.images[0] + this.strJpg" class="img-fluid select-avatar"></button></div>
-                        <div class="col "><button type="button" class='btn btn-primary background' (click)="selectPhoto(this.userPhoto.images[1])"><img [src] = "this.imagesUrl + this.userPhoto.images[1] + this.strJpg" class="img-fluid select-avatar"></button></div>
-                        <div class="col "><button type="button" class='btn btn-primary background' (click)="selectPhoto(this.userPhoto.images[2])"><img [src] = "this.imagesUrl + this.userPhoto.images[2] + this.strJpg" class="img-fluid select-avatar"></button></div>
-                        <div class="col "><button type="button" class='btn btn-primary background' (click)="selectPhoto(this.userPhoto.images[3])"><img [src] = "this.imagesUrl + this.userPhoto.images[3] + this.strJpg" class="img-fluid select-avatar"></button></div>
-                        <div class="col "><button type="button" class='btn btn-primary background' (click)="selectPhoto(this.userPhoto.images[4])"><img [src] = "this.imagesUrl + this.userPhoto.images[4] + this.strJpg" class="img-fluid select-avatar"></button></div>
-                        <div class="col "><button type="button" class='btn btn-primary background' (click)="selectPhoto(this.userPhoto.images[5])"><img [src] = "this.imagesUrl + this.userPhoto.images[5] + this.strJpg" class="img-fluid select-avatar"></button></div>
-                        <div class="col "><button type="button" class='btn btn-primary background' (click)="selectPhoto(this.userPhoto.images[6])"><img [src] = "this.imagesUrl + this.userPhoto.images[6] + this.strJpg" class="img-fluid select-avatar"></button></div>
-                        <div class="col "><button type="button" class='btn btn-primary background' (click)="selectPhoto(this.userPhoto.images[7])"><img [src] = "this.imagesUrl + this.userPhoto.images[7] + this.strJpg" class="img-fluid select-avatar"></button></div>
-                        <div class="col "><button type="button" class='btn btn-primary background' (click)="selectPhoto(this.userPhoto.images[8])"><img [src] = "this.imagesUrl + this.userPhoto.images[8] + this.strJpg" class="img-fluid select-avatar"></button></div>
-                        <div class="col "><button type="button" class='btn btn-primary background' (click)="selectPhoto(this.userPhoto.images[9])"><img [src] = "this.imagesUrl + this.userPhoto.images[9] + this.strJpg" class="img-fluid select-avatar"></button></div>
-                        <div class="col "><button type="button" class='btn btn-primary background' (click)="selectPhoto(this.userPhoto.images[10])"><img [src] = "this.imagesUrl + this.userPhoto.images[10] + this.strJpg" class="img-fluid select-avatar"></button></div>
-                        <div class="col "><button type="button" class='btn btn-primary background' (click)="selectPhoto(this.userPhoto.images[11])"><img [src] = "this.imagesUrl + this.userPhoto.images[11] + this.strJpg" class="img-fluid select-avatar"></button></div>
-
+                        <div *ngFor="let photo of  this.userPhoto.images">
+                          <div class="col ">
+                            <button type="button" class='btn btn-primary background' (click)="selectPhoto(photo)"><img
+                              [src]="this.imagesUrl + photo + this.strJpg"
+                              class="img-fluid select-avatar"></button>
+                          </div>
+                        </div>
                       </div>
                   </div>
                   <div class="modal-footer">
@@ -104,8 +98,8 @@
         </textarea>
       </div>
       <div class="d-flex flex-row-reverse">
-        <input class="btn btn-primary" type="submit" [disabled]="!form.valid || !form.dirty" value="Ok">
-        <input class="btn btn-primary" type="button" routerLink="/settings" value="Cancel">
+        <input class="btn btn-primary submit-button" type="submit" [disabled]="!form.valid || !form.dirty" value="Ok">
+        <input class="btn btn-primary submit-button" type="button" routerLink="/settings" value="Cancel">
       </div>
     </section>
   </form>
