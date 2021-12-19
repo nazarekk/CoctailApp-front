@@ -30,7 +30,7 @@ export class CreateEventComponent implements OnInit {
     this.event.name = name;
     this.event.eventTime = new Date(eventTime);
     console.log(this.event)
-    this.eventsService.createEvent(this.event).subscribe(data => {if (data>0) location.href = "dishes/edit?id=" + data.toString()})
+    this.eventsService.createEvent(this.event).subscribe(data => {if (data>0) location.href = '/event-info/'+ data.toString()})
   }
 
 }

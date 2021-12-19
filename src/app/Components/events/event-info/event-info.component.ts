@@ -35,8 +35,16 @@ export class EventInfoComponent implements OnInit {
     this.refreshInfo()
   }
 
+  Edit(name: string, eventTime: string) {
+    this.event.name = name;
+    this.event.eventTime = new Date(eventTime);
+    console.log(this.event)
+    this.eventsService.editEvent(this.id, this.event).subscribe(data => this.refreshInfo())
+  }
+
   submitDish(){
-    this.addDish(this.formForDish.value)
+    this.addDish(this.formForDish.value['dishName'])
+    this.formForDish.reset()
   }
 
   refreshInfo(): void{

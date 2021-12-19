@@ -19,6 +19,10 @@ export class EventsService {
     return this.http.post<any>(this.rootUrl + '/api/users/events', event);
   }
 
+  editEvent(id: string, event): Observable<any> {
+    return this.http.patch<any>(this.rootUrl + '/api/users/events/' + id, event);
+  }
+
   join(id: string): Observable<any> {
     return this.http.post<any>(this.rootUrl + '/api/users/join/' + id, {},{observe: 'response'});
   }
@@ -28,6 +32,7 @@ export class EventsService {
   }
 
   addDish(id: string, name: string): Observable<any> {
+    console.log(this.rootUrl + '/api/users/events/' + id + "/recipe?name=" + name)
     return this.http.post<any>(this.rootUrl + '/api/users/events/' + id + "/recipe?name=" + name, {});
   }
 
