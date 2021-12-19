@@ -50,3 +50,13 @@ p {
   vertical-align: center;
 }
 
+.btn {
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #212529;
+  background-color: #62A1FE;
+  padding: .275rem .55rem;
+  margin-left: auto;
+  margin-right: auto;
+}

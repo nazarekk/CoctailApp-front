@@ -82,6 +82,16 @@
   width: 55%;
 }
 
+.btn-select-photo {
+  align-items: center;
+  justify-content: center;
+  color: #212529;
+  background-color: #62A1FE;
+  padding: .275rem .55rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .email_text{
   font-family: Roboto;
   font-style: normal;

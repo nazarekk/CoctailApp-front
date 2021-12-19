@@ -26,7 +26,7 @@
           </div>
           <div class="edit-button">
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button type="button" class="btn btn-primary btn-select-photo" data-bs-toggle="modal" data-bs-target="#exampleModal">
               Edit photo
             </button>
 
@@ -98,8 +98,8 @@
         </textarea>
       </div>
       <div class="d-flex flex-row-reverse">
-        <input class="btn btn-primary" type="submit" [disabled]="!form.valid || !form.dirty" value="Ok">
-        <input class="btn btn-primary" type="button" routerLink="/settings" value="Cancel">
+        <input class="btn btn-primary submit-button" type="submit" [disabled]="!form.valid || !form.dirty" value="Ok">
+        <input class="btn btn-primary submit-button" type="button" routerLink="/settings" value="Cancel">
       </div>
     </section>
   </form>

@@ -64,7 +64,7 @@
         </div>
         <div class="buttons name_buttons">
           <button type="button" class="btn button" (click)="editModer(moder.userid)">Edit</button>
-          <button type="button" class="btn button spec" (click)="deleteModer(moder.userid)">Delete</button>
+          <button type="button" class="btn button spec" *ngIf="moder.isActive" (click)="deleteModer(moder.userid)">Deactivate</button>
         </div>
       </div>
 

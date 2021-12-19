@@ -92,7 +92,7 @@ export class LoginComponent implements OnInit, OnDestroy {
               break
             }
             case "ROLE_ADMIN": {
-              this.router.navigate(['/moderator'])
+              this.router.navigate(['/moderatorlist'])
               break
             }
             case "ROLE_MODERATOR": {

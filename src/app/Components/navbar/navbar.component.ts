@@ -10,10 +10,12 @@ export class NavbarComponent implements OnInit {
 
   @Output() searchEvent = new EventEmitter();
   @Input() isSearchable: Boolean;
+  logo: String;
 
   constructor(private auth: AuthService) { }
 
   ngOnInit(): void {
+    this.logo = "https://i.imgur.com/BKgTr3H.png";
   }
 
   public isAdmin(): boolean {
