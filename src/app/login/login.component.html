@@ -7,7 +7,7 @@
 <div class="bdy-cart container dsp">
   <h1>{{title}}</h1>
 
-  <form [formGroup]="form" (keyup.enter)="submit()" (ngSubmit)="submit()">
+  <form [formGroup]="form" (ngSubmit)="submit()">
     <div class="corona form-group lg10">
       <input
         formControlName="email"
@@ -16,7 +16,8 @@
         class="form-control"
         placeholder="email">
       <div *ngIf="this.form.controls.email.touched && this.form.controls.email.invalid" class="alert alert-danger">
-        <div *ngIf="this.form.controls.email.errors?.required">Email is required.</div>
+        <div *ngIf="this.form.controls.email.errors?.required">Email is required</div>
+        <div *ngIf="this.form.controls.email.errors?.email">Invalid email</div>
       </div>
     </div>
     <div class="corona form-group lg10">
@@ -31,7 +32,7 @@
         <div *ngIf="this.form.controls.password.errors?.required">Password is required.</div>
       </div>
     </div>
-    <button class="btn btn-primary" type="submit" (click)="isSuccess()"
+    <button class="btn btn-primary" type="submit" (keyup.enter)="submit()" (click)="isSuccess()"
             [disabled]="!form.valid || !validCaptcha(this.countError) ">Enter
     </button>
     <div class="form-group corona lg10" *ngIf="countError>=5 && this.success">
