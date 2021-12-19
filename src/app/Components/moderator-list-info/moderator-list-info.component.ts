@@ -18,8 +18,8 @@ export class ModeratorListInfoComponent implements OnInit {
   isFiltered = false;
 
 
-
-  constructor(public auth: AuthService, private router: Router) { }
+  constructor(public auth: AuthService, private router: Router) {
+  }
 
   ngOnInit(): void {
     this.fetchIssues();
@@ -30,7 +30,7 @@ export class ModeratorListInfoComponent implements OnInit {
     this.auth
       .getModerInfo()
       .subscribe((data: moderInfo[]) => {
-      this.info = data;
+        this.info = data;
       });
   }
 
@@ -43,12 +43,12 @@ export class ModeratorListInfoComponent implements OnInit {
   }
 
   sortModer() {
-    this.isAscendic?this.ascendic():this.descendic()
+    this.isAscendic ? this.ascendic() : this.descendic()
   }
 
   ascendic() {
     this.isAscendic = false;
-    this.info = this.info.sort((n1,n2) => {
+    this.info = this.info.sort((n1, n2) => {
       if (n1.nickname < n2.nickname) {
         return 1;
       }
@@ -61,7 +61,7 @@ export class ModeratorListInfoComponent implements OnInit {
 
   descendic() {
     this.isAscendic = true
-    this.info = this.info.sort((n1,n2) => {
+    this.info = this.info.sort((n1, n2) => {
       if (n1.nickname > n2.nickname) {
         return 1;
       }
@@ -74,16 +74,15 @@ export class ModeratorListInfoComponent implements OnInit {
 
 
   activeModers() {
-      this.filteredModers = [];
-      for (let i = 0; i < this.info.length; i++) {
-        if (this.info[i].isActive === true) {
-          this.filteredModers.push(this.info[i]);
-        }
-      }
-      this.isFiltered = true;
+    this.filteredModers = [];
+    for (let user of this.info) {
+      if (user.isActive === true) this.filteredModers.push(user)
+    }
+    this.isFiltered = true;
   }
 
   showAll() {
+    this.fetchIssues();
     this.isFiltered = false;
   }
 
