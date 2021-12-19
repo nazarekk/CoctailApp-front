@@ -41,7 +41,7 @@ export class AuthService {
   }
 
   registerUser(user) {
-    return this.http.post<any>(this.rootUrl + '/api/users', user)
+    return this.http.post<any>(this.rootUrl + '/api/users', user, {observe:"response"})
   }
 
   loginUser(user): Observable<{ token: string }> {

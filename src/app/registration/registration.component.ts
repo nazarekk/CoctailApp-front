@@ -25,8 +25,8 @@ export class RegistrationComponent implements OnInit {
   ngOnInit() {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
-      doubleCheckPass: ['', [Validators.required]]
+      password: ['', [Validators.required, Validators.minLength(9)]],
+      doubleCheckPass: ['', [Validators.required, Validators.minLength(9)]]
     }, {
       validator: ConfirmedValidator('password', 'doubleCheckPass')
     })
@@ -41,17 +41,12 @@ export class RegistrationComponent implements OnInit {
   submit() {
     this.auth.registerUser(this.removeDoubleCheckPass(this.form.value))
       .subscribe(
-        () => {
+        data => {
+          location.href = "/login"
         },
         err => {
-          if (err.status == 417) {
-            this.isError = true;
-            this.alertText = "Incorrect password"
-          }
-          if (err.status == 500) {
-            this.isError = true;
-            this.alertText = "User with this email is already created"
-          }
+          this.isError = true;
+          this.alertText = "User with this email is already created"
         }
       )
   }

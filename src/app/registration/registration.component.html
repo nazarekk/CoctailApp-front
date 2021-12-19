@@ -28,6 +28,7 @@
       <div *ngIf="this.form.controls.password.touched && this.form.controls.password.invalid"
            class="alert alert-danger">
         <div *ngIf="this.form.controls.password.errors?.required">Password is required.</div>
+        <div *ngIf="this.form.value.password.length < 9">Minimal length is 9 symbols</div>
       </div>
     </div>
     <div class="corona form-group lg10">
@@ -43,6 +44,7 @@
         <div *ngIf="this.form.controls.doubleCheckPass.errors?.confirmedValidator">Password and Confirm Password do not
           match.
         </div>
+        <div *ngIf="this.form.value.doubleCheckPass.length < 9">Minimal length is 9 symbols</div>
       </div>
     </div>
     <button class="btn btn-primary" type="submit" (keyup.enter)="submit()" [disabled]="!form.valid">Enter</button>
