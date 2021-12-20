@@ -22,7 +22,7 @@
     <p class="card-text">Recipe: {{dish.recipe}}</p>
     <p class="card-text" style="display: inline">Ingredients: </p>
     <p class="card-text" style="display: inline"
-       *ngFor="let ingredients of dish.ingredientList">{{ingredients.name}} </p>
+       *ngFor="let ingredients of dish.ingredientList">{{ingredients.name}}, </p>
     <p></p>
     <a *ngIf="isModerator()" href="dishes/edit?id={{dish.id}}" class="stretched-link"></a>
     <div *ngIf="isUser()" style="align-content: center;text-align: left;">
