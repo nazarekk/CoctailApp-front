@@ -3,6 +3,10 @@
      *ngIf="errorEvent" (click)="errorEvent = false">
   This ingredient is in your inventory already!
 </div>
+<div class="alert alert-success" role="alert"
+     *ngIf="successEvent" (click)="successEvent = false">
+  {{successText}}
+</div>
 <div class = align-items-center>
   <app-stock-filter (filterEvent)="filter($event)"></app-stock-filter>
   <button type="button" class="btn btn-primary" *ngIf="sorted" (click)="sort()">Sort(a-z)</button>

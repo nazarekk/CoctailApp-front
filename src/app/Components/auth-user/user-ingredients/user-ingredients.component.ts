@@ -14,6 +14,8 @@ export class UserIngredientsComponent implements OnInit, OnDestroy {
   sorted: Boolean = true;
   showAll: Boolean = true;
   errorEvent: Boolean = false;
+  successEvent: Boolean = false;
+  successText: String;
   ingredientSubscription: Subscription;
   serverResponse: Subscription;
 
@@ -66,8 +68,8 @@ export class UserIngredientsComponent implements OnInit, OnDestroy {
     } else {
       if (ingr.quantity == undefined) ingr.quantity = 1;
       this.serverResponse = this.userInventoryService.addToStock(ingr.id, ingr.quantity).subscribe(() => {
-        this.showAll = !this.showAll;
-        this.view();
+        this.successText = "Ingredient successfully added"
+        this.successEvent = true;
       }, error => {
         if (error.status == 406) this.errorEvent = true;
       });
